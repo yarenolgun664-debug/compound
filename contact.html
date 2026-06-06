@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com 'unsafe-inline'; style-src 'self' https://fonts.googleapis.com https://api.fontshare.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com https://cdn.fontshare.com data:;">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="index, follow">
+
+  <title>Contact CompoundPro — Free Investment Calculator Tools</title>
+  <meta name="description" content="Have questions, spot a bug, or want to request a new investment calculator? Reach out to the CompoundPro editorial and developer team.">
+  <link rel="canonical" href="https://compoundpro.com/contact.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Contact CompoundPro">
+  <meta property="og:description" content="Have questions, spot a bug, or want to request a new investment calculator? Reach out to the CompoundPro team.">
+  <meta property="og:url" content="https://compoundpro.com/contact.html">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://compoundpro.com/assets/img/og/og-home.jpg">
+  <meta property="og:site_name" content="CompoundPro">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Contact CompoundPro">
+  <meta name="twitter:description" content="Have questions, spot a bug, or want to request a new investment calculator? Reach out to the CompoundPro team.">
+  <meta name="twitter:image" content="https://compoundpro.com/assets/img/og/og-home.jpg">
+
+  <!-- Fonts: Emerald Glass Typography -->
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/design-system.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/print.css" media="print">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "Contact CompoundPro",
+    "url": "https://compoundpro.com/contact.html",
+    "description": "Have questions, spot a bug, or want to request a new investment calculator? Reach out to the CompoundPro team."
+  }
+  </script>
+
+  <style>
+    /* ── Contact Hero ── */
+    .contact-hero {
+      background: linear-gradient(135deg, rgba(236,253,245,0.6) 0%, rgba(255,255,255,0.9) 50%, rgba(250,232,255,0.3) 100%);
+      padding: 96px 0 64px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 20%, rgba(16, 185, 129, 0.08) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 70%, rgba(217, 70, 239, 0.06) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .contact-hero h1 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      color: var(--color-neutral-900);
+      margin-bottom: var(--space-4);
+    }
+
+    .contact-hero p {
+      font-family: var(--font-body);
+      font-size: 1.0625rem;
+      color: var(--color-neutral-600);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* ── Contact Layout ── */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: var(--space-8);
+      padding-top: var(--space-10);
+      padding-bottom: var(--space-16);
+    }
+
+    @media (max-width: 992px) {
+      .contact-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ── Form Container ── */
+    .contact-form-container {
+      padding: var(--space-10);
+    }
+
+    @media (max-width: 640px) {
+      .contact-form-container {
+        padding: var(--space-6);
+      }
+    }
+
+    .form-group {
+      margin-bottom: var(--space-6);
+    }
+
+    .form-label {
+      display: block;
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 0.875rem;
+      color: var(--color-neutral-800);
+      margin-bottom: var(--space-2);
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--color-neutral-200);
+      font-family: var(--font-body);
+      font-size: 0.9375rem;
+      background: rgba(255, 255, 255, 0.85);
+      color: var(--color-neutral-900);
+      transition: all var(--transition-fast);
+      outline: none;
+    }
+
+    .form-input:focus {
+      border-color: var(--color-emerald-500);
+      box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
+      background: var(--color-bg-white);
+    }
+
+    .form-input::placeholder {
+      color: var(--color-neutral-400);
+    }
+
+    select.form-input {
+      height: 48px;
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%234B5563'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd'/%3E%3C/svg%3E");
+      background-position: right 1rem center;
+      background-repeat: no-repeat;
+      background-size: 1.25rem;
+      padding-right: 2.5rem;
+    }
+
+    textarea.form-input {
+      min-height: 140px;
+      resize: vertical;
+    }
+
+    .form-note {
+      font-family: var(--font-body);
+      font-size: 0.8125rem;
+      color: var(--color-neutral-400);
+      margin-bottom: var(--space-6);
+    }
+
+    /* ── Sidebar Widgets ── */
+    .sidebar-widget {
+      padding: var(--space-6);
+      margin-bottom: var(--space-6);
+    }
+
+    .sidebar-widget-title {
+      font-family: var(--font-display);
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--color-neutral-900);
+      margin-bottom: var(--space-4);
+      padding-bottom: var(--space-2);
+      border-bottom: 2px solid var(--color-emerald-rgba-10);
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+    }
+
+    .sidebar-widget-title svg {
+      width: 20px;
+      height: 20px;
+      color: var(--color-emerald-600);
+    }
+
+    /* ── Contact FAQ items ── */
+    .contact-faq-item {
+      margin-bottom: var(--space-4);
+      padding-bottom: var(--space-4);
+      border-bottom: 1px solid var(--color-neutral-100);
+    }
+
+    .contact-faq-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .contact-faq-q {
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 0.9375rem;
+      color: var(--color-neutral-800);
+      margin-bottom: var(--space-1);
+    }
+
+    .contact-faq-a {
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      color: var(--color-neutral-600);
+      line-height: 1.6;
+    }
+
+    /* ── Success Modal ── */
+    .success-popup-card {
+      text-align: center;
+      padding: var(--space-8) var(--space-4);
+    }
+
+    .success-icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto var(--space-4);
+      background: var(--color-emerald-rgba-10);
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-emerald-500);
+    }
+
+    .success-icon svg {
+      width: 32px;
+      height: 32px;
+    }
+  </style>
+
+  <!-- Layout Loader Component System -->
+  <script src="/assets/js/layout-loader.js" defer></script>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <div id="navbar-placeholder"></div>
+
+  <!-- Contact Hero Banner -->
+  <section class="contact-hero">
+    <div class="container" style="max-width: 800px; position: relative; z-index: 1;">
+      <h1>Contact <span class="title-highlight">CompoundPro</span></h1>
+      <p>Have a question, spot a calculation bug, or want to suggest a new tool model? Fill out the form below to reach our team.</p>
+    </div>
+  </section>
+
+  <!-- Main Section: Form & Info Card -->
+  <main class="container">
+    <div class="contact-layout reveal">
+
+      <!-- Left Column: Form -->
+      <section class="contact-form-container glass-panel">
+        <form id="contact-form" onsubmit="handleContactSubmit(event)">
+
+          <div class="form-group">
+            <label for="contact-name" class="form-label">Full Name</label>
+            <input type="text" id="contact-name" name="name" class="form-input" placeholder="Your Name" required aria-required="true">
+          </div>
+
+          <div class="form-group">
+            <label for="contact-email" class="form-label">Email Address</label>
+            <input type="email" id="contact-email" name="email" class="form-input" placeholder="you@example.com" required aria-required="true">
+          </div>
+
+          <div class="form-group">
+            <label for="contact-subject" class="form-label">Subject</label>
+            <select id="contact-subject" name="subject" class="form-input" required aria-required="true">
+              <option value="" disabled selected>Select a subject topic...</option>
+              <option value="General">General Inquiry</option>
+              <option value="Bug Report">Calculator Bug Report</option>
+              <option value="Calculator Request">Calculator Feature Request</option>
+              <option value="Partnership">Partnership Proposal</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="contact-message" class="form-label">Your Message</label>
+            <textarea id="contact-message" name="message" class="form-input" placeholder="Type your message details here..." required aria-required="true"></textarea>
+          </div>
+
+          <p class="form-note">
+            Note: We typically respond to all legitimate inquiries within 2-3 business days.
+          </p>
+
+          <button type="submit" class="btn btn-accent" style="width: 100%;">Send Message</button>
+
+        </form>
+      </section>
+
+      <!-- Right Column: Info Card -->
+      <aside>
+
+        <!-- Email Contact Widget -->
+        <div class="sidebar-widget glass-panel">
+          <h2 class="sidebar-widget-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            Email Contact
+          </h2>
+          <p style="font-family: var(--font-body); font-size: 0.875rem; color: var(--color-neutral-600); margin-bottom: var(--space-2);">For direct emails, write to:</p>
+          <p style="font-family: var(--font-mono); font-weight: 600; color: var(--color-emerald-700); margin-bottom: 0; font-variant-numeric: tabular-nums;">hello@compoundpro.com</p>
+        </div>
+
+        <!-- FAQs sidebar widget -->
+        <div class="sidebar-widget glass-panel">
+          <h2 class="sidebar-widget-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            Quick Questions
+          </h2>
+
+          <div class="contact-faq-item">
+            <h3 class="contact-faq-q">Can I request a new calculator?</h3>
+            <p class="contact-faq-a">Yes! Select "Calculator Feature Request" in the dropdown menu. We prioritize models backed by popular user demand.</p>
+          </div>
+
+          <div class="contact-faq-item">
+            <h3 class="contact-faq-q">Is there an API?</h3>
+            <p class="contact-faq-a">Not currently. Our calculator engines calculate parameters locally on client browsers. We have no backend API endpoints available.</p>
+          </div>
+
+          <div class="contact-faq-item">
+            <h3 class="contact-faq-q">Can I embed your calculators?</h3>
+            <p class="contact-faq-a">No direct iframe embed is supported, but you are completely welcome to link back to any calculator page. Review our <a href="/terms-of-use.html">Terms of Use</a>.</p>
+          </div>
+
+        </div>
+
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- SUCCESS POPUP MODAL OVERLAY -->
+  <div class="modal-overlay" id="thanks-modal">
+    <div class="modal" style="max-width: 500px;">
+      <button class="modal-close btn btn-icon btn-ghost" onclick="closeModal('thanks-modal')" aria-label="Close modal">&#10005;</button>
+      <div class="success-popup-card">
+        <div class="success-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <h3 style="font-family: var(--font-display); font-size: 1.375rem; color: var(--color-emerald-600); margin-bottom: var(--space-3);">Message Sent Successfully!</h3>
+        <p style="font-family: var(--font-body); font-size: 0.875rem; color: var(--color-neutral-600); line-height: 1.6; margin-bottom: var(--space-6);">
+          Your message has been sent successfully. Thank you for reaching out to CompoundPro! Our support team will review your inquiry and get back to you shortly.
+        </p>
+        <button class="btn btn-primary" onclick="closeModal('thanks-modal')" style="width: 100%;">Done</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div id="footer-placeholder">
+    <noscript>
+      <footer style="padding: 24px 0; text-align: center;">
+        <p style="font-family: var(--font-body); font-size: 0.75rem; color: var(--color-neutral-400);">&copy; 2026 CompoundPro. All rights reserved. Calculations are for educational purposes.</p>
+      </footer>
+    </noscript>
+  </div>
+
+  <!-- SEARCH MODAL OVERLAY -->
+  <div class="modal-overlay" id="search-modal">
+    <div class="modal search-modal">
+      <button class="modal-close btn btn-icon btn-ghost" aria-label="Close search">&#10005;</button>
+      <div style="font-family: var(--font-display); font-weight: 700; font-size: 1.25rem; margin-bottom: 12px; color: var(--color-neutral-900);">Search CompoundPro</div>
+      <div class="search-input-wrapper">
+        <span class="search-icon-inside">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="20.5" y1="20.5" x2="16.65" y2="16.65"/></svg>
+        </span>
+        <input type="text" class="search-input" placeholder="Type calculator or topic name..." aria-label="Search site">
+      </div>
+      <div class="search-results"></div>
+    </div>
+  </div>
+
+  <!-- DOMPurify for XSS Protection -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.8/purify.min.js" integrity="sha512-jB0TkTBeQC9ZSkBqDhdmfTv1qdfbWpGE72yDr0E8w8tF4UCLRbcWR8wz//cs4620LqpLnxYRJKsE9OE5CEMZRA==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+  <script src="/assets/js/sanitizer.js" defer></script>
+  <script src="/assets/js/core.js" defer></script>
+  <script src="/assets/js/main.js" defer></script>
+  <script src="/assets/js/ads.js" defer></script>
+
+  <!-- Interactive Submission Script (Mock Mode - no real email) -->
+  <script>
+    function handleContactSubmit(e) {
+      e.preventDefault();
+
+      const form = document.getElementById('contact-form');
+      const name = document.getElementById('contact-name').value.trim();
+      const email = document.getElementById('contact-email').value.trim();
+      const subject = document.getElementById('contact-subject').value;
+      const message = document.getElementById('contact-message').value.trim();
+
+      if (!name || !email || !subject || !message) {
+        if (window.showToast) {
+          window.showToast("Please fill out all contact fields.", "error");
+        }
+        return;
+      }
+
+      // Basic email format check
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        if (window.showToast) {
+          window.showToast("Please enter a valid email address.", "error");
+        }
+        return;
+      }
+
+      const submitButton = form.querySelector('button[type="submit"]');
+      const originalBtnText = submitButton.textContent;
+
+      // Show "sending..." state
+      submitButton.disabled = true;
+      submitButton.innerHTML = '<span style="display:inline-block;animation:spin 0.8s linear infinite;">&#10227;</span> Sending...';
+
+      // Simulate network delay (mock mode)
+      setTimeout(() => {
+        submitButton.disabled = false;
+        submitButton.textContent = originalBtnText;
+
+        if (window.openModal) {
+          window.openModal('thanks-modal');
+        } else {
+          const modal = document.getElementById('thanks-modal');
+          if (modal) modal.classList.add('open');
+        }
+        form.reset();
+        if (window.showToast) {
+          window.showToast("Message sent successfully!", "success");
+        }
+        console.log("[CompoundPro] Mock contact form submission:", { name, email, subject, message });
+      }, 1200);
+    }
+  </script>
+</body>
+</html>

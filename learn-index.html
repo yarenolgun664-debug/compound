@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com https://polyfill.io 'unsafe-inline'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline' https://api.fontshare.com; font-src 'self' https://fonts.gstatic.com https://api.fontshare.com data:;">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="index, follow">
+  
+  <!-- SEO Requirements -->
+  <title>Learning Hub — Investment Courses & Projections Guides | CompoundPro</title>
+  <meta name="description" content="Explore our free collection of comprehensive long-form investment tutorials. Master compound interest math, retirement systems, and market entry strategies.">
+  <link rel="canonical" href="https://compoundpro.com/learn-index.html">
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://compoundpro.com/learn-index.html">
+  <meta property="og:title" content="Learning Hub — Investment Courses & Projections Guides | CompoundPro">
+  <meta property="og:description" content="Explore our free collection of comprehensive long-form investment tutorials. Master compound interest math, retirement systems, and market entry strategies.">
+  <meta property="og:image" content="https://compoundpro.com/assets/img/og/og-learn.jpg">
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://compoundpro.com/learn-index.html">
+  <meta name="twitter:title" content="Learning Hub — Investment Courses & Projections Guides | CompoundPro">
+  <meta name="twitter:description" content="Explore our free collection of comprehensive long-form investment tutorials. Master compound interest math, retirement systems, and market entry strategies.">
+  <meta name="twitter:image" content="https://compoundpro.com/assets/img/og/og-learn.jpg">
+
+  <!-- Critical Inline CSS for Learn Index FCP -->
+  <style>
+    :root {
+      --color-emerald-50: #ECFDF5;
+      --color-emerald-500: #10B981;
+      --color-emerald-600: #059669;
+      --color-emerald-700: #047857;
+      --color-emerald-900: #064E3B;
+      --color-orange-50: #FFF7ED;
+      --color-orange-500: #F97316;
+      --color-orange-600: #EA580C;
+      --color-orange-700: #C2410C;
+      --color-mauve-50: #FDF4FF;
+      --color-mauve-500: #D946EF;
+      --color-bg-white: #FFFFFF;
+      --color-bg-offwhite: #FAFAFA;
+      --color-neutral-100: #F3F4F6;
+      --color-neutral-200: #E5E7EB;
+      --color-neutral-400: #9CA3AF;
+      --color-neutral-600: #4B5563;
+      --color-neutral-900: #111827;
+      --glass-bg: rgba(255, 255, 255, 0.7);
+      --glass-bg-strong: rgba(255, 255, 255, 0.85);
+      --glass-border: rgba(255, 255, 255, 0.6);
+      --glass-shadow: 0 8px 32px -4px rgba(16, 185, 129, 0.08);
+      --glass-blur: blur(16px);
+      --font-display: 'Clash Display', sans-serif;
+      --font-body: 'Satoshi', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --space-1: 0.25rem;
+      --space-2: 0.5rem;
+      --space-3: 0.75rem;
+      --space-4: 1rem;
+      --space-6: 1.5rem;
+      --space-8: 2rem;
+      --space-12: 3rem;
+      --space-16: 4rem;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 24px;
+      --radius-2xl: 32px;
+      --radius-full: 9999px;
+      --transition-normal: 300ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--color-bg-offwhite);
+      color: var(--color-neutral-600);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: 
+        radial-gradient(circle at 15% 10%, rgba(16, 185, 129, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 85% 30%, rgba(217, 70, 239, 0.04) 0%, transparent 40%),
+        radial-gradient(circle at 50% 85%, rgba(16, 185, 129, 0.03) 0%, transparent 35%);
+      pointer-events: none;
+      z-index: -2;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: var(--space-6);
+      padding-right: var(--space-6);
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: var(--space-6);
+    }
+
+    .learn-section {
+      padding-top: var(--space-8);
+      padding-bottom: var(--space-12);
+      border-bottom: 1px solid var(--color-neutral-200);
+    }
+
+    .learn-section:last-of-type {
+      border-bottom: none;
+    }
+
+    .learn-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 240px;
+    }
+  </style>
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <!-- Stylesheets -->
+  <link rel="preload" href="/assets/css/design-system.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="/assets/css/design-system.css"></noscript>
+  <link rel="preload" href="/assets/css/components.css?v=20260602" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="/assets/css/components.css?v=20260602"></noscript>
+
+  <!-- Layout Loader Component System -->
+  <script src="/assets/js/layout-loader.js" defer></script>
+  
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "Learning Hub — Investment Courses & Projections Guides",
+      "url": "https://compoundpro.com/learn-index.html",
+      "description": "Master compound interest math, retirement planning systems, and market entry strategies with our collection of free guides."
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://compoundpro.com"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Learning Hub",
+          "item": "https://compoundpro.com/learn-index.html"
+        }
+      ]
+    }
+  ]
+  </script>
+</head>
+<body class="grain-overlay">
+
+  <!-- NAVBAR -->
+  <div id="navbar-placeholder"></div>
+
+  <!-- MAIN WRAPPER -->
+  <main style="padding-top: 104px; padding-bottom: 80px;">
+    <div class="container">
+      
+      <!-- BREADCRUMBS -->
+      <nav class="breadcrumb" style="margin-bottom: var(--space-6);">
+        <a href="/" class="breadcrumb-item">Home</a>
+        <span class="breadcrumb-sep">/</span>
+        <span class="breadcrumb-item">Learning Hub</span>
+      </nav>
+
+      <!-- PAGE HERO -->
+      <header style="max-width: 800px; margin-bottom: var(--space-10);">
+        <h1 class="hero-title"><span class="title-highlight">Investment Learning</span> Hub</h1>
+        <p class="body-lg" style="color: var(--color-neutral-600);">Become a mathematically-grounded allocator. Master the concepts backing our calculations through structured, self-paced guides.</p>
+      </header>
+
+      <!-- COURSE CATEGORY SECTION 1: Compounding Fundamentals -->
+      <section class="learn-section">
+        <h2 style="font-family: var(--font-display); font-size: 1.5rem; color: var(--color-neutral-900); margin-bottom: var(--space-6); display: flex; align-items: center; gap: 8px;">
+          <span style="color: var(--color-orange-500); display: inline-flex;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="20" x2="18" y2="10"></line>
+              <line x1="12" y1="20" x2="12" y2="4"></line>
+              <line x1="6" y1="20" x2="6" y2="14"></line>
+            </svg>
+          </span>
+          Core Compounding Systems
+        </h2>
+
+        <div class="grid-3">
+          <!-- Guide 1 -->
+          <div class="glass-panel learn-card" style="padding: var(--space-6); border-color: rgba(249, 115, 22, 0.2);">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-3);">
+                <span class="badge badge-orange">Beginner</span>
+                <span style="font-size: 0.8125rem; color: var(--color-neutral-400);">8 min read</span>
+              </div>
+              <h3 style="font-family: var(--font-display); font-size: 1.2rem; color: var(--color-neutral-900); margin-bottom: var(--space-2);">What Is Compound Interest?</h3>
+              <p style="font-size: 0.875rem; color: var(--color-neutral-600); line-height: 1.5;">
+                Demystify the mathematical foundations of geometric rate growth and see the exponential difference over simple interest.
+              </p>
+            </div>
+            <a href="/learn/what-is-compound-interest.html" class="btn btn-secondary btn-sm" style="width: fit-content;">Start Guide</a>
+          </div>
+
+          <!-- Guide 2 -->
+          <div class="glass-panel learn-card" style="padding: var(--space-6); border-color: rgba(249, 115, 22, 0.2);">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-3);">
+                <span class="badge badge-orange">Intermediate</span>
+                <span style="font-size: 0.8125rem; color: var(--color-neutral-400);">10 min read</span>
+              </div>
+              <h3 style="font-family: var(--font-display); font-size: 1.2rem; color: var(--color-neutral-900); margin-bottom: var(--space-2);">The Power of Starting Early</h3>
+              <p style="font-size: 0.875rem; color: var(--color-neutral-600); line-height: 1.5;">
+                Analyze decadal wealth curves and see why the duration parameter in compounding equations represents your heaviest asset.
+              </p>
+            </div>
+            <a href="/learn/power-of-starting-early.html" class="btn btn-secondary btn-sm" style="width: fit-content;">Start Guide</a>
+          </div>
+
+          <!-- Guide 3 -->
+          <div class="glass-panel learn-card" style="padding: var(--space-6); border-color: rgba(249, 115, 22, 0.2);">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-3);">
+                <span class="badge badge-orange">Beginner</span>
+                <span style="font-size: 0.8125rem; color: var(--color-neutral-400);">6 min read</span>
+              </div>
+              <h3 style="font-family: var(--font-display); font-size: 1.2rem; color: var(--color-neutral-900); margin-bottom: var(--space-2);">Rule of 72 Mechanics</h3>
+              <p style="font-size: 0.875rem; color: var(--color-neutral-600); line-height: 1.5;">
+                Learn the quick doubling equation mental shortcut and evaluate its accuracy limits against standard logarithmic math.
+              </p>
+            </div>
+            <a href="/learn/rule-of-72-explained.html" class="btn btn-secondary btn-sm" style="width: fit-content;">Start Guide</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- COURSE CATEGORY SECTION 2: Allocation & Markets -->
+      <section class="learn-section">
+        <h2 style="font-family: var(--font-display); font-size: 1.5rem; color: var(--color-neutral-900); margin-bottom: var(--space-6); display: flex; align-items: center; gap: 8px;">
+          <span style="color: var(--color-mauve-500); display: inline-flex;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+          </span>
+          Investment Allocation & Strategies
+        </h2>
+
+        <div class="grid-3">
+          <!-- Guide 1 -->
+          <div class="glass-panel learn-card" style="padding: var(--space-6); border-color: rgba(217, 70, 239, 0.2);">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-3);">
+                <span class="badge badge-mauve">Intermediate</span>
+                <span style="font-size: 0.8125rem; color: var(--color-neutral-400);">12 min read</span>
+              </div>
+              <h3 style="font-family: var(--font-display); font-size: 1.2rem; color: var(--color-neutral-900); margin-bottom: var(--space-2);">Dollar-Cost Averaging</h3>
+              <p style="font-size: 0.875rem; color: var(--color-neutral-600); line-height: 1.5;">
+                Compare single entry lump-sum purchases with systematic periodic additions to navigate volatile market cycles.
+              </p>
+            </div>
+            <a href="/learn/dollar-cost-averaging.html" class="btn btn-secondary btn-sm" style="width: fit-content;">Start Guide</a>
+          </div>
+
+          <!-- Guide 2 -->
+          <div class="glass-panel learn-card" style="padding: var(--space-6); border-color: rgba(217, 70, 239, 0.2);">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-3);">
+                <span class="badge badge-mauve">Beginner</span>
+                <span style="font-size: 0.8125rem; color: var(--color-neutral-400);">10 min read</span>
+              </div>
+              <h3 style="font-family: var(--font-display); font-size: 1.2rem; color: var(--color-neutral-900); margin-bottom: var(--space-2);">How to Start Investing</h3>
+              <p style="font-size: 0.875rem; color: var(--color-neutral-600); line-height: 1.5;">
+                Learn basic broker accounts setup, market orders, stock versus index profile differences, and index-fund tracking.
+              </p>
+            </div>
+            <a href="/learn/how-to-invest.html" class="btn btn-secondary btn-sm" style="width: fit-content;">Start Guide</a>
+          </div>
+
+          <!-- Guide 3 -->
+          <div class="glass-panel learn-card" style="padding: var(--space-6); border-color: rgba(217, 70, 239, 0.2);">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-3);">
+                <span class="badge badge-mauve">Advanced</span>
+                <span style="font-size: 0.8125rem; color: var(--color-neutral-400);">15 min read</span>
+              </div>
+              <h3 style="font-family: var(--font-display); font-size: 1.2rem; color: var(--color-neutral-900); margin-bottom: var(--space-2);">7 Investment Strategies</h3>
+              <p style="font-size: 0.875rem; color: var(--color-neutral-600); line-height: 1.5;">
+                Differentiate value models, growth profiles, dividends systems, active allocation, and broad passive index-fund spreads.
+              </p>
+            </div>
+            <a href="/learn/investment-strategies.html" class="btn btn-secondary btn-sm" style="width: fit-content;">Start Guide</a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <div id="footer-placeholder"></div>
+
+  <!-- SEARCH MODAL OVERLAY -->
+  <div class="modal-overlay" id="search-modal">
+    <div class="modal search-modal glass-panel-strong">
+      <button class="modal-close btn btn-icon btn-ghost" aria-label="Close search">✕</button>
+      <h3 style="font-family: var(--font-display); font-weight: 700; font-size: 1.25rem; margin-bottom: var(--space-4); color: var(--color-neutral-900);">Search CompoundPro</h3>
+      <div class="search-input-wrapper" style="position: relative; display: flex; align-items: center; border: 1px solid var(--color-neutral-200); border-radius: var(--radius-md); background: rgba(255, 255, 255, 0.9); padding: 2px;">
+        <span class="search-icon-inside" style="padding-left: 1rem; color: var(--color-neutral-400);">🔍</span>
+        <input type="text" class="search-input" placeholder="Type calculator name or topic... (e.g. S&P 500, retirement)" aria-label="Search site" style="width: 100%; padding: 0.75rem 1rem; border: none; background: transparent; font-family: var(--font-body); font-size: 1rem; color: var(--color-neutral-900); outline: none;">
+      </div>
+      <div class="search-results" style="margin-top: var(--space-6); max-height: 300px; overflow-y: auto;"></div>
+    </div>
+  </div>
+
+  <!-- Core Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.8/purify.min.js" integrity="sha512-jB0TkTBeQC9ZSkBqDhdmfTv1qdfbWpGE72yDr0E8w8tF4UCLRbcWR8wz//cs4620LqpLnxYRJKsE9OE5CEMZRA==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+  <script src="/assets/js/sanitizer.js" defer></script>
+  <script src="/assets/js/core.js" defer></script>
+  <script src="/assets/js/ads.js" defer></script>
+</body>
+</html>

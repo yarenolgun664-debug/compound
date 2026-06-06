@@ -1,0 +1,4242 @@
+/* ════════════════════════════════════════════════════════════════
+   CompoundPro - Components (Beyaz/Açık ton, Ayna Cam)
+   Butonlar, kartlar, navbar, modal, footer - mirror glass tema
+   TÜM SİTE TEK KAYNAKTAN (design-system.css + bu dosya)
+   ════════════════════════════════════════════════════════════════ */
+
+/* ═══ AYNA CAM (MIRROR GLASS) BASE CLASS ═══ */
+.mirror-glass {
+  background: var(--mirror-glass-bg);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--mirror-glass-shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+.mirror-glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--mirror-glass-shine);
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.4;
+  mix-blend-mode: overlay;
+}
+
+.mirror-glass > * {
+  position: relative;
+  z-index: 2;
+}
+
+
+/* ═══ TRUST STRIP (100% Free vs) - Büyük ve dinamik ═══ */
+.trust-strip {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 32px;
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.92) 0%, 
+    rgba(236, 253, 245, 0.6) 50%, 
+    rgba(255, 255, 255, 0.85) 100%);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: var(--radius-2xl);
+  box-shadow: 0 4px 20px rgba(16, 185, 129, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.trust-strip::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.9) 50%, transparent 100%);
+}
+
+.trust-strip-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--color-text-primary);
+  letter-spacing: 0.01em;
+  position: relative;
+  padding: 4px 0;
+}
+
+.trust-strip-item .trust-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-emerald) 0%, var(--color-emerald-2) 100%);
+  color: var(--color-white);
+  font-size: 0.875rem;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+  animation: trustPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes trustPulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3); }
+  50% { transform: scale(1.08); box-shadow: 0 4px 14px rgba(16, 185, 129, 0.5); }
+}
+
+.trust-strip-divider {
+  width: 1px;
+  height: 24px;
+  background: var(--color-border);
+}
+
+@media (max-width: 640px) {
+  .trust-strip {
+    gap: 16px;
+    padding: 16px 20px;
+  }
+  .trust-strip-item {
+    font-size: 0.875rem;
+  }
+  .trust-strip-divider { display: none; }
+}
+
+
+/* ═══ NAVBAR SEARCH BUTTON (dinamik, animasyonlu) ═══ */
+.search-trigger {
+  position: relative;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.08), rgba(14, 165, 233, 0.08)) !important;
+  border: 1px solid rgba(16, 185, 129, 0.3) !important;
+  animation: searchPulse 3s ease-in-out infinite, searchShimmer 6s ease-in-out infinite;
+  overflow: visible;
+}
+
+.search-trigger svg {
+  position: relative;
+  z-index: 2;
+  animation: searchIconWiggle 4s ease-in-out infinite;
+  transform-origin: 11px 11px;
+}
+
+.search-trigger::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.6), rgba(14, 165, 233, 0.6), rgba(16, 185, 129, 0));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  opacity: 0;
+  animation: searchRing 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.search-trigger::after {
+  content: "";
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-emerald);
+  box-shadow: 0 0 6px var(--color-emerald);
+  animation: searchDot 2s ease-in-out infinite;
+  z-index: 3;
+}
+
+.search-trigger:hover {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.18), rgba(14, 165, 233, 0.18)) !important;
+  border-color: var(--color-emerald) !important;
+  box-shadow: 0 0 16px rgba(16, 185, 129, 0.3);
+  transform: scale(1.05);
+}
+
+.search-trigger:hover svg {
+  animation: searchIconSpin 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes searchPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.3); }
+  50%      { box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+}
+
+@keyframes searchShimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+
+@keyframes searchRing {
+  0%, 100% { opacity: 0; transform: rotate(0deg); }
+  50%      { opacity: 0.8; transform: rotate(180deg); }
+}
+
+@keyframes searchIconWiggle {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  25%      { transform: rotate(-8deg) scale(1.06); }
+  50%      { transform: rotate(0deg) scale(1); }
+  75%      { transform: rotate(8deg) scale(1.06); }
+}
+
+@keyframes searchIconSpin {
+  0%   { transform: rotate(0deg) scale(1); }
+  100% { transform: rotate(360deg) scale(1.15); }
+}
+
+@keyframes searchDot {
+  0%, 100% { opacity: 0.4; transform: scale(0.8); }
+  50%      { opacity: 1;   transform: scale(1.2); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .search-trigger,
+  .search-trigger svg,
+  .search-trigger::before,
+  .search-trigger::after {
+    animation: none !important;
+  }
+}
+
+
+/* ═══ SAYFA BAŞLIKLARI - TUTARLI STİL ═══ */
+/* Tüm hero başlıkları aynı font/weight/letter-spacing */
+.page-hero-title,
+.hero-title,
+.legal-hero-title,
+.legal-hero h1,
+.calc-hub-hero h1,
+.blog-hero h1,
+.learn-hero h1,
+.about-hero h1,
+.contact-hero h1 {
+  font-family: var(--font-display) !important;
+  font-weight: 700 !important;
+  font-size: clamp(1.625rem, 4vw, 2.5rem) !important;
+  line-height: 1.2 !important;
+  letter-spacing: -0.025em !important;
+  color: var(--color-text-primary) !important;
+  margin: 0 0 12px 0 !important;
+  max-width: 90%;
+}
+
+@media (max-width: 768px) {
+  .page-hero-title,
+  .hero-title,
+  .legal-hero-title,
+  .legal-hero h1,
+  .calc-hub-hero h1,
+  .blog-hero h1,
+  .learn-hero h1,
+  .about-hero h1,
+  .contact-hero h1 {
+    font-size: clamp(1.5rem, 5vw, 2rem) !important;
+  }
+}
+
+
+/* ═══ HERO TITLE (zarif, farklı font - sadece ana sayfa) ═══ */
+.hero-title {
+  font-weight: 800 !important;
+  font-size: clamp(2rem, 4.5vw, 2.75rem) !important;
+  line-height: 1.1 !important;
+  margin-bottom: 18px !important;
+}
+
+/* ═══ BAŞLIK VURGUSU — TÜM SAYFALAR İÇİN ORTAK ═══ */
+/* Title highlight (gradient text button) — sayfa başlıklarının
+   bir bölümünü vurgulamak için kullanılır. <span class="title-highlight">…</span> */
+.hero-title-accent,
+.title-highlight {
+  display: inline-block;
+  position: relative;
+  background-image: linear-gradient(135deg, rgba(249, 115, 22, 0.12) 0%, rgba(16, 185, 129, 0.12) 100%);
+  padding: 6px 16px;
+  margin: 0 4px;
+  border-radius: 12px;
+  font-style: normal;
+  font-weight: 800 !important;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  overflow: hidden;
+  box-shadow: 
+    0 4px 14px rgba(249, 115, 22, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+}
+
+/* Gradient text overlay */
+.hero-title-accent,
+.title-highlight {
+  background: linear-gradient(135deg, #F97316 0%, #10B981 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: gradientShift 5s ease-in-out infinite;
+  background-color: rgba(249, 115, 22, 0.08);
+  background-image: linear-gradient(135deg, rgba(249, 115, 22, 0.12) 0%, rgba(16, 185, 129, 0.12) 100%);
+}
+
+/* Kayan cam yüzey efekti */
+.hero-title-accent::before,
+.title-highlight::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 80%;
+  height: 100%;
+  background: linear-gradient(100deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.6) 50%,
+    rgba(255, 255, 255, 0) 100%);
+  transform: skewX(-20deg);
+  pointer-events: none;
+  animation: shineSwipe 6s ease-in-out infinite;
+  z-index: 1;
+}
+
+/* Hover'da hafif kalk efekti */
+.hero-title-accent:hover,
+.title-highlight:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 
+    0 6px 18px rgba(249, 115, 22, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+/* Display-lg h2'lerde de aynı efekt çalışsın */
+.display-lg .title-highlight,
+.display-xl .title-highlight {
+  padding: 4px 12px;
+}
+
+/* ═══ DİNAMİK ANİMASYONLAR — GRADIENT GEÇİŞİ ═══ */
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes shineSwipe {
+  0% { left: -150%; }
+  60% { left: 150%; }
+  100% { left: 150%; }
+}
+
+/* Hareket azaltma tercih edenler için animasyonu kapat */
+@media (prefers-reduced-motion: reduce) {
+  .hero-title-accent,
+  .title-highlight,
+  .hero-title-accent::before,
+  .title-highlight::before {
+    animation: none;
+  }
+}
+
+
+/* ════════════════════════════════════════════════════════════════
+   BUTTON COMPONENT SYSTEM - Task 3 (Premium Theme Redesign)
+   Requirements: FR4 (Button Component System), NFR2 (Accessibility)
+   
+   Complete button system with:
+   - Base .btn class with shared styles (Task 3.1)
+   - Button variants: primary, secondary, ghost (Task 3.2)
+   - Interactive states: hover, focus, active, disabled (Task 3.3)
+   - Button sizes: small, medium (default), large (Task 3.4)
+   ════════════════════════════════════════════════════════════════ */
+
+/* ═══ TASK 3.1: BASE .BTN CLASS ═══ */
+/* Base button class with shared styling for all button variants
+   Requirements: FR4 (Button Component System)
+   
+   Features:
+   - display: inline-flex for centered content with icon support
+   - align-items: center, justify-content: center for perfect centering
+   - gap: var(--space-2) for 8px spacing between text and icons
+   - padding: var(--space-3) var(--space-6) for 12px vertical, 24px horizontal
+   - border-radius: var(--radius-full) for pill-shaped buttons
+   - font-family: var(--font-body) with font-weight 600, font-size 0.9375rem
+   - transition: all var(--ease-base) for smooth 250ms transitions
+   - cursor: pointer with border: 1px solid transparent for variant styling */
+.btn {
+  /* Flexbox layout for centered content and icon spacing */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2); /* 8px gap for icon spacing */
+  
+  /* Padding using spacing tokens: 12px vertical, 24px horizontal */
+  padding: var(--space-3) var(--space-6);
+  
+  /* Pill shape using full border-radius token */
+  border-radius: var(--radius-full);
+  
+  /* Typography: body font, 600 weight, 0.9375rem (15px) size */
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  
+  /* Smooth transitions using --ease-base token (250ms cubic-bezier) */
+  transition: all var(--ease-base);
+  
+  /* Interactive cursor and transparent border for variant styling */
+  cursor: pointer;
+  border: 1px solid transparent;
+  
+  /* Additional properties for proper button behavior */
+  text-decoration: none;
+  white-space: nowrap;
+  position: relative;
+  user-select: none;
+}
+
+/* ═══ TASK 3.2: BUTTON VARIANTS ═══ */
+/* Button variants with distinct visual styles
+   Requirements: FR4 (Button Component System)
+   
+   Three main variants:
+   1. .btn-primary: Orange gradient background, white text, shadow with glow
+   2. .btn-secondary: Transparent background, orange border, orange text
+   3. .btn-ghost: Transparent background, no border, orange text on hover */
+
+/* PRIMARY BUTTON - Orange gradient with shadow glow */
+.btn-primary {
+  /* Orange gradient background using accent color tokens */
+  background: linear-gradient(135deg, var(--color-orange) 0%, var(--color-orange-2) 100%);
+  
+  /* White text for contrast on orange background */
+  color: var(--color-white);
+  
+  /* Layered shadow: outer glow (35% opacity) + inset chrome highlight */
+  box-shadow: 0 4px 14px rgba(249, 115, 22, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  
+  /* Position and overflow for pseudo-element chrome shine */
+  position: relative;
+  overflow: hidden;
+}
+
+/* Chrome shine effect (mirror reflection) on primary button */
+.btn-primary::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.25) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* SECONDARY BUTTON - Transparent with orange border */
+.btn-secondary {
+  /* Transparent background to show page background */
+  background-color: transparent;
+  
+  /* Orange border (1.5px for refined elegance) using accent color token */
+  border: 1.5px solid var(--color-orange);
+  
+  /* Orange text using darker shade for better readability */
+  color: var(--color-orange-2);
+  
+  /* Adjust padding to account for thicker border (maintain visual size) */
+  padding: 10.5px 22.5px;
+}
+
+/* GHOST BUTTON - Glassmorphism with subtle border */
+.btn-ghost {
+  /* Glass background with subtle transparency */
+  background-color: var(--color-glass);
+  
+  /* Subtle border for definition */
+  border: 1px solid var(--color-border);
+  
+  /* Primary text color (dark) */
+  color: var(--color-text-primary);
+  
+  /* Backdrop blur for glassmorphism effect */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* ═══ TASK 3.3: INTERACTIVE STATES ═══ */
+/* Interactive states for all button variants
+   Requirements: FR4 (Button Component System), NFR2 (Accessibility)
+   
+   States implemented:
+   - Hover: translateY(-1px) with enhanced shadow glow
+   - Focus-visible: 3px solid orange outline with 3px offset (keyboard nav)
+   - Active: scale(0.98) for tactile feedback
+   - Disabled: 50% opacity, grayscale(0.5) filter, not-allowed cursor */
+
+/* PRIMARY BUTTON HOVER STATE */
+.btn-primary:hover {
+  /* Lift button up slightly (1px) for depth */
+  transform: translateY(-1px);
+  
+  /* Enhanced shadow with orange glow + inset chrome highlight */
+  box-shadow: var(--shadow-glow-orange), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  
+  /* Brighten colors slightly */
+  filter: brightness(1.05);
+}
+
+/* PRIMARY BUTTON ACTIVE STATE (tactile feedback) */
+.btn-primary:active {
+  /* Scale down for pressed effect */
+  transform: scale(0.98);
+}
+
+/* SECONDARY BUTTON HOVER STATE */
+.btn-secondary:hover {
+  /* Subtle orange background tint (10% opacity) */
+  background-color: var(--color-orange-10);
+  
+  /* Orange glow shadow */
+  box-shadow: 0 0 16px rgba(249, 115, 22, 0.18);
+  
+  /* Maintain orange text color */
+  color: var(--color-orange-2);
+}
+
+/* SECONDARY BUTTON ACTIVE STATE */
+.btn-secondary:active {
+  /* Scale down for pressed effect */
+  transform: scale(0.98);
+}
+
+/* GHOST BUTTON HOVER STATE */
+.btn-ghost:hover {
+  /* Slightly more opaque background on hover */
+  background-color: var(--color-bg-elevated-2);
+  
+  /* Stronger border on hover */
+  border-color: var(--color-border-strong);
+  
+  /* Show orange text on hover */
+  color: var(--color-orange-2);
+}
+
+/* GHOST BUTTON ACTIVE STATE */
+.btn-ghost:active {
+  /* Scale down for pressed effect */
+  transform: scale(0.98);
+}
+
+/* FOCUS-VISIBLE STATES (Keyboard Navigation Accessibility) */
+/* Base button focus indicator */
+.btn:focus-visible {
+  /* 3px solid orange outline with 3px offset */
+  outline: 3px solid var(--color-orange);
+  outline-offset: 3px;
+}
+
+/* Primary button focus indicator (darker orange for better contrast) */
+.btn-primary:focus-visible {
+  outline: 3px solid var(--color-orange-2);
+  outline-offset: 3px;
+}
+
+/* Secondary button focus indicator */
+.btn-secondary:focus-visible {
+  outline: 3px solid var(--color-orange);
+  outline-offset: 2px;
+}
+
+/* Ghost button focus indicator (dark outline for contrast) */
+.btn-ghost:focus-visible {
+  outline: 3px solid var(--color-text-primary);
+  outline-offset: 2px;
+}
+
+/* DISABLED STATE */
+/* Disabled buttons use 50% opacity, grayscale filter, not-allowed cursor
+   Requirements: FR4 (Button Component System), NFR2 (Accessibility) */
+.btn:disabled,
+.btn[aria-disabled="true"] {
+  /* Reduce opacity to 50% */
+  opacity: 0.5;
+  
+  /* Change cursor to indicate non-interactive state */
+  cursor: not-allowed;
+  
+  /* Apply grayscale filter (50%) to desaturate colors */
+  filter: grayscale(0.5);
+  
+  /* Disable pointer events to prevent interaction */
+  pointer-events: none;
+}
+
+/* ═══ TASK 3.4: BUTTON SIZES ═══ */
+/* Button size variations using spacing and typography tokens
+   Requirements: FR4 (Button Component System)
+   
+   Three sizes:
+   - Small: --space-2 and --space-4 padding, 0.875rem font-size
+   - Medium: --space-3 and --space-6 padding, 0.9375rem font-size (default)
+   - Large: --space-4 and --space-8 padding, 1rem font-size */
+
+/* SMALL BUTTON */
+.btn-sm {
+  /* Padding: 8px vertical, 16px horizontal */
+  padding: var(--space-2) var(--space-4);
+  
+  /* Font size: 0.875rem (14px) */
+  font-size: 0.875rem;
+}
+
+/* Secondary small button (adjust for thicker border) */
+.btn-secondary.btn-sm {
+  padding: 6.5px 14.5px;
+}
+
+/* MEDIUM BUTTON (default size, already defined in .btn base class) */
+.btn-md {
+  /* Padding: 12px vertical, 24px horizontal (same as .btn default) */
+  padding: var(--space-3) var(--space-6);
+  
+  /* Font size: 0.9375rem (15px) (same as .btn default) */
+  font-size: 0.9375rem;
+}
+
+/* Secondary medium button (adjust for thicker border) */
+.btn-secondary.btn-md {
+  padding: 10.5px 22.5px;
+}
+
+/* LARGE BUTTON */
+.btn-lg {
+  /* Padding: 16px vertical, 32px horizontal */
+  padding: var(--space-4) var(--space-8);
+  
+  /* Font size: 1rem (16px) */
+  font-size: 1rem;
+}
+
+/* Secondary large button (adjust for thicker border) */
+.btn-secondary.btn-lg {
+  padding: 14.5px 30.5px;
+}
+
+/* ═══ ADDITIONAL BUTTON VARIANTS ═══ */
+/* Icon-only button (legacy, kept for compatibility) */
+.btn-icon {
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.05rem;
+}
+
+.btn-icon:hover {
+  background-color: var(--color-bg-elevated-2);
+}
+
+/* Premium button variant (legacy, kept for compatibility) */
+.btn-premium {
+  background: linear-gradient(135deg, var(--color-violet) 0%, var(--color-orange) 100%);
+  color: var(--color-white);
+  font-weight: 700;
+  box-shadow: var(--shadow-glow-violet);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-premium:focus-visible {
+  outline: 3px solid var(--color-violet);
+  outline-offset: 3px;
+}
+
+.btn-premium::after {
+  content: "★";
+  margin-left: -2px;
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.7));
+}
+
+.btn-premium::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.25) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.btn-premium:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-glow-violet), 0 0 32px rgba(124, 58, 237, 0.4);
+  filter: brightness(1.05);
+}
+
+.btn-premium:active {
+  transform: scale(0.98);
+}
+
+
+/* ═══ CARDS (Ayna Cam) ═══ */
+/* Task 4.1: Base .card class with gradient background, emerald/orange tints
+   Requirements: FR5 (Card Component System)
+   - Gradient background with emerald (#10B981) and orange (#F97316) tints
+   - Semi-transparent emerald border: 1.5px solid rgba(16,185,129,0.28)
+   - Border-radius using --radius-2xl token (32px)
+   - Layered box-shadow: inset highlight (white chrome) + outer shadow (emerald glow)
+   - Responsive padding: --space-6 (24px) on desktop, --space-4 (16px) on mobile
+   - Transition using --ease-base token (250ms cubic-bezier)
+   - Hover animation: translateY(-2px) with enhanced shadow and border shift to orange */
+.card {
+  /* Gradient background with emerald/orange tints for premium light aesthetic
+     - White at edges (96%, 92%) for strong base
+     - Emerald tint at 35% (rgba(236,253,245,0.75)) - subtle green influence
+     - Orange tint at 70% (rgba(254,243,199,0.45)) - subtle warm influence
+     This creates a sophisticated color depth while maintaining readability */
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.96) 0%, 
+    rgba(236, 253, 245, 0.75) 35%,
+    rgba(254, 243, 199, 0.45) 70%, 
+    rgba(255, 255, 255, 0.92) 100%);
+  
+  /* Semi-transparent emerald border (1.5px for refined elegance)
+     Uses emerald accent color with 28% opacity for subtle accent */
+  border: 1.5px solid rgba(16, 185, 129, 0.28);
+  
+  /* Border-radius using design token --radius-2xl (32px) for soft, premium corners */
+  border-radius: var(--radius-2xl);
+  
+  /* Responsive padding using design tokens:
+     - Desktop: --space-6 (24px) - generous spacing for content breathing room
+     - Mobile: --space-4 (16px) - optimized for smaller screens (set in media query below) */
+  padding: var(--space-6);
+  
+  /* Layered box-shadow for depth and premium glass effect:
+     1. inset 0 1px 0 white - top chrome highlight (mirror effect)
+     2. 0 1px 0 white 0.8 - outer top highlight (glass rim)
+     3. 0 8px 32px emerald 0.10 - main shadow with emerald tint (brand color glow)
+     4. 0 0 0 1px hairline - subtle border definition */
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    0 1px 0 rgba(255, 255, 255, 0.8),
+    0 8px 32px rgba(16, 185, 129, 0.10),
+    0 0 0 1px rgba(15, 23, 42, 0.04);
+  
+  /* Smooth transition using --ease-base token (250ms cubic-bezier(0.4, 0, 0.2, 1))
+     Applies to all properties for consistent hover/state changes */
+  transition: all var(--ease-base);
+  
+  /* Text color and positioning for pseudo-elements */
+  color: var(--color-text-primary);
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  /* Mirror shine top */
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1.5px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.9) 30%, 
+    rgba(16, 185, 129, 0.4) 50%, 
+    rgba(255, 255, 255, 0.9) 70%, 
+    transparent 100%);
+  pointer-events: none;
+  border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
+}
+
+.card::after {
+  /* Mirror reflection glow */
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, 
+    transparent 40%, 
+    rgba(255, 255, 255, 0.3) 50%, 
+    transparent 60%);
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  border-radius: inherit;
+  opacity: 0.4;
+  transition: opacity var(--ease-slow);
+}
+
+.card:hover {
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    0 1px 0 rgba(255, 255, 255, 0.8),
+    0 14px 44px rgba(16, 185, 129, 0.18),
+    0 0 0 1px rgba(15, 23, 42, 0.04);
+  border-color: rgba(249, 115, 22, 0.4);
+  transform: translateY(-2px);
+}
+
+.card:hover::after {
+  opacity: 0.7;
+}
+
+/* Task 4.4: Ensure card child elements are properly layered
+   Requirements: FR5 (Card Component System)
+   - Set position: relative and z-index: 2 on child elements
+   - Prevent z-index conflicts with pseudo-elements (::before and ::after)
+   - Ensures content appears above mirror shine and chrome highlights */
+.card > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* ═══ CARD VARIANTS - Task 4.2 ═══ */
+/* Card variants that extend the base .card styling with different visual treatments
+   Requirements: FR5 (Card Component System)
+   
+   Three variants implemented:
+   1. .card-glass: True glassmorphism with backdrop-filter using .glass-surface utility
+   2. .card-premium: Premium variant with .glass-mirror shine overlay effect
+   3. .card-dark: Darker background gradient with adjusted text colors */
+
+/* .card-glass: Glassmorphism variant with backdrop-filter
+   Uses the .glass-surface utility class for true glassmorphism effect
+   - Backdrop-filter creates frosted glass appearance
+   - Semi-transparent gradient background for depth
+   - Works with .glass-surface utility from task 2.1
+   - Maintains responsive padding from base .card class */
+.card-glass {
+  /* Use .glass-surface utility for glassmorphism foundation */
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--glass-shadow);
+  
+  /* Padding and transitions inherit from base .card unless overridden */
+  padding: var(--space-6);
+  color: var(--color-text-primary);
+  transition: all var(--ease-base);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Top chrome highlight for glass card */
+.card-glass::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.9) 50%, transparent 100%);
+  pointer-events: none;
+}
+
+/* Hover state for glass card */
+.card-glass:hover {
+  border-color: rgba(249, 115, 22, 0.4);
+  box-shadow: var(--glass-shadow), 0 14px 44px rgba(16, 185, 129, 0.18);
+  transform: translateY(-2px);
+}
+
+/* Task 4.4: Ensure glass card child elements are properly layered */
+.card-glass > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* .card-premium: Premium variant with mirror shine overlay
+   Adds .glass-mirror effect for premium chrome-like finish
+   - Diagonal shine overlay using .glass-mirror utility from task 2.2
+   - Gradient background with emerald/orange tints
+   - Enhanced shadow for elevated appearance
+   - Shine effect creates premium aesthetic */
+.card-premium {
+  /* Base gradient similar to default .card but with enhanced effects */
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.96) 0%, 
+    rgba(236, 253, 245, 0.75) 35%,
+    rgba(254, 243, 199, 0.45) 70%, 
+    rgba(255, 255, 255, 0.92) 100%);
+  border: 1.5px solid rgba(16, 185, 129, 0.28);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    0 1px 0 rgba(255, 255, 255, 0.8),
+    0 8px 32px rgba(16, 185, 129, 0.10);
+  transition: all var(--ease-base);
+  
+  /* Enable .glass-mirror shine overlay */
+  position: relative;
+  overflow: hidden;
+}
+
+/* .glass-mirror shine effect for premium cards
+   Diagonal gradient shine overlay for chrome-like premium finish
+   This replicates the .glass-mirror utility inline for the card-premium variant */
+.card-premium::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.6) 50%,
+    transparent 70%);
+  opacity: 0.4;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Ensure card content is above shine overlay */
+.card-premium > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Premium card hover state */
+.card-premium:hover {
+  transform: translateY(-2px);
+  border-color: rgba(249, 115, 22, 0.4);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    0 14px 44px rgba(16, 185, 129, 0.18);
+}
+
+.card-premium:hover::before {
+  opacity: 0.6;
+}
+
+/* .card-dark: Darker background variant with adjusted text colors
+   Darker gradient background while maintaining light theme compatibility
+   - Deeper background gradient (reduced opacity for darker appearance)
+   - Adjusted text colors for proper contrast on darker background
+   - Maintains glassmorphism aesthetic with backdrop-filter
+   - Semi-transparent white border for subtle definition */
+.card-dark {
+  /* Darker gradient background - reduced opacity values for deeper appearance
+     Starts at 85% white (darker than base card's 96%)
+     Middle tints are more pronounced (emerald at 0.5, orange at 0.35)
+     Ends at 80% white for overall darker aesthetic */
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.85) 0%, 
+    rgba(236, 253, 245, 0.5) 35%,
+    rgba(254, 243, 199, 0.35) 70%, 
+    rgba(255, 255, 255, 0.8) 100%);
+  
+  /* Add backdrop-filter for glassmorphism effect */
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  
+  /* Slightly more opaque white border for definition on darker background */
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  
+  /* Use primary text color - already provides good contrast
+     No need to adjust text color as the darker background still maintains
+     sufficient contrast with var(--color-text-primary) */
+  color: var(--color-text-primary);
+  
+  /* Enhanced shadow for darker card to create depth */
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 8px 32px rgba(15, 23, 42, 0.12);
+  
+  transition: all var(--ease-base);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Dark card hover state */
+.card-dark:hover {
+  transform: translateY(-2px);
+  border-color: rgba(249, 115, 22, 0.5);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 14px 44px rgba(15, 23, 42, 0.15);
+}
+
+/* Task 4.4: Ensure dark card child elements are properly layered */
+.card-dark > * {
+  position: relative;
+  z-index: 2;
+}
+
+.glow-orange:hover {
+  box-shadow: 0 0 32px rgba(249, 115, 22, 0.25), var(--shadow-lg);
+}
+
+.glow-emerald:hover {
+  box-shadow: 0 0 32px rgba(16, 185, 129, 0.25), var(--shadow-lg);
+}
+
+.glow-sea:hover {
+  box-shadow: 0 0 32px rgba(14, 165, 233, 0.25), var(--shadow-lg);
+}
+
+.glow-violet:hover {
+  box-shadow: 0 0 32px rgba(124, 58, 237, 0.3), var(--shadow-lg);
+}
+
+/* ═══ CARD RESPONSIVE PADDING - Task 4.1 & 4.2 ═══ */
+/* Mobile optimization: reduce padding from --space-6 (24px) to --space-4 (16px)
+   Ensures content has optimal breathing room on smaller screens while
+   maximizing usable space for calculator inputs and results
+   Applies to base .card and all variants (.card-glass, .card-premium, .card-dark) */
+@media (max-width: 768px) {
+  .card,
+  .card-glass,
+  .card-dark,
+  .card-premium {
+    padding: var(--space-4);
+  }
+}
+
+
+/* ════════════════════════════════════════════════════════════════
+   FORM INPUT SYSTEM - Task 5 (Premium Theme Redesign)
+   Requirements: FR6 (Form Input System), NFR2 (Accessibility)
+   
+   Complete form input system with:
+   - Input wrapper structure with label and field (Task 5.1)
+   - Input states: default, hover, focus, error, success (Task 5.2)
+   - Prefix/suffix icon support for currency and units (Task 5.3)
+   - Select and textarea styling (Task 5.4)
+   ════════════════════════════════════════════════════════════════ */
+
+/* ═══ TASK 5.1: INPUT WRAPPER STRUCTURE ═══ */
+/* Input wrapper structure (.input-wrapper, .input-label, .input-field)
+   Requirements: FR6 (Form Input System)
+   
+   Features:
+   - .input-wrapper: flex column layout with --space-2 gap
+   - .input-label: --font-body with font-weight 500, 0.875rem size
+   - .input-field: padding 11px 16px, 2px border, --radius-md, --font-mono
+   - Transition for border color and box-shadow for smooth state changes */
+
+/* Input wrapper: flex column container with 8px gap between label and input */
+.input-wrapper {
+  /* Flex column layout for vertical stacking of label above input */
+  display: flex;
+  flex-direction: column;
+  
+  /* 8px gap between label and input field using spacing token */
+  gap: var(--space-2);
+  
+  /* Position relative for absolute positioning of prefix/suffix icons */
+  position: relative;
+}
+
+/* Input label: body font with medium weight and small size */
+.input-label {
+  /* Body font family for consistency with site typography */
+  font-family: var(--font-body);
+  
+  /* 500 font-weight for medium emphasis (between normal 400 and bold 600) */
+  font-weight: 500;
+  
+  /* 0.875rem (14px) size for proper label hierarchy */
+  font-size: 0.875rem;
+  
+  /* Primary text color for maximum readability */
+  color: var(--color-text-primary);
+  
+  /* Optional: add cursor pointer if label is clickable (for accessibility) */
+  cursor: pointer;
+}
+
+/* Input field: monospace font with proper padding and border styling */
+.input-field {
+  /* Padding: 11px vertical, 16px horizontal for comfortable input area
+     11px chosen to account for 2px border (total 13px = roughly --space-3) */
+  padding: 11px 16px;
+  
+  /* 2px solid border using strong border color token
+     Thicker border (2px vs 1px) for better visibility and interaction clarity */
+  border: 2px solid var(--color-border-strong);
+  
+  /* Border-radius using --radius-md token (8px) for soft corners */
+  border-radius: var(--radius-md);
+  
+  /* Monospace font for numerical values and consistent character width
+     Important for calculators and numerical inputs */
+  font-family: var(--font-mono);
+  
+  /* 1rem (16px) font size for readability */
+  font-size: 1rem;
+  
+  /* Primary text color for input text */
+  color: var(--color-text-primary);
+  
+  /* Secondary background color (white) for clean input appearance */
+  background-color: var(--color-bg-secondary);
+  
+  /* Smooth transition for border color and box-shadow using --ease-base token (250ms)
+     Creates smooth visual feedback for hover/focus state changes */
+  transition: border-color var(--ease-base), box-shadow var(--ease-base);
+  
+  /* Full width by default (can be constrained by parent container) */
+  width: 100%;
+  
+  /* Remove default browser outline (we use custom focus styles) */
+  outline: none;
+}
+
+/* ═══ TASK 5.2: INPUT STATES ═══ */
+/* Input states: default, hover, focus, error, success
+   Requirements: FR6 (Form Input System), NFR2 (Accessibility)
+   
+   States implemented:
+   - Default: --color-border-strong border (already defined in .input-field base)
+   - Hover: --color-accent-orange border for interactive feedback
+   - Focus: orange border + 3px rgba shadow ring for clear focus indication
+   - Focus-visible: 3px solid orange outline with 2px offset (keyboard navigation)
+   - Error: red border with error message display for validation feedback
+   - Success: green border for successful validation indication */
+
+/* HOVER STATE: Orange border on hover for interactive feedback */
+.input-field:hover {
+  /* Orange accent border color on hover */
+  border-color: var(--color-accent-orange);
+}
+
+/* FOCUS STATE: Orange border + shadow ring for clear focus indication */
+.input-field:focus {
+  /* Orange accent border color when focused */
+  border-color: var(--color-accent-orange);
+  
+  /* 3px orange shadow ring with 10% opacity for soft glow effect
+     Creates visible focus indicator without being too harsh */
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+}
+
+/* FOCUS-VISIBLE STATE: Strong outline for keyboard navigation (accessibility) */
+.input-field:focus-visible {
+  /* 3px solid orange outline for keyboard users
+     More visible than box-shadow for accessibility compliance */
+  outline: 3px solid var(--color-accent-orange);
+  
+  /* 2px offset creates spacing between input border and outline */
+  outline-offset: 2px;
+}
+
+/* ERROR STATE: Red border for validation errors */
+.input-field.error,
+.input-field[aria-invalid="true"] {
+  /* Red rose color for error state */
+  border-color: var(--color-rose);
+}
+
+/* Error state hover */
+.input-field.error:hover,
+.input-field[aria-invalid="true"]:hover {
+  /* Maintain red border color on hover in error state */
+  border-color: var(--color-rose);
+}
+
+/* Error state focus with red shadow ring */
+.input-field.error:focus,
+.input-field[aria-invalid="true"]:focus {
+  /* Maintain red border on focus */
+  border-color: var(--color-rose);
+  
+  /* Red shadow ring to match error state */
+  box-shadow: 0 0 0 3px rgba(225, 29, 72, 0.1);
+}
+
+/* SUCCESS STATE: Green border for successful validation */
+.input-field.success {
+  /* Emerald green color for success state */
+  border-color: var(--color-accent-emerald);
+}
+
+/* Success state hover */
+.input-field.success:hover {
+  /* Maintain green border color on hover in success state */
+  border-color: var(--color-accent-emerald);
+}
+
+/* Success state focus with green shadow ring */
+.input-field.success:focus {
+  /* Maintain green border on focus */
+  border-color: var(--color-accent-emerald);
+  
+  /* Green shadow ring to match success state */
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+/* ERROR MESSAGE: Display error messages below input */
+.input-error-message {
+  /* Small font size for error messages */
+  font-size: 0.875rem;
+  
+  /* Rose red color to match error border */
+  color: var(--color-rose);
+  
+  /* Body font for consistency */
+  font-family: var(--font-body);
+  
+  /* Margin top for spacing from input (4px using --space-1 token) */
+  margin-top: var(--space-1);
+}
+
+/* ═══ TASK 5.3: PREFIX/SUFFIX ICON SUPPORT ═══ */
+/* Prefix/suffix icon support for currency symbols ($, €, ₺) and units (%, years)
+   Requirements: FR6 (Form Input System)
+   
+   Features:
+   - .input-prefix and .input-suffix wrapper elements
+   - Position icons absolutely within input wrapper
+   - Adjust input padding to accommodate icons
+   - Support currency symbols ($, €, ₺) and unit symbols (%, years) */
+
+/* Input wrapper with prefix icon modifier */
+.input-wrapper.has-prefix .input-field {
+  /* Add left padding to accommodate prefix icon/text
+     32px provides space for icon + spacing */
+  padding-left: 38px;
+}
+
+/* Input wrapper with suffix icon modifier */
+.input-wrapper.has-suffix .input-field {
+  /* Add right padding to accommodate suffix icon/text
+     38px provides space for icon + spacing */
+  padding-right: 38px;
+}
+
+/* Prefix element (currency symbols, etc.) */
+.input-prefix {
+  /* Position absolutely within input wrapper */
+  position: absolute;
+  
+  /* Position at left edge with appropriate spacing
+     left: 12px aligns with input's left padding */
+  left: 12px;
+  
+  /* Vertically center within input field
+     Assumes input height includes padding + border + line-height
+     Adjust top based on label height + gap + border */
+  top: calc(0.875rem + var(--space-2) + 13px);
+  
+  /* Transform to perfect vertical centering */
+  transform: translateY(-50%);
+  
+  /* Monospace font to match input field */
+  font-family: var(--font-mono);
+  
+  /* Slightly smaller than input text for visual hierarchy */
+  font-size: 0.875rem;
+  
+  /* Medium weight for visibility */
+  font-weight: 500;
+  
+  /* Muted text color to differentiate from input value */
+  color: var(--color-text-muted);
+  
+  /* Disable pointer events so clicks pass through to input */
+  pointer-events: none;
+}
+
+/* Suffix element (units, percentages, etc.) */
+.input-suffix {
+  /* Position absolutely within input wrapper */
+  position: absolute;
+  
+  /* Position at right edge with appropriate spacing
+     right: 12px aligns with input's right padding */
+  right: 12px;
+  
+  /* Vertically center within input field */
+  top: calc(0.875rem + var(--space-2) + 13px);
+  
+  /* Transform to perfect vertical centering */
+  transform: translateY(-50%);
+  
+  /* Monospace font to match input field */
+  font-family: var(--font-mono);
+  
+  /* Slightly smaller than input text */
+  font-size: 0.875rem;
+  
+  /* Medium weight for visibility */
+  font-weight: 500;
+  
+  /* Muted text color */
+  color: var(--color-text-muted);
+  
+  /* Disable pointer events */
+  pointer-events: none;
+}
+
+/* Adjust prefix/suffix positioning when no label present */
+.input-wrapper:not(:has(.input-label)) .input-prefix,
+.input-wrapper:not(:has(.input-label)) .input-suffix {
+  /* Adjust top position when no label (label height + gap removed) */
+  top: 50%;
+}
+
+/* ═══ TASK 5.4: SELECT AND TEXTAREA STYLING ═══ */
+/* Select dropdown and textarea styling consistent with inputs
+   Requirements: FR6 (Form Input System)
+   
+   Features:
+   - Style select dropdowns consistently with inputs
+   - Add custom dropdown arrow icon
+   - Style textarea with auto-resize capability
+   - Maintain consistent border, padding, and focus styles */
+
+/* SELECT DROPDOWN STYLING */
+/* Select element with consistent styling to match .input-field */
+.input-select,
+select.input-field {
+  /* Inherit all base .input-field styles, add select-specific overrides */
+  
+  /* Padding adjusted for dropdown arrow space on right */
+  padding: 11px 36px 11px 16px;
+  
+  /* Custom dropdown arrow using background image (SVG data URI)
+     Arrow pointing down, orange color to match accent */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20' fill='none'%3E%3Cpath d='M5 7.5L10 12.5L15 7.5' stroke='%23F97316' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  
+  /* Position background (arrow) at right side with spacing */
+  background-position: right 12px center;
+  
+  /* Don't repeat the arrow icon */
+  background-repeat: no-repeat;
+  
+  /* Set background size for arrow icon */
+  background-size: 20px 20px;
+  
+  /* Remove default browser arrow */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  
+  /* Pointer cursor to indicate interactivity */
+  cursor: pointer;
+}
+
+/* Select hover state */
+.input-select:hover,
+select.input-field:hover {
+  /* Orange border on hover */
+  border-color: var(--color-accent-orange);
+}
+
+/* Select focus state */
+.input-select:focus,
+select.input-field:focus {
+  /* Orange border on focus */
+  border-color: var(--color-accent-orange);
+  
+  /* Orange shadow ring */
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+  
+  /* Remove default outline */
+  outline: none;
+}
+
+/* Select focus-visible state (keyboard navigation) */
+.input-select:focus-visible,
+select.input-field:focus-visible {
+  /* Strong orange outline for keyboard users */
+  outline: 3px solid var(--color-accent-orange);
+  outline-offset: 2px;
+}
+
+/* TEXTAREA STYLING */
+/* Textarea element with consistent styling to match .input-field */
+.input-textarea,
+textarea.input-field {
+  /* Inherit all base .input-field styles, add textarea-specific overrides */
+  
+  /* Minimum height for comfortable text entry
+     Roughly 4-5 lines of text */
+  min-height: 120px;
+  
+  /* Allow vertical resizing only (no horizontal to prevent layout breaks) */
+  resize: vertical;
+  
+  /* Line height for better text readability in multiline context */
+  line-height: 1.6;
+  
+  /* Override font to body font for better readability in long text
+     Monospace is better for numbers, body font better for prose */
+  font-family: var(--font-body);
+}
+
+/* Textarea hover state */
+.input-textarea:hover,
+textarea.input-field:hover {
+  /* Orange border on hover */
+  border-color: var(--color-accent-orange);
+}
+
+/* Textarea focus state */
+.input-textarea:focus,
+textarea.input-field:focus {
+  /* Orange border on focus */
+  border-color: var(--color-accent-orange);
+  
+  /* Orange shadow ring */
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+  
+  /* Remove default outline */
+  outline: none;
+}
+
+/* Textarea focus-visible state (keyboard navigation) */
+.input-textarea:focus-visible,
+textarea.input-field:focus-visible {
+  /* Strong orange outline for keyboard users */
+  outline: 3px solid var(--color-accent-orange);
+  outline-offset: 2px;
+}
+
+/* DISABLED STATE for all input types */
+/* Disabled inputs, selects, and textareas */
+.input-field:disabled,
+.input-select:disabled,
+.input-textarea:disabled,
+select.input-field:disabled,
+textarea.input-field:disabled {
+  /* Reduced opacity to indicate non-interactive state */
+  opacity: 0.6;
+  
+  /* Lighter background for disabled appearance */
+  background-color: var(--color-bg-tertiary);
+  
+  /* Not-allowed cursor to indicate non-interactive */
+  cursor: not-allowed;
+  
+  /* Muted text color */
+  color: var(--color-text-muted);
+}
+
+/* Remove hover styles for disabled inputs */
+.input-field:disabled:hover,
+.input-select:disabled:hover,
+.input-textarea:disabled:hover {
+  /* Keep default border color, don't show orange on hover */
+  border-color: var(--color-border-strong);
+}
+
+
+/* ════════════════════════════════════════════════════════════════
+   RANGE SLIDER SYSTEM - Task 6 (Premium Theme Redesign)
+   Requirements: FR7 (Range Slider System), NFR2 (Accessibility)
+   
+   Complete custom range slider system with:
+   - Custom track and thumb styling with vendor prefixes (Task 6.1)
+   - Dynamic fill gradient based on slider value (Task 6.2)
+   - Tooltip for current value display (Task 6.3)
+   - Interactive states: hover, active, focus, disabled (Task 6.4)
+   - Keyboard navigation support (Task 6.5)
+   ════════════════════════════════════════════════════════════════ */
+
+/* ═══ TASK 6.1: STYLE RANGE SLIDER TRACK AND THUMB ═══ */
+/* Custom range slider styling with removal of default browser appearance
+   Requirements: FR7 (Range Slider System)
+   
+   Features:
+   - Remove default styling with appearance: none (webkit and moz)
+   - Track: 8px height, rounded (--radius-full), dynamic gradient background
+   - Thumb: 22px circle, orange gradient, white border (3px), box-shadow
+   - Vendor prefixes for cross-browser support (-webkit-, -moz-)
+   - Smooth transitions for interactive feedback */
+
+/* Slider wrapper container */
+.slider-wrapper {
+  /* Position relative for absolute tooltip positioning */
+  position: relative;
+  
+  /* Padding for thumb overflow (11px = half of 22px thumb) */
+  padding: 0 var(--space-1);
+  
+  /* Vertical margin for spacing from label and next element */
+  margin: var(--space-4) 0 var(--space-2);
+}
+
+/* Base slider input styling */
+.slider-input,
+.calc-slider {
+  /* Full width for responsive layout */
+  width: 100%;
+  
+  /* Remove default browser styling */
+  -webkit-appearance: none;
+  appearance: none;
+  
+  /* Track dimensions */
+  height: 8px;
+  border-radius: var(--radius-full);
+  
+  /* ═══ TASK 6.2: DYNAMIC FILL GRADIENT ═══ */
+  /* Background uses linear-gradient with CSS custom property --slider-fill
+     This property is updated via JavaScript on input events
+     Orange gradient for filled portion (0% to --slider-fill)
+     Gray for remaining portion (--slider-fill to 100%)
+     Default --slider-fill is 50% if not set */
+  background: linear-gradient(
+    to right,
+    var(--color-orange) 0%,
+    var(--color-orange) var(--slider-fill, 50%),
+    #E2E8F0 var(--slider-fill, 50%),
+    #E2E8F0 100%
+  );
+  
+  /* Remove default outline (custom focus-visible styling below) */
+  outline: none;
+  
+  /* Pointer cursor for interactive element */
+  cursor: pointer;
+  
+  /* Fast transition for background gradient updates */
+  transition: background 80ms linear;
+  
+  /* Subtle border and inset shadow for depth */
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.05);
+}
+
+/* ═══ WEBKIT THUMB STYLING (Chrome, Safari, Edge) ═══ */
+.slider-input::-webkit-slider-thumb,
+.calc-slider::-webkit-slider-thumb {
+  /* Remove default webkit styling */
+  -webkit-appearance: none;
+  appearance: none;
+  
+  /* Thumb dimensions: 22px circle */
+  width: 22px;
+  height: 22px;
+  border-radius: var(--radius-full);
+  
+  /* Orange gradient background (same as primary button) */
+  background: linear-gradient(135deg, var(--color-orange) 0%, #EA580C 100%);
+  
+  /* White border (3px) for chrome effect */
+  border: 3px solid var(--color-white);
+  
+  /* Grab cursor to indicate draggable */
+  cursor: grab;
+  
+  /* Layered box-shadow: orange ring + elevation shadow */
+  box-shadow: 0 0 0 1px rgba(249, 115, 22, 0.3), 0 2px 8px rgba(0, 0, 0, 0.15);
+  
+  /* Smooth transitions for hover/active states */
+  transition: transform var(--ease-fast), box-shadow var(--ease-fast);
+}
+
+/* ═══ MOZ THUMB STYLING (Firefox) ═══ */
+.slider-input::-moz-range-thumb,
+.calc-slider::-moz-range-thumb {
+  /* Thumb dimensions: 22px circle (Firefox uses 20px border-included sizing) */
+  width: 20px;
+  height: 20px;
+  
+  /* Orange gradient background */
+  background: linear-gradient(135deg, var(--color-orange) 0%, #EA580C 100%);
+  
+  /* White border (2px for Firefox due to box model difference) */
+  border: 2px solid var(--color-white);
+  border-radius: var(--radius-full);
+  
+  /* Grab cursor to indicate draggable */
+  cursor: grab;
+  
+  /* Box-shadow for depth */
+  box-shadow: 0 0 12px rgba(249, 115, 22, 0.5), 0 2px 4px rgba(0, 0, 0, 0.4);
+  
+  /* Smooth transition for interactions */
+  transition: transform var(--ease-fast);
+}
+
+/* ═══ TASK 6.4: ADD SLIDER INTERACTIVE STATES ═══ */
+/* Interactive states for range slider
+   Requirements: FR7 (Range Slider System), NFR2 (Accessibility)
+   
+   States:
+   - Hover: scale thumb to 1.15, enhance shadow
+   - Active/dragging: cursor changes to 'grabbing'
+   - Focus-visible: 3px orange outline with 4px offset (keyboard users)
+   - Disabled: reduced opacity (50%), grayscale filter */
+
+/* HOVER STATE - Webkit thumb */
+.slider-input::-webkit-slider-thumb:hover,
+.calc-slider::-webkit-slider-thumb:hover {
+  /* Scale up thumb for visual feedback */
+  transform: scale(1.15);
+  
+  /* Enhanced shadow with orange glow */
+  box-shadow: 0 0 20px rgba(249, 115, 22, 0.7), 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* HOVER STATE - Moz thumb */
+.slider-input::-moz-range-thumb:hover,
+.calc-slider::-moz-range-thumb:hover {
+  /* Scale up thumb for visual feedback */
+  transform: scale(1.15);
+}
+
+/* ACTIVE/DRAGGING STATE - Webkit thumb */
+.slider-input::-webkit-slider-thumb:active,
+.calc-slider::-webkit-slider-thumb:active {
+  /* Change cursor to indicate active dragging */
+  cursor: grabbing;
+  
+  /* Maintain scale from hover */
+  transform: scale(1.15);
+  
+  /* Enhanced glow while dragging */
+  box-shadow: 0 0 20px rgba(249, 115, 22, 0.7), 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* ACTIVE/DRAGGING STATE - Moz thumb */
+.slider-input::-moz-range-thumb:active,
+.calc-slider::-moz-range-thumb:active {
+  /* Change cursor to indicate active dragging */
+  cursor: grabbing;
+  
+  /* Maintain scale from hover */
+  transform: scale(1.15);
+}
+
+/* FOCUS-VISIBLE STATE (Keyboard Navigation)
+   Requirements: NFR2 (Accessibility - WCAG AA Keyboard Navigation)
+   
+   Provides clear focus indicator for keyboard users:
+   - 3px solid orange outline
+   - 4px offset from slider edge
+   - Enhanced thumb shadow and scale
+   
+   This ensures keyboard users can clearly see which slider has focus */
+.slider-input:focus-visible,
+.calc-slider:focus-visible {
+  /* Strong orange outline for keyboard focus */
+  outline: 3px solid var(--color-orange);
+  outline-offset: 4px;
+  border-radius: var(--radius-full);
+}
+
+/* Enhanced thumb appearance when slider is focused (Webkit) */
+.slider-input:focus-visible::-webkit-slider-thumb,
+.calc-slider:focus-visible::-webkit-slider-thumb {
+  /* Orange ring around thumb */
+  box-shadow: 0 0 0 3px var(--color-orange-10), 0 0 20px rgba(249, 115, 22, 0.7), 0 2px 4px rgba(0, 0, 0, 0.4);
+  
+  /* Scale up for visibility */
+  transform: scale(1.15);
+}
+
+/* Enhanced thumb appearance when slider is focused (Moz) */
+.slider-input:focus-visible::-moz-range-thumb,
+.calc-slider:focus-visible::-moz-range-thumb {
+  /* Orange ring around thumb */
+  box-shadow: 0 0 0 3px var(--color-orange-10), 0 0 20px rgba(249, 115, 22, 0.7), 0 2px 4px rgba(0, 0, 0, 0.4);
+  
+  /* Scale up for visibility */
+  transform: scale(1.15);
+}
+
+/* DISABLED STATE
+   Requirements: FR7 (Range Slider System), NFR2 (Accessibility)
+   
+   Disabled sliders are visually de-emphasized:
+   - 50% opacity
+   - Grayscale filter to desaturate colors
+   - not-allowed cursor to indicate non-interactive state
+   - pointer-events: none to prevent interaction */
+.slider-input:disabled,
+.calc-slider:disabled {
+  /* Reduce opacity to indicate disabled state */
+  opacity: 0.5;
+  
+  /* Desaturate colors with grayscale filter */
+  filter: grayscale(0.5);
+  
+  /* Change cursor to indicate non-interactive */
+  cursor: not-allowed;
+  
+  /* Prevent all pointer interactions */
+  pointer-events: none;
+}
+
+/* ═══ TASK 6.3: CREATE TOOLTIP FOR DISPLAYING CURRENT VALUE ═══ */
+/* Tooltip positioned absolutely above thumb, displays current slider value
+   Requirements: FR7 (Range Slider System)
+   
+   Features:
+   - Positioned absolutely above thumb (top: -38px)
+   - Orange gradient background matching thumb
+   - White text with monospace font for numbers
+   - Left position calculated dynamically via JavaScript
+   - Hidden by default (opacity: 0)
+   - Visible on hover and focus (opacity: 1)
+   - Smooth opacity transition (--ease-fast)
+   - Pointer-events: none to avoid interfering with slider interaction */
+.slider-tooltip {
+  /* Absolute positioning relative to .slider-wrapper */
+  position: absolute;
+  top: -38px;
+  left: 0;
+  
+  /* Center tooltip horizontally on thumb position */
+  transform: translateX(-50%);
+  
+  /* Orange gradient background (matches thumb) */
+  background: linear-gradient(135deg, var(--color-orange) 0%, #EA580C 100%);
+  
+  /* White text for contrast */
+  color: var(--color-white);
+  
+  /* Padding for content spacing */
+  padding: 5px 12px;
+  
+  /* Rounded corners */
+  border-radius: var(--radius-sm);
+  
+  /* Monospace font for numeric values */
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.8125rem;
+  
+  /* Prevent text wrapping */
+  white-space: nowrap;
+  
+  /* Ignore pointer events (tooltip shouldn't interfere with slider) */
+  pointer-events: none;
+  
+  /* Hidden by default */
+  opacity: 0;
+  
+  /* Smooth fade in/out transition */
+  transition: opacity var(--ease-fast);
+  
+  /* Layer above slider */
+  z-index: 5;
+  
+  /* Shadow for depth */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 12px rgba(249, 115, 22, 0.4);
+}
+
+/* Tooltip arrow (small diamond pointing down to thumb) */
+.slider-tooltip::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 8px;
+  height: 8px;
+  background: var(--color-orange);
+}
+
+/* Show tooltip on slider wrapper hover */
+.slider-wrapper:hover .slider-tooltip {
+  opacity: 1;
+}
+
+/* Show tooltip when slider is focused (keyboard navigation) */
+.slider-wrapper:has(.slider-input:focus-visible) .slider-tooltip,
+.slider-wrapper:has(.calc-slider:focus-visible) .slider-tooltip {
+  opacity: 1;
+}
+
+/* Show tooltip when slider is being dragged (via .dragging class added by JS) */
+.slider-wrapper.dragging .slider-tooltip {
+  opacity: 1;
+}
+
+/* ═══ TASK 6.5: KEYBOARD NAVIGATION IMPLEMENTATION ═══ */
+/* Keyboard navigation is implemented via JavaScript in core.js or premium-system.js
+   Requirements: FR7 (Range Slider System), NFR2 (Accessibility)
+   
+   JavaScript handles:
+   - Arrow Up/Right: Increment value by step amount
+   - Arrow Down/Left: Decrement value by step amount
+   - Home: Jump to minimum value
+   - End: Jump to maximum value
+   - Page Up: Large increment (10 × step)
+   - Page Down: Large decrement (10 × step)
+   
+   CSS provides visual feedback via :focus-visible styles (defined above) */
+
+/* Optional: Track labels for min/max values */
+.slider-track-labels {
+  /* Flexbox for label positioning */
+  display: flex;
+  justify-content: space-between;
+  
+  /* Spacing above labels */
+  margin-top: 6px;
+  
+  /* Monospace font for consistency with values */
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-text-tertiary);
+}
+
+
+/* ═══ NAVBAR (Ayna Cam) ═══ */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: rgba(250, 250, 247, 0.6);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid transparent;
+  transition: all var(--ease-slow);
+}
+
+.navbar.scrolled {
+  background: rgba(250, 250, 247, 0.92);
+  border-bottom-color: var(--color-border);
+  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.04);
+}
+
+.navbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  gap: 32px;
+}
+
+.navbar-logo {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.25rem;
+  color: var(--color-text-primary);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  letter-spacing: -0.02em;
+}
+
+.navbar-logo span {
+  color: var(--color-orange-2);
+  font-weight: 800;
+}
+
+/* =========================================================
+   COMPOUND PRO - Dynamic Gradient Brand Logo (Button Style)
+   - Large bold display font
+   - Button-like appearance with shadow
+   - Gradient text animation (orange -> green)
+   - Glass shine swipe animation
+   - NO underline, glossy button effect
+   ========================================================= */
+.exponent-marquee {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  padding: 8px 20px;
+  text-decoration: none;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.12) 0%, rgba(16, 185, 129, 0.12) 100%);
+  border-radius: 12px;
+  box-shadow: 
+    0 4px 12px rgba(249, 115, 22, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  transition: all 0.3s ease;
+}
+
+.exponent-marquee:hover {
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.18) 0%, rgba(16, 185, 129, 0.18) 100%);
+  box-shadow: 
+    0 6px 16px rgba(249, 115, 22, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  transform: translateY(-2px);
+}
+
+.exponent-track {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.exponent-text {
+  display: inline-block;
+  position: relative;
+  font-family: var(--font-display, "Syne", "Inter", system-ui, sans-serif);
+  font-weight: 800;
+  font-size: 1.75rem;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  background: linear-gradient(135deg, #F97316 0%, #10B981 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: navGradientShift 5s ease-in-out infinite;
+  position: relative;
+  z-index: 2;
+}
+
+/* Kayan cam yüzey efekti (shine overlay) */
+.exponent-marquee::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 80%;
+  height: 100%;
+  background: linear-gradient(100deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.6) 50%,
+    rgba(255, 255, 255, 0) 100%);
+  transform: skewX(-20deg);
+  pointer-events: none;
+  animation: navShineSwipe 6s ease-in-out infinite;
+  z-index: 1;
+}
+
+/* Hover efekti */
+.exponent-marquee:hover .exponent-text {
+  transform: scale(1.02);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Animasyonlar */
+@keyframes navGradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes navShineSwipe {
+  0% { left: -150%; }
+  50% { left: 150%; }
+  100% { left: 150%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .exponent-text,
+  .exponent-marquee::before {
+    animation: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .exponent-marquee {
+    height: 40px;
+    padding: 6px 16px;
+  }
+  .exponent-text {
+    font-size: 1.35rem;
+  }
+}
+
+.navbar-nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  list-style: none;
+}
+
+.navbar-link {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.9375rem;
+  color: var(--color-text-muted);
+  padding: 7px 12px;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  transition: all var(--ease-base);
+}
+
+.navbar-link:hover {
+  background-color: var(--color-bg-elevated-2);
+  color: var(--color-text-primary);
+}
+
+.navbar-link:focus-visible {
+  outline: 3px solid var(--color-orange);
+  outline-offset: 2px;
+  background-color: var(--color-bg-elevated-2);
+  color: var(--color-text-primary);
+}
+
+.navbar-logo:focus-visible {
+  outline: 3px solid var(--color-orange);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* Navbar actions group */
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Currency Switcher Wrapper */
+.currency-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 38px;
+  padding: 0 10px 0 12px;
+  background-color: var(--color-glass);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background-color var(--ease-base), border-color var(--ease-base), box-shadow var(--ease-base);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.currency-wrap:hover {
+  background-color: var(--color-bg-elevated-2);
+  border-color: var(--color-border-strong);
+}
+
+.currency-wrap:focus-within {
+  border-color: var(--color-orange);
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.15);
+}
+
+.currency-symbol {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 14px;
+  font-size: 0.95rem;
+  color: var(--color-orange-2);
+  font-weight: 700;
+  line-height: 1;
+  user-select: none;
+}
+
+.currency-select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  color: var(--color-text-primary);
+  font: inherit;
+  font-weight: 600;
+  font-size: 0.875rem;
+  padding: 0 14px 0 2px;
+  margin: 0;
+  cursor: pointer;
+  letter-spacing: 0.01em;
+}
+
+.currency-select::-ms-expand {
+  display: none;
+}
+
+.currency-select option {
+  background-color: var(--color-white);
+  color: var(--color-text-primary);
+  font-weight: 600;
+}
+
+.currency-caret {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.65rem;
+  color: var(--color-text-muted);
+  pointer-events: none;
+  line-height: 1;
+}
+
+.currency-wrap.changed {
+  animation: currencyFlash 0.6s ease;
+}
+
+@keyframes currencyFlash {
+  0%   { background-color: var(--color-orange-10); border-color: var(--color-orange); }
+  100% { background-color: var(--color-glass); border-color: var(--color-border); }
+}
+
+@media (max-width: 768px) {
+  .currency-wrap { padding: 0 8px 0 10px; height: 36px; }
+  .currency-select { font-size: 0.8125rem; padding-right: 12px; }
+  .currency-symbol { font-size: 0.875rem; }
+}
+
+.navbar-link.active {
+  color: var(--color-orange-2);
+  background-color: var(--color-orange-10);
+}
+
+.navbar .btn-icon {
+  width: 38px;
+  height: 38px;
+  font-size: 1rem;
+}
+
+.navbar-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 18px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: calc(var(--z-modal) + 1);
+}
+
+.navbar-hamburger span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-text-primary);
+  border-radius: var(--radius-full);
+  transition: transform var(--ease-base), opacity var(--ease-base);
+}
+
+/* Task 7.4: Mobile responsive hamburger menu
+   Requirements: FR8, FR12 - Show hamburger below 1024px breakpoint
+   Features:
+   - Hide desktop menu items, show hamburger button
+   - Slide-in menu drawer from right side
+   - Full-height, glassmorphism styling
+   - Overlay backdrop with fade animation
+   - Close on outside click or Escape key */
+@media (max-width: 1023px) {
+  .navbar-nav {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 320px;
+    max-width: 85vw;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-left: 1px solid var(--color-border);
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 8px;
+    z-index: var(--z-modal);
+    padding: 80px 24px 24px;
+    box-shadow: -4px 0 24px rgba(15, 23, 42, 0.1);
+  }
+  
+  .navbar-nav.open {
+    display: flex;
+    animation: slideInRight 250ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+  
+  .navbar-hamburger {
+    display: flex;
+  }
+
+  .navbar-hamburger.open span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  
+  .navbar-hamburger.open span:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .navbar-hamburger.open span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+  
+  /* Mobile navbar links full width */
+  .navbar-nav .navbar-link {
+    width: 100%;
+    text-align: left;
+    padding: 12px 16px;
+    font-size: 1rem;
+  }
+  
+  /* Dropdown in mobile: full width, no absolute positioning */
+  .navbar-nav .has-dropdown .navbar-dropdown {
+    position: static;
+    transform: none;
+    width: 100%;
+    margin-top: 8px;
+    animation: none;
+  }
+}
+
+/* Navbar Dropdown (mirror glass) */
+.has-dropdown {
+  position: relative;
+}
+
+/* Bridge: gap between link and dropdown (prevents hover loss) */
+.has-dropdown::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 16px;
+  pointer-events: none;
+  z-index: calc(var(--z-dropdown) - 1);
+}
+
+.has-dropdown:hover::after {
+  pointer-events: auto;
+}
+
+.navbar-dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-bg-surface);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.15), 0 0 0 1px var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 8px;
+  min-width: 320px;
+  border: 1px solid var(--color-border-strong);
+  z-index: var(--z-dropdown);
+}
+
+.has-dropdown:hover .navbar-dropdown,
+.has-dropdown:focus-within .navbar-dropdown,
+.has-dropdown.is-open .navbar-dropdown {
+  display: block;
+  animation: slideDown 150ms ease forwards;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  color: var(--color-text-primary);
+  transition: background-color var(--ease-fast);
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus,
+.dropdown-item:focus-visible {
+  background-color: var(--color-bg-elevated-2);
+}
+
+.dropdown-item:focus-visible {
+  outline: 3px solid var(--color-orange);
+  outline-offset: -2px;
+}
+
+.dropdown-icon {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.dropdown-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.dropdown-title {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--color-text-primary);
+}
+
+.dropdown-desc {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+.dropdown-category-title {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--color-orange-2);
+  padding: 10px 12px 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+
+/* ═══ HERO ═══ */
+.hero {
+  position: relative;
+  overflow: hidden;
+  min-height: 720px;
+  display: flex;
+  align-items: center;
+  padding-top: 96px;
+  padding-bottom: 80px;
+  background: transparent;
+}
+
+.hero .grid-2 {
+  grid-template-columns: minmax(0, 0.85fr) minmax(360px, 1fr);
+  gap: 56px;
+  align-items: center;
+}
+
+.hero .grid-2 > .animate-slide-up {
+  max-width: 540px !important;
+}
+
+.hero .grid-2 > .animate-fade-in {
+  max-width: 580px;
+  margin-left: auto;
+}
+
+.hero .display-2xl {
+  max-width: 560px;
+  font-size: 3.5rem;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+}
+
+.hero .body-xl {
+  max-width: 500px;
+  font-size: 1.125rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+.hero .card-dark,
+.hero .card-glass {
+  border-radius: var(--radius-xl);
+  padding: 28px;
+  box-shadow: var(--shadow-xl);
+}
+
+.hero-bg-orbs {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-orb {
+  position: absolute;
+  border-radius: var(--radius-full);
+  filter: blur(100px);
+  will-change: transform;
+}
+
+.hero-orb-1 {
+  background: radial-gradient(circle, var(--color-orange) 0%, transparent 70%);
+  width: 600px;
+  height: 600px;
+  top: -200px;
+  left: -150px;
+  opacity: 0.18;
+  animation: float 8s ease-in-out infinite;
+}
+
+.hero-orb-2 {
+  background: radial-gradient(circle, var(--color-emerald) 0%, transparent 70%);
+  width: 500px;
+  height: 500px;
+  top: -100px;
+  right: -100px;
+  opacity: 0.15;
+  animation: float 10s ease-in-out infinite reverse;
+}
+
+.hero-orb-3 {
+  background: radial-gradient(circle, var(--color-sea) 0%, transparent 70%);
+  width: 600px;
+  height: 600px;
+  bottom: -200px;
+  left: 30%;
+  opacity: 0.12;
+  animation: float 12s ease-in-out infinite;
+}
+
+.hero-orb-4 {
+  background: radial-gradient(circle, var(--color-violet) 0%, transparent 70%);
+  width: 400px;
+  height: 400px;
+  top: 40%;
+  right: 20%;
+  opacity: 0.10;
+  animation: float 14s ease-in-out infinite;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+}
+
+@media (min-width: 1280px) {
+  .hero { min-height: 720px; }
+}
+
+@media (max-width: 1024px) {
+  .hero {
+    min-height: auto;
+    padding: 112px 0 64px;
+  }
+  .hero .grid-2 { grid-template-columns: 1fr; }
+  .hero .display-2xl { font-size: 2.75rem; }
+}
+
+@media (max-width: 640px) {
+  .hero { padding: 104px 0 48px; }
+  .hero .display-2xl { font-size: 2.25rem; }
+  .hero .body-xl { font-size: 1rem; }
+}
+
+
+/* ═══ STAT CARD ═══ */
+.stat-card {
+  text-align: center;
+  padding: 24px;
+}
+
+.stat-card[data-variant="orange"] {
+  border-left: 3px solid var(--color-orange);
+}
+
+.stat-card[data-variant="emerald"] {
+  border-left: 3px solid var(--color-emerald);
+}
+
+.stat-card[data-variant="sea"] {
+  border-left: 3px solid var(--color-sea);
+}
+
+.stat-value {
+  color: var(--color-text-primary);
+  margin-bottom: 4px;
+}
+
+.stat-card[data-variant="orange"] .stat-value {
+  color: var(--color-orange-2);
+}
+
+.stat-card[data-variant="emerald"] .stat-value {
+  color: var(--color-emerald-2);
+}
+
+.stat-card[data-variant="sea"] .stat-value {
+  color: var(--color-sea-2);
+}
+
+.stat-label {
+  color: var(--color-text-muted);
+}
+
+.stat-value.counting {
+  animation: pulse 1s infinite;
+}
+
+
+/* ═══ BADGE / PILL ═══ */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.badge-orange {
+  background-color: var(--color-orange-10);
+  color: var(--color-orange-700);
+  border: 1px solid var(--color-orange-20);
+}
+
+.badge-emerald {
+  background-color: var(--color-emerald-10);
+  color: var(--color-emerald-700);
+  border: 1px solid var(--color-emerald-20);
+}
+
+.badge-sea {
+  background-color: var(--color-sea-10);
+  color: var(--color-sea-700);
+  border: 1px solid var(--color-sea-20);
+}
+
+.badge-violet {
+  background-color: var(--color-violet-10);
+  color: var(--color-violet-700);
+  border: 1px solid rgba(124, 58, 237, 0.3);
+}
+
+.badge-premium {
+  background: linear-gradient(135deg, var(--color-violet), var(--color-orange));
+  color: var(--color-white);
+  font-weight: 700;
+}
+
+.badge-dark {
+  background-color: var(--color-bg-dark);
+  color: var(--color-text-inverse);
+  border: 1px solid var(--color-border);
+}
+
+.badge-outline {
+  border: 1px solid currentColor;
+  background-color: transparent;
+}
+
+
+/* ═══ FEATURE GRID CARD ═══ */
+.feature-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.96) 0%, 
+    rgba(236, 253, 245, 0.75) 35%,
+    rgba(254, 243, 199, 0.4) 70%, 
+    rgba(255, 255, 255, 0.92) 100%);
+  border: 1.5px solid rgba(16, 185, 129, 0.3);
+  border-radius: var(--radius-2xl);
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    0 1px 0 rgba(255, 255, 255, 0.8),
+    0 6px 24px rgba(16, 185, 129, 0.08),
+    0 0 0 1px rgba(15, 23, 42, 0.04);
+  transition: all var(--ease-base);
+}
+
+.feature-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.9) 30%, rgba(16, 185, 129, 0.4) 50%, rgba(255, 255, 255, 0.9) 70%, transparent 100%);
+  pointer-events: none;
+}
+
+.feature-card:hover {
+  border-color: rgba(249, 115, 22, 0.4);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    0 14px 40px rgba(16, 185, 129, 0.16),
+    0 0 0 1px rgba(15, 23, 42, 0.04);
+  transform: translateY(-2px);
+}
+
+.feature-card:focus-visible {
+  outline: 3px solid var(--color-orange-2);
+  outline-offset: 3px;
+  border-color: rgba(249, 115, 22, 0.4);
+}
+
+.feature-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+
+.feature-icon.orange {
+  background: linear-gradient(135deg, var(--color-orange-10), var(--color-orange-20));
+  color: var(--color-orange-2);
+  box-shadow: 0 0 16px rgba(249, 115, 22, 0.15);
+}
+
+.feature-icon.emerald {
+  background: linear-gradient(135deg, var(--color-emerald-10), var(--color-emerald-20));
+  color: var(--color-emerald-2);
+  box-shadow: 0 0 16px rgba(16, 185, 129, 0.15);
+}
+
+.feature-icon.sea {
+  background: linear-gradient(135deg, var(--color-sea-10), var(--color-sea-20));
+  color: var(--color-sea-2);
+  box-shadow: 0 0 16px rgba(14, 165, 233, 0.15);
+}
+
+.feature-title {
+  margin: 0;
+  color: var(--color-text-primary);
+}
+
+.feature-desc {
+  flex: 1;
+  color: var(--color-text-muted);
+}
+
+.feature-link {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--color-orange-2);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  text-decoration: none;
+  transition: gap var(--ease-base);
+}
+
+.feature-link:hover {
+  gap: 8px;
+  color: var(--color-orange);
+}
+
+.feature-link:focus-visible {
+  outline: 3px solid var(--color-orange-2);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+#calculators .feature-card {
+  position: relative;
+  gap: 18px;
+  min-height: 240px;
+  padding: 28px 24px 24px;
+  overflow: visible;
+}
+
+#calculators .feature-card-top {
+  min-height: 48px;
+}
+
+/* Flexbox fallback for feature-heading-row */
+#calculators .feature-heading-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#calculators .feature-heading-row > :first-child {
+  flex: 0 0 46px;
+}
+
+#calculators .feature-heading-row > :last-child {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* CSS Grid for modern browsers */
+@supports (display: grid) {
+  #calculators .feature-heading-row {
+    display: grid;
+    grid-template-columns: 46px minmax(0, 1fr);
+    align-items: center;
+    gap: 8px;
+  }
+
+  #calculators .feature-heading-row > :first-child,
+  #calculators .feature-heading-row > :last-child {
+    flex: none;
+    min-width: 0;
+  }
+}
+
+#calculators .feature-card .feature-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  font-size: 20px;
+}
+
+#calculators .feature-card .feature-title {
+  font-size: 1.18rem;
+  line-height: 1.18;
+  margin: 0;
+}
+
+#calculators .feature-card .badge {
+  position: absolute;
+  top: -12px;
+  right: 24px;
+  z-index: 2;
+  box-shadow: var(--shadow-md);
+}
+
+#calculators .feature-card .feature-desc {
+  flex: 1;
+  margin: 0;
+  padding-left: 6px;
+  line-height: 1.55;
+}
+
+#calculators .feature-card .feature-link {
+  padding-left: 6px;
+}
+
+@media (max-width: 768px) {
+  #calculators .feature-card {
+    min-height: 220px;
+    padding: 26px 22px 22px;
+  }
+}
+
+
+/* ═══ FAQ ACCORDION ═══ */
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--color-border);
+  width: 100%;
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.faq-trigger {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 1rem;
+  text-align: left;
+  color: var(--color-text-primary);
+  transition: color var(--ease-base);
+}
+
+.faq-trigger:hover {
+  color: var(--color-orange-2);
+}
+
+.faq-icon {
+  font-size: 1.25rem;
+  transition: transform var(--ease-base);
+  display: inline-block;
+  user-select: none;
+  color: var(--color-text-muted);
+}
+
+.faq-trigger[aria-expanded="true"] {
+  color: var(--color-orange-2);
+}
+
+.faq-trigger[aria-expanded="true"] .faq-icon {
+  transform: rotate(45deg);
+  color: var(--color-orange-2);
+}
+
+.faq-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--ease-slow) ease-in-out;
+}
+
+.faq-content.open {
+  max-height: 500px;
+}
+
+.faq-content-inner {
+  padding: 0 0 20px 0;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+}
+
+
+/* ═══ BLOG POST CARD ═══ */
+.post-card {
+  overflow: hidden;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.96) 0%, 
+    rgba(236, 253, 245, 0.7) 50%, 
+    rgba(255, 255, 255, 0.92) 100%);
+  border: 1.5px solid rgba(16, 185, 129, 0.25);
+  border-radius: var(--radius-2xl);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    0 6px 24px rgba(16, 185, 129, 0.08),
+    0 0 0 1px rgba(15, 23, 42, 0.04);
+  position: relative;
+  transition: all var(--ease-base);
+}
+
+.post-card:hover {
+  border-color: rgba(16, 185, 129, 0.5);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    0 14px 40px rgba(16, 185, 129, 0.16),
+    0 0 0 1px rgba(15, 23, 42, 0.04);
+  transform: translateY(-2px);
+}
+
+.post-card-img {
+  aspect-ratio: 16/9;
+  background-color: var(--color-bg-elevated-2);
+  overflow: hidden;
+  position: relative;
+}
+
+.post-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--ease-slow);
+}
+
+.post-card:hover .post-card-img img {
+  transform: scale(1.04);
+}
+
+.post-card-body {
+  padding: 24px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.post-card-meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  color: var(--color-text-muted);
+}
+
+.post-card-title {
+  color: var(--color-text-primary);
+  text-decoration: none;
+  transition: color var(--ease-base);
+}
+
+.post-card-title:hover {
+  color: var(--color-orange-2);
+}
+
+.post-card-excerpt {
+  flex: 1;
+  color: var(--color-text-muted);
+}
+
+.post-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+
+.post-card-readmore {
+  font-family: var(--font-body);
+  font-weight: 600;
+  color: var(--color-orange-2);
+  text-decoration: none;
+}
+
+
+/* ═══ CALLOUT BOXES ═══ */
+.callout {
+  border-radius: var(--radius-lg);
+  padding: 20px 24px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  border: 1px solid;
+}
+
+.callout-orange {
+  background-color: var(--color-orange-10);
+  border-color: rgba(249, 115, 22, 0.25);
+  border-left: 4px solid var(--color-orange);
+}
+
+.callout-emerald {
+  background-color: var(--color-emerald-10);
+  border-color: rgba(16, 185, 129, 0.25);
+  border-left: 4px solid var(--color-emerald);
+}
+
+.callout-sea {
+  background-color: var(--color-sea-10);
+  border-color: rgba(14, 165, 233, 0.25);
+  border-left: 4px solid var(--color-sea);
+}
+
+.callout-rose {
+  background-color: var(--color-rose-10);
+  border-color: rgba(225, 29, 72, 0.25);
+  border-left: 4px solid var(--color-rose);
+}
+
+.callout-icon {
+  font-size: 20px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.callout-content {
+  flex: 1;
+}
+
+.callout-title {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--color-text-primary);
+  margin-bottom: 4px;
+}
+
+.callout-text {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+
+/* ═══ TABLE OF CONTENTS ═══ */
+.toc {
+  background-color: var(--color-bg-surface);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+}
+
+.toc-title {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 12px;
+}
+
+.toc-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.toc-link {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  border-left: 2px solid transparent;
+  transition: all var(--ease-base);
+  display: block;
+}
+
+.toc-link:hover,
+.toc-link.active {
+  color: var(--color-orange-2);
+  border-left-color: var(--color-orange);
+  background-color: var(--color-orange-10);
+}
+
+
+/* ═══ BREADCRUMB ═══ */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 12px 0;
+  font-size: 0.875rem;
+}
+
+.breadcrumb-item {
+  color: var(--color-text-muted);
+  text-decoration: none;
+  transition: color var(--ease-base);
+}
+
+.breadcrumb-item:hover {
+  color: var(--color-orange-2);
+}
+
+.breadcrumb-item:last-child {
+  color: var(--color-text-primary);
+  font-weight: 500;
+  pointer-events: none;
+}
+
+.breadcrumb-sep {
+  color: var(--color-text-dim);
+  user-select: none;
+}
+
+
+/* ═══ MODAL (Ayna Cam) ═══ */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: var(--z-modal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--ease-base);
+}
+
+.modal-overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.modal {
+  max-width: 560px;
+  width: calc(100% - 48px);
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  transform: scale(0.95) translateY(8px);
+  transition: transform var(--ease-base), opacity var(--ease-base);
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: 32px;
+  box-shadow: 0 30px 80px rgba(15, 23, 42, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+  color: var(--color-text-primary);
+}
+
+.modal::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.9) 50%, transparent 100%);
+  pointer-events: none;
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+}
+
+.modal-overlay.open .modal {
+  transform: scale(1) translateY(0);
+}
+
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}
+
+
+/* ═══ PROGRESS BAR ═══ */
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-orange), var(--color-emerald));
+  width: 0%;
+  z-index: 1000;
+  transition: width 100ms;
+  box-shadow: 0 0 8px var(--color-orange);
+}
+
+.article-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-orange), var(--color-sea));
+  width: 0%;
+  z-index: 1000;
+  transition: width 100ms;
+  box-shadow: 0 0 8px var(--color-orange);
+}
+
+
+/* ═══ TOOLTIP ═══ */
+[data-tooltip] {
+  position: relative;
+}
+
+[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-bg-dark);
+  color: var(--color-text-inverse);
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 500;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--ease-fast);
+  z-index: var(--z-dropdown);
+  box-shadow: var(--shadow-md);
+}
+
+[data-tooltip]:hover::after,
+[data-tooltip]:focus-within::after {
+  opacity: 1;
+}
+
+
+/* ═══ FOOTER (Açık ton) ═══ */
+.footer {
+  background: linear-gradient(180deg, var(--color-bg-base) 0%, #F1F5F9 100%);
+  color: var(--color-text-muted);
+  padding: 64px 0 32px;
+  border-top: 1px solid var(--color-border);
+  position: relative;
+}
+
+/* Flexbox fallback for footer-grid */
+.footer-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 48px;
+}
+
+.footer-grid > :first-child {
+  flex: 2 1 400px;
+  min-width: 0;
+}
+
+.footer-grid > :not(:first-child) {
+  flex: 1 1 200px;
+  min-width: 0;
+}
+
+/* CSS Grid for modern browsers */
+@supports (display: grid) {
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px;
+  }
+
+  .footer-grid > :first-child,
+  .footer-grid > :not(:first-child) {
+    flex: none;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-grid {
+    gap: 32px;
+  }
+
+  .footer-grid > :first-child,
+  .footer-grid > :not(:first-child) {
+    flex: 1 1 100%;
+  }
+
+  @supports (display: grid) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+  }
+}
+
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.footer-logo {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.375rem;
+  color: var(--color-text-primary);
+  text-decoration: none;
+  letter-spacing: -0.02em;
+}
+
+.footer-logo span {
+  background: linear-gradient(135deg, var(--color-orange), var(--color-amber));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.footer-tagline {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  max-width: 320px;
+}
+
+.footer-col-title {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.75rem;
+  color: var(--color-text-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 16px;
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-link {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  transition: color var(--ease-base);
+}
+
+.footer-link:hover {
+  color: var(--color-orange-2);
+}
+
+.footer-bottom {
+  border-top: 1px solid var(--color-border);
+  margin-top: 48px;
+  padding-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.footer-bottom-text {
+  color: var(--color-text-dim);
+  font-size: 0.8125rem;
+}
+
+@media (max-width: 640px) {
+  .footer-bottom {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+
+/* ═══ SEARCH MODAL (Ayna Cam) ═══ */
+.search-modal {
+  max-width: 640px;
+  overflow: visible;
+  padding: 24px;
+}
+
+.search-input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.search-icon-inside {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.25rem;
+  color: var(--color-text-muted);
+  pointer-events: none;
+}
+
+.search-input {
+  width: 100%;
+  padding: 16px 20px 16px 52px;
+  border-radius: var(--radius-lg);
+  border: 2px solid var(--color-border);
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 1rem;
+  background-color: var(--color-bg-base);
+  color: var(--color-text-primary);
+  transition: border-color var(--ease-base), box-shadow var(--ease-base);
+}
+
+.search-input:focus {
+  border-color: var(--color-orange);
+  box-shadow: 0 0 0 3px var(--color-orange-10);
+}
+
+.search-input:focus-visible {
+  outline: 3px solid var(--color-orange);
+  outline-offset: 2px;
+  border-color: var(--color-orange);
+  box-shadow: 0 0 0 3px var(--color-orange-10);
+}
+
+.search-input:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.search-input::placeholder {
+  color: var(--color-text-dim);
+}
+
+.search-results {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.search-result-item {
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-decoration: none;
+  transition: background-color var(--ease-fast);
+  color: var(--color-text-primary);
+  border: 1px solid transparent;
+}
+
+.search-result-item:hover,
+.search-result-item.focused {
+  background-color: var(--color-bg-elevated-2);
+  border-color: var(--color-border);
+}
+
+.search-result-title {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--color-text-primary);
+}
+
+.search-result-url {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+.search-result-type {
+  display: inline-block;
+  font-size: 0.625rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-right: 6px;
+}
+
+.search-result-type.calc {
+  background-color: var(--color-orange-10);
+  color: var(--color-orange-2);
+}
+
+.search-result-type.guide {
+  background-color: var(--color-emerald-10);
+  color: var(--color-emerald-2);
+}
+
+.search-result-type.article {
+  background-color: var(--color-sea-10);
+  color: var(--color-sea-2);
+}
+
+
+/* ═══ NEWSLETTER BOX (Ayna Cam) ═══ */
+.newsletter-box {
+  background: var(--mirror-glass-bg);
+  backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--color-border-strong);
+  padding: 32px;
+  border-radius: var(--radius-xl);
+  color: var(--color-text-primary);
+  box-shadow: var(--mirror-glass-shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+.newsletter-box::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--mirror-glass-shine);
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+.newsletter-box > * {
+  position: relative;
+  z-index: 2;
+}
+
+.newsletter-input-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.newsletter-input {
+  flex: 1;
+  padding: 12px 20px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border-strong);
+  background-color: var(--color-bg-surface);
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+  font-weight: 500;
+  transition: border-color var(--ease-base), background-color var(--ease-base);
+}
+
+.newsletter-input:focus {
+  border-color: var(--color-orange);
+  background-color: var(--color-white);
+}
+
+.newsletter-input:focus-visible {
+  outline: 3px solid var(--color-orange);
+  outline-offset: 2px;
+  border-color: var(--color-orange);
+  background-color: var(--color-white);
+}
+
+.newsletter-input:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.newsletter-input::placeholder {
+  color: var(--color-text-dim);
+}
+
+@media (max-width: 576px) {
+  .newsletter-input-row {
+    flex-direction: column;
+  }
+  .newsletter-input {
+    width: 100%;
+  }
+}
+
+
+/* ═══ SIDEBAR LAYOUT ═══ */
+/* Flexbox fallback for layout-with-sidebar */
+.layout-with-sidebar {
+  display: flex;
+  gap: 48px;
+  align-items: start;
+}
+
+.layout-with-sidebar > :first-child {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.layout-with-sidebar > .sidebar {
+  flex: 0 0 320px;
+  max-width: 320px;
+}
+
+/* CSS Grid for modern browsers */
+@supports (display: grid) {
+  .layout-with-sidebar {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .layout-with-sidebar > :first-child {
+    flex: none;
+    min-width: 0;
+  }
+
+  .layout-with-sidebar > .sidebar {
+    flex: none;
+    max-width: none;
+  }
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  position: sticky;
+  top: 96px;
+}
+
+.sidebar-widget {
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
+}
+
+.sidebar-widget::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.9) 50%, transparent 100%);
+  pointer-events: none;
+}
+
+.sidebar-widget-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--color-text-primary);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+@media (max-width: 1024px) {
+  .layout-with-sidebar {
+    gap: 32px;
+  }
+
+  .layout-with-sidebar > :first-child,
+  .layout-with-sidebar > .sidebar {
+    flex: 1 1 100%;
+    max-width: none;
+  }
+
+  @supports (display: grid) {
+    .layout-with-sidebar {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+  }
+
+  .sidebar {
+    position: static;
+  }
+}
+
+
+/* ═══ PAGE HERO PANELS (Açık ton, ayna cam - mirror glass emerald) ═══ */
+.calc-hub-hero,
+.blog-hero,
+.learn-hero,
+.about-hero,
+.contact-hero {
+  position: relative;
+  padding: 96px 24px 40px !important;
+  margin-bottom: 32px !important;
+  overflow: hidden;
+  text-align: center;
+  background: transparent;
+}
+
+.calc-hub-hero::before,
+.blog-hero::before,
+.learn-hero::before,
+.about-hero::before,
+.contact-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 60% at 50% 0%, rgba(16, 185, 129, 0.18) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 50% at 20% 30%, rgba(14, 165, 233, 0.10) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 80% 50%, rgba(249, 115, 22, 0.08) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+  animation: heroBgPulse 12s ease-in-out infinite;
+  transform: translateZ(0);
+  will-change: opacity;
+}
+
+@keyframes heroBgPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.calc-hub-hero > .container,
+.blog-hero > .container,
+.learn-hero > .container,
+.about-hero > .container,
+.contact-hero > .container {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 980px) !important;
+  max-width: 980px !important;
+  /* DAHA KÜÇÜK YÜKSEKLİK */
+  height: 220px;
+  min-height: 220px;
+  max-height: 220px;
+  border-radius: var(--radius-2xl);
+  /* 0.85 OPACITY - saydam */
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.85) 0%, 
+    rgba(236, 253, 245, 0.7) 35%,
+    rgba(209, 250, 229, 0.5) 70%, 
+    rgba(255, 255, 255, 0.85) 100%);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  /* 1PX BELİRGİN zümrüt yeşili çerçeve */
+  border: 1px solid rgba(16, 185, 129, 0.7);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    inset 0 -1px 0 rgba(16, 185, 129, 0.15),
+    0 0 0 1px rgba(255, 255, 255, 0.6),
+    0 12px 32px rgba(16, 185, 129, 0.15),
+    0 0 0 1px rgba(15, 23, 42, 0.06);
+  padding: 32px 40px !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transform: translateZ(0);
+}
+
+.calc-hub-hero > .container::before,
+.blog-hero > .container::before,
+.learn-hero > .container::before,
+.about-hero > .container::before,
+.contact-hero > .container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--mirror-glass-shine);
+  pointer-events: none;
+  opacity: 0.5;
+  z-index: 0;
+  mix-blend-mode: overlay;
+  border-radius: inherit;
+}
+
+.calc-hub-hero > .container > *,
+.blog-hero > .container > *,
+.learn-hero > .container > *,
+.about-hero > .container > *,
+.contact-hero > .container > * {
+  position: relative;
+  z-index: 2;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.calc-hub-hero h1,
+.blog-hero h1,
+.learn-hero h1,
+.about-hero h1,
+.contact-hero h1,
+.calc-hub-hero .display-xl,
+.blog-hero .display-lg,
+.learn-hero .display-lg,
+.about-hero .display-lg,
+.contact-hero .display-lg {
+  position: relative;
+  z-index: 2;
+  color: var(--color-text-primary) !important;
+  font-size: clamp(1.5rem, 4vw, 2.25rem) !important;
+  line-height: 1.2 !important;
+  margin-bottom: 12px !important;
+  text-align: center;
+  max-width: 90%;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.calc-hub-hero p,
+.blog-hero p,
+.learn-hero p,
+.about-hero p,
+.contact-hero p {
+  position: relative;
+  z-index: 2;
+  color: var(--color-text-secondary) !important;
+  max-width: 700px;
+  font-size: clamp(0.875rem, 1.5vw, 1rem) !important;
+  line-height: 1.5 !important;
+  text-align: center;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0 auto;
+}
+
+/* Sabit yükseklik - sayfa geçişlerinde kayma yok */
+@media (max-width: 1024px) {
+  .calc-hub-hero > .container,
+  .blog-hero > .container,
+  .learn-hero > .container,
+  .about-hero > .container,
+  .contact-hero > .container {
+    height: 200px;
+    min-height: 200px;
+    max-height: 200px;
+  }
+}
+
+@media (max-width: 768px) {
+  .calc-hub-hero,
+  .blog-hero,
+  .learn-hero,
+  .about-hero,
+  .contact-hero {
+    padding: 88px 16px 28px !important;
+  }
+
+  .calc-hub-hero > .container,
+  .blog-hero > .container,
+  .learn-hero > .container,
+  .about-hero > .container,
+  .contact-hero > .container {
+    height: 180px;
+    min-height: 180px;
+    max-height: 180px;
+    padding: 20px !important;
+    border-radius: var(--radius-xl);
+  }
+}
+
+@media (max-width: 480px) {
+  .calc-hub-hero > .container,
+  .blog-hero > .container,
+  .learn-hero > .container,
+  .about-hero > .container,
+  .contact-hero > .container {
+    height: 170px;
+    min-height: 170px;
+    max-height: 170px;
+  }
+}
+
+
+/* ═══ LEGAL HERO (Disclaimer, Terms, Privacy) ═══ */
+.legal-hero {
+  position: relative;
+  padding: 96px 24px 32px !important;
+  margin-bottom: 32px !important;
+  overflow: hidden;
+  text-align: center;
+  background: transparent;
+}
+
+.legal-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 60% at 50% 0%, rgba(16, 185, 129, 0.18) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 50% at 20% 30%, rgba(14, 165, 233, 0.10) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 80% 50%, rgba(249, 115, 22, 0.08) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+  animation: heroBgPulse 12s ease-in-out infinite;
+  transform: translateZ(0);
+  will-change: opacity;
+}
+
+.legal-hero > .container {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 980px) !important;
+  max-width: 980px !important;
+  height: 220px;
+  min-height: 220px;
+  max-height: 220px;
+  border-radius: var(--radius-2xl);
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.85) 0%, 
+    rgba(236, 253, 245, 0.7) 35%,
+    rgba(209, 250, 229, 0.5) 70%, 
+    rgba(255, 255, 255, 0.85) 100%);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(16, 185, 129, 0.7);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    inset 0 -1px 0 rgba(16, 185, 129, 0.15),
+    0 0 0 1px rgba(255, 255, 255, 0.6),
+    0 12px 32px rgba(16, 185, 129, 0.15),
+    0 0 0 1px rgba(15, 23,  42, 0.06);
+  padding: 32px 40px !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transform: translateZ(0);
+}
+
+.legal-hero > .container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--mirror-glass-shine);
+  pointer-events: none;
+  opacity: 0.5;
+  z-index: 0;
+  mix-blend-mode: overlay;
+  border-radius: inherit;
+}
+
+.legal-hero > .container > * {
+  position: relative;
+  z-index: 2;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.legal-hero h1,
+.legal-hero .legal-hero-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.5rem, 4vw, 2.25rem) !important;
+  line-height: 1.2 !important;
+  letter-spacing: -0.02em;
+  color: var(--color-text-primary) !important;
+  margin-bottom: 12px !important;
+  text-align: center;
+  max-width: 90%;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.legal-hero p,
+.legal-hero .legal-hero-desc {
+  font-family: var(--font-body);
+  color: var(--color-text-secondary) !important;
+  max-width: 700px;
+  font-size: clamp(0.875rem, 1.5vw, 1rem) !important;
+  line-height: 1.5 !important;
+  text-align: center;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0 auto;
+}
+
+@media (max-width: 1024px) {
+  .legal-hero > .container {
+    height: 200px;
+    min-height: 200px;
+    max-height: 200px;
+  }
+}
+
+@media (max-width: 768px) {
+  .legal-hero {
+    padding: 88px 16px 28px !important;
+  }
+  .legal-hero > .container {
+    height: 180px;
+    min-height: 180px;
+    max-height: 180px;
+    padding: 20px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .legal-hero > .container {
+    height: 170px;
+    min-height: 170px;
+    max-height: 170px;
+  }
+}
+
+
+/* ═══ FEATURED ARTICLE CARD (Blog) - Ayna cam emerald ═══ */
+.featured-article,
+.featured-article-card,
+.article-featured {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.9) 0%, 
+    rgba(236, 253, 245, 0.7) 50%, 
+    rgba(255, 255, 255, 0.85) 100%) !important;
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+  border: 1.5px solid rgba(16, 185, 129, 0.25) !important;
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    0 1px 0 rgba(255, 255, 255, 0.8),
+    0 16px 48px rgba(16, 185, 129, 0.18),
+    0 0 0 1px rgba(15, 23, 42, 0.04) !important;
+  color: var(--color-text-primary) !important;
+  border-radius: var(--radius-2xl) !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.featured-article::before,
+.featured-article-card::before,
+.article-featured::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--mirror-glass-shine);
+  pointer-events: none;
+  opacity: 0.5;
+  z-index: 0;
+  mix-blend-mode: overlay;
+}
+
+.featured-article *,
+.featured-article-card *,
+.article-featured * {
+  position: relative;
+  z-index: 2;
+}
+
+.featured-article h1,
+.featured-article h2,
+.featured-article h3,
+.featured-article p,
+.featured-article-card h1,
+.featured-article-card h2,
+.featured-article-card h3,
+.featured-article-card p,
+.article-featured h1,
+.article-featured h2,
+.article-featured h3,
+.article-featured p {
+  color: var(--color-text-primary) !important;
+}
+
+
+/* ═══ ANIMATIONS ═══ */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-24px); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Task 7.3: Dropdown slideDown animation
+   Requirements: FR8 - Dropdown menu animation (150ms)
+   Animation: opacity 0→1, translateY(-10px)→0, with centered positioning
+   Note: translateX(-50%) maintains horizontal centering during animation */
+@keyframes slideDown {
+  from { 
+    opacity: 0; 
+    transform: translateX(-50%) translateY(-10px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateX(-50%) translateY(0); 
+  }
+}
+
+/* Task 7.4: Mobile menu slide-in animation
+   Requirements: FR8 - Slide-in menu drawer from right side */
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(249, 115, 22, 0.2); }
+  50% { box-shadow: 0 0 40px rgba(249, 115, 22, 0.4); }
+}
+
+@keyframes drawLine {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes countUp {
+  from { opacity: 0.4; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Hero chart card - mirror glass emerald with subtle shine */
+.hero-chart-card {
+  transition: transform 400ms ease, box-shadow 400ms ease;
+}
+
+.hero-chart-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.6) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 1;
+  border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
+  animation: mirrorShine 4s ease-in-out infinite;
+}
+
+.hero-chart-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, 
+    transparent 30%, 
+    rgba(255, 255, 255, 0.4) 50%, 
+    transparent 70%);
+  pointer-events: none;
+  border-radius: var(--radius-2xl);
+  mix-blend-mode: overlay;
+  animation: mirrorGlide 6s ease-in-out infinite;
+}
+
+@keyframes mirrorShine {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.9; }
+}
+
+@keyframes mirrorGlide {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.hero-chart-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    0 20px 60px rgba(16, 185, 129, 0.25),
+    0 0 0 1px rgba(15, 23, 42, 0.04);
+}
+
+.hero-chart-card > * {
+  position: relative;
+  z-index: 2;
+}
+
+.animate-fade-in {
+  animation: fadeIn 500ms ease both;
+}
+
+.animate-slide-up {
+  animation: slideUp 600ms ease both;
+}
+
+.stagger-1 { animation-delay: 100ms; }
+.stagger-2 { animation-delay: 200ms; }
+.stagger-3 { animation-delay: 300ms; }
+.stagger-4 { animation-delay: 400ms; }
+.stagger-5 { animation-delay: 500ms; }
+
+[data-animate] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 600ms ease, transform 600ms ease;
+}
+
+[data-animate].visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* ═══ TOAST NOTIFICATION ═══ */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border-strong);
+  color: var(--color-text-primary);
+  padding: 12px 20px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.875rem;
+  box-shadow: var(--shadow-lg), 0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+  z-index: var(--z-toast);
+  opacity: 0;
+  transition: all var(--ease-base);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  backdrop-filter: blur(20px);
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.toast.success {
+  border-color: var(--color-emerald);
+  box-shadow: var(--shadow-lg), 0 0 20px var(--color-emerald-20);
+}
+
+.toast.error {
+  border-color: var(--color-rose);
+  box-shadow: var(--shadow-lg), 0 0 20px var(--color-rose-10);
+}
+
+.toast.info {
+  border-color: var(--color-sea);
+  box-shadow: var(--shadow-lg), 0 0 20px var(--color-sea-20);
+}
+
+
+/* ═══ LOADING INDICATOR - Slow Fetch Operations ═══ */
+.cp-loading-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 24px;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+.cp-loading-indicator.cp-loading-visible {
+  opacity: 1;
+}
+
+.cp-loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(16, 185, 129, 0.1);
+  border-top-color: var(--color-emerald);
+  border-radius: 50%;
+  animation: cp-spin 0.8s linear infinite;
+}
+
+@keyframes cp-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.cp-loading-text {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  letter-spacing: 0.02em;
+}
+
+/* Loading indicator for navbar and footer placeholders */
+#navbar-placeholder,
+#footer-placeholder {
+  position: relative;
+}

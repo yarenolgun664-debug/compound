@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com https://polyfill.io 'unsafe-inline'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline' https://api.fontshare.com; font-src 'self' https://fonts.gstatic.com https://api.fontshare.com data:;">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="index, follow">
+  
+  <!-- SEO Requirements -->
+  <title>CompoundPro — Free Compound Interest Calculator & Investment Tools</title>
+  <meta name="description" content="Calculate compound interest, plan retirement, and build wealth with 13 free premium investment calculators. Trusted by investors worldwide.">
+  <link rel="canonical" href="https://compoundpro.com/index.html">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://compoundpro.com/index.html">
+  <meta property="og:title" content="CompoundPro — Free Compound Interest Calculator & Investment Tools">
+  <meta property="og:description" content="Calculate compound interest, plan retirement, and build wealth with 13 free premium investment calculators. Trusted by investors worldwide.">
+  <meta property="og:image" content="https://compoundpro.com/assets/img/og/home.jpg">
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://compoundpro.com/index.html">
+  <meta name="twitter:title" content="CompoundPro — Free Compound Interest Calculator & Investment Tools">
+  <meta name="twitter:description" content="Calculate compound interest, plan retirement, and build wealth with 13 free premium investment calculators. Trusted by investors worldwide.">
+  <meta name="twitter:image" content="https://compoundpro.com/assets/img/og/home.jpg">
+
+  <!-- Critical Inline CSS for First Contentful Paint (FCP) -->
+  <style>
+    :root {
+      --color-emerald-50: #ECFDF5;
+      --color-emerald-500: #10B981;
+      --color-emerald-600: #059669;
+      --color-emerald-700: #047857;
+      --color-emerald-900: #064E3B;
+      --color-orange-50: #FFF7ED;
+      --color-orange-100: #FFEDD5;
+      --color-orange-500: #F97316;
+      --color-orange-600: #EA580C;
+      --color-orange-700: #C2410C;
+      --color-mauve-50: #FDF4FF;
+      --color-mauve-500: #D946EF;
+      --color-bg-white: #FFFFFF;
+      --color-bg-offwhite: #FAFAFA;
+      --color-neutral-100: #F3F4F6;
+      --color-neutral-200: #E5E7EB;
+      --color-neutral-400: #9CA3AF;
+      --color-neutral-600: #4B5563;
+      --color-neutral-900: #111827;
+      --glass-bg: rgba(255, 255, 255, 0.7);
+      --glass-bg-strong: rgba(255, 255, 255, 0.85);
+      --glass-border: rgba(255, 255, 255, 0.6);
+      --glass-shadow: 0 8px 32px -4px rgba(16, 185, 129, 0.08);
+      --glass-blur: blur(16px);
+      --font-display: 'Clash Display', sans-serif;
+      --font-body: 'Satoshi', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --space-1: 0.25rem;
+      --space-2: 0.5rem;
+      --space-4: 1rem;
+      --space-6: 1.5rem;
+      --space-8: 2rem;
+      --space-12: 3rem;
+      --space-16: 4rem;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 24px;
+      --radius-2xl: 32px;
+      --radius-full: 9999px;
+      --transition-normal: 300ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--color-bg-offwhite);
+      color: var(--color-neutral-600);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: 
+        radial-gradient(circle at 15% 10%, rgba(16, 185, 129, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 85% 30%, rgba(217, 70, 239, 0.04) 0%, transparent 40%),
+        radial-gradient(circle at 50% 85%, rgba(16, 185, 129, 0.03) 0%, transparent 35%);
+      pointer-events: none;
+      z-index: -2;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: var(--space-6);
+      padding-right: var(--space-6);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-8);
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--space-6);
+    }
+
+    @media (max-width: 768px) {
+      .grid-2, .grid-3 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Navbar critical overrides */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      transition: all var(--transition-normal);
+    }
+
+    /* Hero section styles */
+    .hero {
+      position: relative;
+      padding-top: 140px;
+      padding-bottom: var(--space-16);
+      overflow: hidden;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      color: var(--color-neutral-900);
+      margin-bottom: var(--space-4);
+    }
+
+    .title-highlight {
+      position: relative;
+      display: inline-block;
+      background: linear-gradient(135deg, var(--color-emerald-600), var(--color-emerald-500));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+
+    /* Progress bar */
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--color-orange-500) 0%, var(--color-emerald-500) 100%);
+      transform-origin: left;
+      z-index: 9999;
+      width: 0;
+      transition: width 0.1s;
+    }
+  </style>
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <!-- Stylesheets -->
+  <link rel="preload" href="/assets/css/design-system.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="/assets/css/design-system.css"></noscript>
+  <link rel="preload" href="/assets/css/components.css?v=20260602" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="/assets/css/components.css?v=20260602"></noscript>
+  <link rel="stylesheet" href="/assets/css/print.css" media="print">
+
+  <!-- ES6+ Polyfills -->
+  <script crossorigin="anonymous" src="https://polyfill.io/v3/polyfill.min.js?features=es6%2Ces2015%2Ces2016%2Ces2017%2CArray.prototype.includes%2CObject.assign%2CPromise%2Cfetch"></script>
+
+  <!-- Layout Loader Component System -->
+  <script src="/assets/js/layout-loader.js" defer></script>
+  
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "CompoundPro",
+      "url": "https://compoundpro.com",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://compoundpro.com/index.html?search={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "CompoundPro Financial Calculators Hub",
+      "url": "https://compoundpro.com",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+  ]
+  </script>
+  
+  <style>
+    /* Hero animations for exponential curve SVG drawing */
+    @keyframes drawPath {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+    .animated-path {
+      stroke-dasharray: 1000;
+      stroke-dashoffset: 1000;
+      animation: drawPath 2.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    }
+    .hero-orb {
+      position: absolute;
+      border-radius: var(--radius-full);
+      filter: blur(80px);
+      opacity: 0.12;
+      pointer-events: none;
+      z-index: -1;
+    }
+    .hero-orb-1 {
+      width: 400px;
+      height: 400px;
+      background: var(--color-orange-500);
+      top: -100px;
+      right: -50px;
+    }
+    .hero-orb-2 {
+      width: 400px;
+      height: 400px;
+      background: var(--color-emerald-500);
+      bottom: -100px;
+      left: -50px;
+    }
+    .hero-orb-3 {
+      width: 300px;
+      height: 300px;
+      background: var(--color-mauve-500);
+      top: 40%;
+      right: 30%;
+    }
+  </style>
+</head>
+<body class="grain-overlay">
+  <!-- Progress bar (global scroll indicator) -->
+  <div class="progress-bar"></div>
+  
+  <!-- NAVBAR -->
+  <div id="navbar-placeholder"></div>
+  
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-orb hero-orb-3"></div>
+    
+    <div class="hero-content container">
+      <div class="grid-2" style="align-items: center; gap: 48px;">
+        <!-- Left Side: Copy & Actions -->
+        <div class="reveal active" style="max-width: 600px;">
+          <span class="badge badge-emerald" style="margin-bottom: 16px;">✦ Free Premium Fintech Suite</span>
+          <h1 class="hero-title">
+            Make Your Money Work
+            <span class="title-highlight">Exponentially</span> Harder
+          </h1>
+          <p class="body-lg" style="margin-bottom: 32px; color: var(--color-neutral-600); max-width: 520px; line-height: 1.6;">
+            13 mathematically-verified calculators to project compound growth, model early retirement, map dividend returns, and reach financial freedom.
+          </p>
+          <div style="display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 32px;">
+            <a href="/calculator/compound-interest.html" class="btn btn-primary btn-lg">Try Compound Calculator</a>
+            <a href="#calculators" class="btn btn-secondary btn-lg">Explore All 13 Tools</a>
+          </div>
+          
+          <!-- Trust Strip without colorful emojis -->
+          <div class="trust-strip glass-panel" style="display: flex; gap: var(--space-4); padding: var(--space-4); border-radius: var(--radius-md); margin-top: var(--space-6); align-items: center; justify-content: space-around;">
+            <span style="display: flex; align-items: center; gap: 6px; font-weight: 600; font-size: 0.9375rem; color: var(--color-neutral-900);">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-emerald-500)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              100% Free Forever
+            </span>
+            <span style="display: flex; align-items: center; gap: 6px; font-weight: 600; font-size: 0.9375rem; color: var(--color-neutral-900);">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-emerald-500)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              No Account Required
+            </span>
+            <span style="display: flex; align-items: center; gap: 6px; font-weight: 600; font-size: 0.9375rem; color: var(--color-neutral-900);">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-emerald-500)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              Instant Results
+            </span>
+          </div>
+        </div>
+
+        <!-- Right Side: SVG Graph & Badges (Asymmetric Hero Chart) -->
+        <div class="reveal active delay-1" style="position: relative; width: 100%;">
+          <!-- Base Exponential Card (Glassmorphic Emerald Panel) -->
+          <div class="glass-panel-strong" style="width: 100%; aspect-ratio: 4/3; display: flex; flex-direction: column; justify-content: space-between; overflow: hidden; position: relative; padding: var(--space-6); border-radius: var(--radius-lg); border-color: rgba(16, 185, 129, 0.15);">
+            <div style="z-index: 2;">
+              <h3 style="font-family: var(--font-display); color: var(--color-neutral-900); font-size: 1.15rem; font-weight: 700; margin-bottom: 2px;">Exponential Portfolio Growth</h3>
+              <p style="font-size: 0.8125rem; color: var(--color-neutral-400);">Initial investment vs 30-year compounded returns</p>
+            </div>
+            
+            <!-- SVG Exponential Line Chart -->
+            <div style="position: absolute; bottom: 0; left: 0; width: 100%; height: 65%; z-index: 1;">
+              <svg viewBox="0 0 400 300" width="100%" height="100%" preserveAspectRatio="none">
+                <!-- Grid Lines -->
+                <line x1="40" y1="50" x2="380" y2="50" stroke="rgba(15,23,42,0.04)" stroke-width="1" />
+                <line x1="40" y1="120" x2="380" y2="120" stroke="rgba(15,23,42,0.04)" stroke-width="1" />
+                <line x1="40" y1="190" x2="380" y2="190" stroke="rgba(15,23,42,0.04)" stroke-width="1" />
+                <line x1="40" y1="260" x2="380" y2="260" stroke="rgba(15,23,42,0.08)" stroke-width="1.5" />
+                
+                <!-- References -->
+                <text x="12" y="264" fill="rgba(15,23,42,0.3)" font-family="JetBrains Mono" font-size="8" font-weight="600">$10k</text>
+                <text x="12" y="54" fill="rgba(15,23,42,0.3)" font-family="JetBrains Mono" font-size="8" font-weight="600">$80k</text>
+                <text x="40" y="282" fill="rgba(15,23,42,0.3)" font-family="JetBrains Mono" font-size="8" font-weight="600">Yr 0</text>
+                <text x="350" y="282" fill="rgba(15,23,42,0.3)" font-family="JetBrains Mono" font-size="8" font-weight="600">Yr 30</text>
+                
+                <!-- Orange Dotted Reference Line (Flat principal line at $10k) -->
+                <line x1="40" y1="260" x2="360" y2="260" stroke="#F97316" stroke-width="2" stroke-dasharray="4,4" />
+                <!-- Emerald Growth Line Curve -->
+                <path d="M 40,260 Q 180,250 280,180 T 360,50" fill="none" stroke="#10B981" stroke-width="3.5" stroke-linecap="round" class="animated-path" />
+                <!-- Glow shadow filter area -->
+                <path d="M 40,260 Q 180,250 280,180 T 360,50 L 360,260 L 40,260 Z" fill="url(#emeraldGlowGradient)" opacity="0.18" />
+                <defs>
+                  <linearGradient id="emeraldGlowGradient" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#10B981" stop-opacity="0.5"></stop>
+                    <stop offset="100%" stop-color="#10B981" stop-opacity="0"></stop>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            
+            <!-- X-Y labels inside card -->
+            <div style="display: flex; justify-content: space-between; align-items: center; z-index: 2; color: var(--color-neutral-400); font-size: 0.8125rem; font-family: var(--font-mono); font-weight: 500;">
+              <span>Time: 30 Years</span>
+              <span>Rate: 7.0%</span>
+            </div>
+          </div>
+          
+          <!-- Floating Badge 1 (Top Right) -->
+          <div class="glass-panel" style="position: absolute; top: 12px; right: -16px; padding: var(--space-3) var(--space-4); z-index: 10; border-radius: var(--radius-md); text-align: center; border-color: rgba(217, 70, 239, 0.25);">
+            <div style="font-family: var(--font-mono); font-variant-numeric: tabular-nums; color: var(--color-mauve-500); font-size: 1.25rem; font-weight: 700;">+847%</div>
+            <div style="font-size: 0.75rem; font-weight: 700; color: var(--color-neutral-800); margin-top: 2px;">30 Year Yield</div>
+          </div>
+          
+          <!-- Floating Badge 2 (Bottom Left) -->
+          <div class="glass-panel" style="position: absolute; bottom: -16px; left: -16px; padding: var(--space-3) var(--space-4); z-index: 10; border-radius: var(--radius-md); text-align: center; border-color: rgba(16, 185, 129, 0.25);">
+            <div style="font-family: var(--font-mono); font-variant-numeric: tabular-nums; color: var(--color-emerald-700); font-size: 1.25rem; font-weight: 700;">$76,122</div>
+            <div style="font-size: 0.75rem; font-weight: 700; color: var(--color-neutral-800); margin-top: 2px;">$10,000 @ 7% return</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE POWER OF COMPOUNDING STATS -->
+  <section class="section" style="background: var(--color-bg-white); border-top: 1px solid var(--color-neutral-100); border-bottom: 1px solid var(--color-neutral-100);">
+    <div class="container" style="text-align: center;">
+      <span class="badge badge-mauve" style="margin-bottom: 12px;">Visualizing Compounding Math</span>
+      <h2 class="hero-title" style="font-size: clamp(2rem, 4vw, 2.75rem); margin-bottom: var(--space-4);">The 8th Wonder of the World</h2>
+      <p style="max-width: 600px; margin-left: auto; margin-right: auto; margin-bottom: var(--space-12); font-size: 1.0625rem; color: var(--color-neutral-600);">
+        Watch how compound returns accelerate over time compared to basic linear investment models.
+      </p>
+      
+      <div class="grid-3">
+        <!-- Stat Card 1 -->
+        <div class="glass-panel" style="padding: var(--space-8); text-align: center;">
+          <div class="money" style="font-size: 2.25rem; font-weight: 700; color: var(--color-orange-500); margin-bottom: var(--space-2);">$76,122</div>
+          <p style="font-size: 0.9375rem; color: var(--color-neutral-600); margin-bottom: var(--space-4);">From a one-time $10,000 investment at 7% interest over 30 years</p>
+          <span class="badge badge-orange">+661% total profit</span>
+        </div>
+        <!-- Stat Card 2 -->
+        <div class="glass-panel" style="padding: var(--space-8); text-align: center;">
+          <div class="money" style="font-size: 2.25rem; font-weight: 700; color: var(--color-emerald-700); margin-bottom: var(--space-2);">$121,997</div>
+          <p style="font-size: 0.9375rem; color: var(--color-neutral-600); margin-bottom: var(--space-4);">Accumulated by contributing $100 monthly at 7% over 30 years</p>
+          <span class="badge badge-emerald">Only $36,000 contributed</span>
+        </div>
+        <!-- Stat Card 3 -->
+        <div class="glass-panel" style="padding: var(--space-8); text-align: center;">
+          <div class="money" style="font-size: 2.25rem; font-weight: 700; color: var(--color-mauve-500); margin-bottom: var(--space-2);">10.3 Yrs</div>
+          <p style="font-size: 0.9375rem; color: var(--color-neutral-600); margin-bottom: var(--space-4);">Doubling time at 7% interest rate computed via the Rule of 72</p>
+          <span class="badge badge-mauve">Doubles again in 20.6 Yrs</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FLAGSHIP TOOLS SECTION -->
+  <section class="section" id="calculators">
+    <div class="container">
+      <div style="text-align: center; max-width: 640px; margin: 0 auto var(--space-12);">
+        <span class="badge badge-orange" style="margin-bottom: 12px;">Flagship Solvers</span>
+        <h2 class="hero-title" style="font-size: clamp(2rem, 4vw, 2.75rem); margin-bottom: var(--space-4);">Our Three Most Popular Tools</h2>
+        <p style="font-size: 1.0625rem; color: var(--color-neutral-600);">The three primary calculators our community uses first to build compound growth models and retirement roadmaps.</p>
+      </div>
+      
+      <div class="grid-3">
+        <!-- Flagship Card 1: Compound Interest -->
+        <div class="glass-panel" style="padding: var(--space-8); display: flex; flex-direction: column; justify-content: space-between; border-color: rgba(249, 115, 22, 0.25);">
+          <div>
+            <div style="width: 48px; height: 48px; border-radius: var(--radius-sm); background: var(--color-orange-50); display: flex; align-items: center; justify-content: center; color: var(--color-orange-500); margin-bottom: var(--space-6);">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="20" x2="18" y2="10"></line>
+                <line x1="12" y1="20" x2="12" y2="4"></line>
+                <line x1="6" y1="20" x2="6" y2="14"></line>
+              </svg>
+            </div>
+            <h3 style="font-family: var(--font-display); font-size: 1.35rem; color: var(--color-neutral-900); margin-bottom: var(--space-2);">Compound Interest Calculator</h3>
+            <p style="font-size: 0.9375rem; color: var(--color-neutral-600); line-height: 1.6; margin-bottom: var(--space-6);">
+              Model interest growth over customizable periods, including tax rates, inflation rates, and regular additional savings.
+            </p>
+          </div>
+          <a href="/calculator/compound-interest.html" class="btn btn-primary" style="width: fit-content;">Open Calculator</a>
+        </div>
+
+        <!-- Flagship Card 2: Retirement Planner -->
+        <div class="glass-panel" style="padding: var(--space-8); display: flex; flex-direction: column; justify-content: space-between; border-color: rgba(16, 185, 129, 0.25);">
+          <div>
+            <div style="width: 48px; height: 48px; border-radius: var(--radius-sm); background: var(--color-emerald-50); display: flex; align-items: center; justify-content: center; color: var(--color-emerald-600); margin-bottom: var(--space-6);">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 22a10 10 0 0 1 20 0"></path>
+                <path d="M12 2a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"></path>
+                <path d="M12 10v12"></path>
+              </svg>
+            </div>
+            <h3 style="font-family: var(--font-display); font-size: 1.35rem; color: var(--color-neutral-900); margin-bottom: var(--space-2);">Retirement Milestone Planner</h3>
+            <p style="font-size: 0.9375rem; color: var(--color-neutral-600); line-height: 1.6; margin-bottom: var(--space-6);">
+              Find out if your savings are on track to build a retirement pool capable of replacing your current salary based on modern withdrawal rates.
+            </p>
+          </div>
+          <a href="/calculator/retirement.html" class="btn btn-primary" style="width: fit-content;">Open Calculator</a>
+        </div>
+
+        <!-- Flagship Card 3: FIRE Number -->
+        <div class="glass-panel" style="padding: var(--space-8); display: flex; flex-direction: column; justify-content: space-between; border-color: rgba(217, 70, 239, 0.25);">
+          <div>
+            <div style="width: 48px; height: 48px; border-radius: var(--radius-sm); background: var(--color-mauve-50); display: flex; align-items: center; justify-content: center; color: var(--color-mauve-500); margin-bottom: var(--space-6);">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path>
+              </svg>
+            </div>
+            <h3 style="font-family: var(--font-display); font-size: 1.35rem; color: var(--color-neutral-900); margin-bottom: var(--space-2);">FIRE Number Calculator</h3>
+            <p style="font-size: 0.9375rem; color: var(--color-neutral-600); line-height: 1.6; margin-bottom: var(--space-6);">
+              Calculate the target wealth portfolio size required to early retire and replace active job income entirely with investment returns.
+            </p>
+          </div>
+          <a href="/calculator/fire-number.html" class="btn btn-primary" style="width: fit-content;">Open Calculator</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ALL 13 CALCULATORS GRID -->
+  <section class="section" style="background: var(--color-bg-white); border-top: 1px solid var(--color-neutral-100); border-bottom: 1px solid var(--color-neutral-100);">
+    <div class="container">
+      <div style="text-align: center; max-width: 640px; margin: 0 auto var(--space-12);">
+        <span class="badge badge-mauve" style="margin-bottom: 12px;">Full Suite</span>
+        <h2 class="hero-title" style="font-size: clamp(2rem, 4vw, 2.75rem); margin-bottom: var(--space-4);">Explore All 13 Calculators</h2>
+        <p style="font-size: 1.0625rem; color: var(--color-neutral-600);">Browser-based financial projection models separated into three target divisions.</p>
+      </div>
+
+      <!-- Category 1: Growth & Interest -->
+      <div style="margin-bottom: var(--space-10);">
+        <h3 style="font-family: var(--font-display); font-size: 1.5rem; color: var(--color-neutral-900); margin-bottom: var(--space-4); display: flex; align-items: center; gap: 8px;">
+          <span style="color: var(--color-orange-500); display: inline-flex;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+          </span>
+          Compounding & Growth
+        </h3>
+        <div class="grid-3" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));">
+          <!-- Card 1 -->
+          <div class="glass-panel" style="padding: var(--space-6); display: flex; flex-direction: column; justify-content: space-between; min-height: 200px;">
+            <div>
+              <h4 style="font-family: var(--font-display); font-size: 1.15rem; color: var(--color-neutral-900); margin-bottom: var(--space-2);">Compound Interest</h4>
+              <p style="font-size: 0.875rem; color: var(--color-neutral-600); margin-bottom: var(--space-4);">Calculate compounding with tax, inflation, and dynamic charts.</p>
+            </div>
+            <a href="/calculator/compound-interest.html" style="font-size: 0.875rem; font-weight: 700; color: var(--color-emerald-700);">Open Solver →</a>
+          </div>
+          <!-- Card 2 -->
+          <div class="glass-panel" style="padding: var(--space-6); display: flex; flex-direction: column; justify-content: space-between; min-height: 200px;">
+            <div>
+              <h4 style="font-family: var(--font-display); font-size: 1.15rem; color: var(--color-neutral-900); margin-bottom: var(--space-2);">Investment Growth</h4>
+              <p style="font-size: 0.875rem; color: var(--color-neutral-600); margin-bottom: var(--space-4);">Model capital expansion over decades with initial balances.</p>
+            </div>
+            <a href="/calculator/investment-growth.html" style="font-size: 0.875rem; font-weight: 700; color: var(--color-emerald-700);">Open Solver →</a>
+          </div>
+          <!-- Card 3 -->
+          <div class="glass-panel" style="padding: var(--space-6); display: flex; flex-direction: column; justify-content: space-between; min-height: 200px;">
+            <div>
+              <h4 style="font-family: var(--font-display); font-size: 1.15rem; color: var(--color-neutral-900); margin-bottom: var(--space-2);">DRIP Calculator</h4>
+              <p style="font-size: 0.875rem; color: var(--color-neutral-600); margin-bottom: var(--space-4);">Project total returns by compounding dividend reinvestments.</p>
+            </div>
+            <a href="/calculator/drip.html" style="font-size: 0.875rem; font-weight: 700; color: var(--color-emerald-700);">Open Solver →</a>
+          </div>
+          <!-- Card 4 -->
+          <div class="glass-panel" style="padding: var(--space-6); display: flex; flex-direction: column; justify-content: space-between; min-height: 200px;">
+            <div>
+              <h4 style="font-family: var(--font-display); font-size: 1.15rem; color: var(--color-neutral-900); margin-bottom: var(--space-2);">Savings Goal</h4>
+              <p style="font-size: 0.875rem; color: var(--color-neutral-600); margin-bottom: var(--space-4);">Determine the monthly savings size to meet your wealth targets.</p>
+            </div>
+            <a href="/calculator/savings-goal.html" style="font-size: 0.875rem; font-weight: 700; color: var(--color-emerald-700);">Open Solver →</a>
+          </div>
+          <!-- Card 5 -->
+          <div class="glass-panel" style="padding: var(--space-6); display: flex; flex-direction: column; justify-content: space-between; min-height: 200px;">
+            <div>
+              <h4 style="font-family: var(--font-display); font-size: 1.15rem; color: var(--color-neutral-900); margin-bottom: var(--space-2);">APR vs. APY</h4>
+              <p style="font-size: 0.875rem; color: var(--color-neutral-600); margin-bottom: var(--space-4);">Convert between standard nominal rates and compounding yields.</p>
+            </div>
+            <a href="/calculator/apr-vs-apy.html" style="font-size: 0.875rem; font-weight: 700; color: var(--color-emerald-700);">Open Solver →</a>
+          </div>
+          <!-- Card 6 -->
+          <div class="glass-panel" style="padding: var(--space-6); display: flex; flex-direction: column; justify-content: space-between; min-height: 200px;">
+            <div>
+              <h4 style="font-family: var(--font-display); font-size: 1.15rem; color: var(--color-neutral-900); margin-bottom: var(--space-2);">Rule of 72</h4>
+              <p style="font-size: 0.875rem; color: var(--color-neutral-600); margin-bottom: var(--space-4);">Quickly solve the time required to double your investments.</p>
+            </div>
+            <a href="/calculator/rule-of-72.html" style="font-size: 0.875rem; font-weight: 700; color: var(--color-emerald-700);">Open Solver →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category 2: Retirement & Health -->
+      <div style="margin-bottom: var(--space-10);">
+        <h3 style="font-family: var(--font-display); font-size: 1.5rem; color: var(--color-neutral-900); margin-bottom: var(--space-4); display: flex; align-items: center; gap: 8px;">
+          <span style="color: var(--color-emerald-600); display: inline-flex;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a10 10 0 0 1 20 0"></path><path d="M12 2a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"></path><path d="M12 10v12"></path></svg>
+          </span>
+          Retirement & Financial Health
+        </h3>
+        <div class="grid-3" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));">
+          <!-- Card 1 -->
+          <div class="glass-panel" style="padding: var(--space-6); display: flex; flex-direction: column; justify-content: space-between; min-height: 200px;">
+            <div>
+              <h4 style="font-family: var(--font-display); font-size: 1.15rem; color: var(--color-neutral-900); margin-bottom: var(--space-2);">Retirement Planner</h4>
+              <p style="font-size: 0.875rem; color: var(--color-neutral-600); margin-bottom: var(--space-4);">Find out if you have enough saved to replace job salary income.</p>
+            </div>
+            <a href="/calculator/retirement.html" style="font-size: 0.875rem; font-weight: 700; color: var(--color-emerald-700);">Open Solver →</a>
+          </div>
+          <!-- Card 2 -->
+          <div class="glass-panel" style="padding: var(--space-6); display: flex; flex-direction: column; justify-content: space-between; min-height: 200px;">
+            <div>
+              <h4 style="font-family: var(--font-display); font-size: 1.15rem; color: var(--color-neutral-900); margin-bottom: var(--space-2);">FIRE Number</h4>
+              <p style="font-size: 0.875rem; color: var(--color-neutral-600); margin-bottom: var(--space-4);">Compute early retirement goals with various FIRE paths.</p>
+            </div>
+            <a href="/calculator/fire-number.html" style="font-size: 0.875rem; font-weight: 700; color: var(--color-emerald-700);">Open Solver →</a>
+          </div>
+          <!-- Card 3 -->
+          <div class="glass-panel" style="padding: var(--space-6); display: flex; flex-direction: column; justify-content: space-between; min-height: 200px;">
+            <div>
+              <h4 style="font-family: var(--font-display); font-size: 1.15rem; color: var(--color-neutral-900); margin-bottom: var(--space-2);">Net Worth</h4>
+              <p style="font-size: 0.875rem; color: var(--color-neutral-600); margin-bottom: var(--space-4);">Compare asset lists and liabilities to map your total net worth.</p>
+            </div>
+            <a href="/calculator/net-worth.html" style="font-size: 0.875rem; font-weight: 700; color: var(--color-emerald-700);">Open Solver →</a>
+          </div>
+          <!-- Card 4 -->
+          <div class="glass-panel" style="padding: var(--space-6); display: flex; flex-direction: column; justify-content: space-between; min-height: 200px;">
+            <div>
+              <h4 style="font-family: var(--font-display); font-size: 1.15rem; color: var(--color-neutral-900); margin-bottom: var(--space-2);">Emergency Fund</h4>
+              <p style="font-size: 0.875rem; color: var(--color-neutral-600); margin-bottom: var(--space-4);">Project savings buffers needed to protect against budget shortfalls.</p>
+            </div>
+            <a href="/calculator/emergency-fund.html" style="font-size: 0.875rem; font-weight: 700; color: var(--color-emerald-700);">Open Solver →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category 3: Comparisons & Market Metrics -->
+      <div>
+        <h3 style="font-family: var(--font-display); font-size: 1.5rem; color: var(--color-neutral-900); margin-bottom: var(--space-4); display: flex; align-items: center; gap: 8px;">
+          <span style="color: var(--color-mauve-500); display: inline-flex;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+          </span>
+          Comparisons & Market Metrics
+        </h3>
+        <div class="grid-3" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));">
+          <!-- Card 1 -->
+          <div class="glass-panel" style="padding: var(--space-6); display: flex; flex-direction: column; justify-content: space-between; min-height: 200px;">
+            <div>
+              <h4 style="font-family: var(--font-display); font-size: 1.15rem; color: var(--color-neutral-900); margin-bottom: var(--space-2);">Lump Sum vs. DCA</h4>
+              <p style="font-size: 0.875rem; color: var(--color-neutral-600); margin-bottom: var(--space-4);">Evaluate single entry vs regular DCA market purchases.</p>
+            </div>
+            <a href="/calculator/lump-sum-vs-monthly.html" style="font-size: 0.875rem; font-weight: 700; color: var(--color-emerald-700);">Open Solver →</a>
+          </div>
+          <!-- Card 2 -->
+          <div class="glass-panel" style="padding: var(--space-6); display: flex; flex-direction: column; justify-content: space-between; min-height: 200px;">
+            <div>
+              <h4 style="font-family: var(--font-display); font-size: 1.15rem; color: var(--color-neutral-900); margin-bottom: var(--space-2);">Stock Profit / ROI</h4>
+              <p style="font-size: 0.875rem; color: var(--color-neutral-600); margin-bottom: var(--space-4);">Solve trading profit and returns factoring in tax and brokers.</p>
+            </div>
+            <a href="/calculator/stock-profit.html" style="font-size: 0.875rem; font-weight: 700; color: var(--color-emerald-700);">Open Solver →</a>
+          </div>
+          <!-- Card 3 -->
+          <div class="glass-panel" style="padding: var(--space-6); display: flex; flex-direction: column; justify-content: space-between; min-height: 200px;">
+            <div>
+              <h4 style="font-family: var(--font-display); font-size: 1.15rem; color: var(--color-neutral-900); margin-bottom: var(--space-2);">Inflation Impact</h4>
+              <p style="font-size: 0.875rem; color: var(--color-neutral-600); margin-bottom: var(--space-4);">Solve the erosion of purchasing power on capital over time.</p>
+            </div>
+            <a href="/calculator/inflation.html" style="font-size: 0.875rem; font-weight: 700; color: var(--color-emerald-700);">Open Solver →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS STEP FLOW -->
+  <section class="section" style="padding: var(--space-16) 0;">
+    <div class="container" style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.95) 100%); border: 1px solid var(--glass-border); border-radius: var(--radius-xl); padding: var(--space-10) var(--space-8); box-shadow: var(--glass-shadow);">
+      <div style="text-align: center; max-width: 640px; margin: 0 auto var(--space-10);">
+        <h2 class="hero-title" style="font-size: clamp(2rem, 4vw, 2.75rem); margin-bottom: var(--space-4);">Projection in Three Steps</h2>
+        <p style="font-size: 1.0625rem; color: var(--color-neutral-600);">Follow our structured flow to map your path to financial freedom with clean calculations.</p>
+      </div>
+      
+      <!-- Responsive steps flowchart -->
+      <div style="position: relative; max-width: 900px; margin: 0 auto;">
+        <img src="/assets/img/three-steps-flow.svg"
+             alt="From Zero to Financial Clarity in 3 Steps: Choose Your Calculator, Enter Your Numbers, Get Instant Projections"
+             style="width: 100%; height: auto; display: block; border-radius: var(--radius-md);"
+             loading="lazy" decoding="async">
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED ARTICLES (BLOG PREVIEW) -->
+  <section class="section" style="background: var(--color-bg-white); border-top: 1px solid var(--color-neutral-100); border-bottom: 1px solid var(--color-neutral-100);">
+    <div class="container">
+      <div style="text-align: center; max-width: 640px; margin: 0 auto var(--space-12);">
+        <span class="badge badge-emerald" style="margin-bottom: 12px;">Educational Articles</span>
+        <h2 class="hero-title" style="font-size: clamp(2rem, 4vw, 2.75rem); margin-bottom: var(--space-4);">Build Your Financial Intelligence</h2>
+        <p style="font-size: 1.0625rem; color: var(--color-neutral-600);">Read hand-crafted educational content explaining compound interest and wealth-building strategies.</p>
+      </div>
+
+      <div class="grid-3" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+        <!-- Post 1 -->
+        <div class="glass-panel" style="padding: var(--space-6); display: flex; flex-direction: column; justify-content: space-between; min-height: 320px;">
+          <div>
+            <span class="badge badge-orange" style="margin-bottom: var(--space-3);">Basics</span>
+            <h4 style="font-family: var(--font-display); font-size: 1.15rem; color: var(--color-neutral-900); margin-bottom: var(--space-2);"><a href="/learn/what-is-compound-interest.html" style="color: inherit;">What Is Compound Interest?</a></h4>
+            <p style="font-size: 0.875rem; color: var(--color-neutral-600); line-height: 1.5;">Learn the core math backing exponential growth and how it stacks savings interest profits.</p>
+          </div>
+          <a href="/learn/what-is-compound-interest.html" style="font-size: 0.875rem; font-weight: 700; color: var(--color-orange-700); display: inline-flex; align-items: center; gap: 4px; margin-top: var(--space-4);">Read Guide &rarr;</a>
+        </div>
+        <!-- Post 2 -->
+        <div class="glass-panel" style="padding: var(--space-6); display: flex; flex-direction: column; justify-content: space-between; min-height: 320px;">
+          <div>
+            <span class="badge badge-mauve" style="margin-bottom: var(--space-3);">Strategy</span>
+            <h4 style="font-family: var(--font-display); font-size: 1.15rem; color: var(--color-neutral-900); margin-bottom: var(--space-2);"><a href="/learn/dollar-cost-averaging.html" style="color: inherit;">Dollar-Cost Averaging Explained</a></h4>
+            <p style="font-size: 0.875rem; color: var(--color-neutral-600); line-height: 1.5;">Understand the difference between investing lump-sums and allocating systematically over time.</p>
+          </div>
+          <a href="/learn/dollar-cost-averaging.html" style="font-size: 0.875rem; font-weight: 700; color: var(--color-mauve-500); display: inline-flex; align-items: center; gap: 4px; margin-top: var(--space-4);">Read Guide &rarr;</a>
+        </div>
+        <!-- Post 3 -->
+        <div class="glass-panel" style="padding: var(--space-6); display: flex; flex-direction: column; justify-content: space-between; min-height: 320px;">
+          <div>
+            <span class="badge badge-emerald" style="margin-bottom: var(--space-3);">Beginner</span>
+            <h4 style="font-family: var(--font-display); font-size: 1.15rem; color: var(--color-neutral-900); margin-bottom: var(--space-2);"><a href="/learn/how-to-invest.html" style="color: inherit;">How to Start Investing</a></h4>
+            <p style="font-size: 0.875rem; color: var(--color-neutral-600); line-height: 1.5;">A comprehensive roadmap detailing broker setups, portfolio spreads, and long term investment plans.</p>
+          </div>
+          <a href="/learn/how-to-invest.html" style="font-size: 0.875rem; font-weight: 700; color: var(--color-emerald-700); display: inline-flex; align-items: center; gap: 4px; margin-top: var(--space-4);">Read Guide &rarr;</a>
+        </div>
+      </div>
+      <div style="display: flex; justify-content: center; margin-top: var(--space-8);">
+        <a href="/learn/index.html" class="btn btn-secondary">View All Articles</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ ACCORDION -->
+  <section class="section container-sm" style="max-width: 800px;">
+    <h2 class="hero-title" style="text-align: center; margin-bottom: var(--space-8); font-size: clamp(2rem, 4vw, 2.75rem);">Frequently Asked Questions</h2>
+    <div class="faq-list" style="margin-bottom: var(--space-12); display: flex; flex-direction: column; gap: var(--space-4);">
+      <!-- FAQ 1 -->
+      <div class="faq-item glass-panel-strong" style="border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--glass-border);">
+        <button class="faq-trigger" aria-expanded="false" style="width: 100%; display: flex; justify-content: space-between; align-items: center; padding: var(--space-4) var(--space-6); font-family: var(--font-body); font-weight: 700; font-size: 1.05rem; color: var(--color-neutral-900); background: transparent; text-align: left;">
+          What is compound interest and how does it work?
+          <span class="faq-icon" style="font-size: 1.25rem; font-weight: 400; transition: transform var(--transition-normal); display: inline-flex;">+</span>
+        </button>
+        <div class="faq-content" style="max-height: 0; overflow: hidden; transition: max-height var(--transition-normal) ease-out;">
+          <div class="faq-content-inner" style="padding: 0 var(--space-6) var(--space-6); font-size: 0.96rem; color: var(--color-neutral-600); line-height: 1.6;">
+            Compound interest is the addition of interest to the principal sum of a deposit or loan. In simple terms, it is earning "interest on interest." By reinvesting your profits rather than withdrawing them, you generate return cycles on both the initial principal and the accumulated wealth over time.
+          </div>
+        </div>
+      </div>
+      <!-- FAQ 2 -->
+      <div class="faq-item glass-panel-strong" style="border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--glass-border);">
+        <button class="faq-trigger" aria-expanded="false" style="width: 100%; display: flex; justify-content: space-between; align-items: center; padding: var(--space-4) var(--space-6); font-family: var(--font-body); font-weight: 700; font-size: 1.05rem; color: var(--color-neutral-900); background: transparent; text-align: left;">
+          How is compound interest different from simple interest?
+          <span class="faq-icon" style="font-size: 1.25rem; font-weight: 400; transition: transform var(--transition-normal); display: inline-flex;">+</span>
+        </button>
+        <div class="faq-content" style="max-height: 0; overflow: hidden; transition: max-height var(--transition-normal) ease-out;">
+          <div class="faq-content-inner" style="padding: 0 var(--space-6) var(--space-6); font-size: 0.96rem; color: var(--color-neutral-600); line-height: 1.6;">
+            Simple interest is calculated solely as a percentage of the initial principal balance, paid out statically every cycle. Compound interest calculates interest on the growing total balance (principal + prior interest). This creates a compounding effect that triggers exponential wealth curves.
+          </div>
+        </div>
+      </div>
+      <!-- FAQ 3 -->
+      <div class="faq-item glass-panel-strong" style="border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--glass-border);">
+        <button class="faq-trigger" aria-expanded="false" style="width: 100%; display: flex; justify-content: space-between; align-items: center; padding: var(--space-4) var(--space-6); font-family: var(--font-body); font-weight: 700; font-size: 1.05rem; color: var(--color-neutral-900); background: transparent; text-align: left;">
+          What is a realistic annual return rate to project?
+          <span class="faq-icon" style="font-size: 1.25rem; font-weight: 400; transition: transform var(--transition-normal); display: inline-flex;">+</span>
+        </button>
+        <div class="faq-content" style="max-height: 0; overflow: hidden; transition: max-height var(--transition-normal) ease-out;">
+          <div class="faq-content-inner" style="padding: 0 var(--space-6) var(--space-6); font-size: 0.96rem; color: var(--color-neutral-600); line-height: 1.6;">
+            Historically, US stock indexes (like the S&P 500) have returned a compound annual growth rate of roughly 9% to 10% over long periods before inflation. Cash savings profiles (HYSA) yield around 4% to 5%. For conservative projections, investors often assume a return rate of 6% to 8%.
+          </div>
+        </div>
+      </div>
+      <!-- FAQ 4 -->
+      <div class="faq-item glass-panel-strong" style="border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--glass-border);">
+        <button class="faq-trigger" aria-expanded="false" style="width: 100%; display: flex; justify-content: space-between; align-items: center; padding: var(--space-4) var(--space-6); font-family: var(--font-body); font-weight: 700; font-size: 1.05rem; color: var(--color-neutral-900); background: transparent; text-align: left;">
+          What is the Rule of 72?
+          <span class="faq-icon" style="font-size: 1.25rem; font-weight: 400; transition: transform var(--transition-normal); display: inline-flex;">+</span>
+        </button>
+        <div class="faq-content" style="max-height: 0; overflow: hidden; transition: max-height var(--transition-normal) ease-out;">
+          <div class="faq-content-inner" style="padding: 0 var(--space-6) var(--space-6); font-size: 0.96rem; color: var(--color-neutral-600); line-height: 1.6;">
+            The Rule of 72 is a simplified math formula used to estimate how many years it will take for an investment to double in value at a fixed annual yield. Simply divide 72 by your annual interest rate to find the approximate doubling time (e.g. at a 7.2% yield, your money doubles in about 10 years).
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA BANNER -->
+  <section class="section container" style="padding: 0 0 var(--space-16);">
+    <div class="glass-panel" style="background: linear-gradient(135deg, rgba(254, 215, 170, 0.4) 0%, rgba(255, 255, 255, 0.85) 100%); border-color: rgba(249, 115, 22, 0.3); padding: var(--space-12) var(--space-6); text-align: center; border-radius: var(--radius-xl);">
+      <h2 class="hero-title" style="font-size: clamp(2rem, 4vw, 2.75rem); color: var(--color-neutral-900); margin-bottom: var(--space-4);">Start Modeling Your Wealth Today</h2>
+      <p style="font-size: 1.125rem; color: var(--color-neutral-600); max-width: 600px; margin: 0 auto var(--space-8); line-height: 1.6;">
+        Join thousands of investors using our free tools to project compound growth, compare DCA profiles, and design retirement roadmaps.
+      </p>
+      <div style="display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap;">
+        <a href="/calculator/compound-interest.html" class="btn btn-primary btn-lg">Launch Compound Calculator</a>
+        <a href="#calculators" class="btn btn-secondary btn-lg">View All 13 Solvers</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <div id="footer-placeholder"></div>
+
+  <!-- SEARCH MODAL OVERLAY -->
+  <div class="modal-overlay" id="search-modal">
+    <div class="modal search-modal glass-panel-strong" style="border: 1px solid var(--glass-border);">
+      <button class="modal-close btn btn-icon btn-ghost" aria-label="Close search" style="font-size: 1.25rem; color: var(--color-neutral-600);">✕</button>
+      <h3 style="font-family: var(--font-display); font-weight: 700; font-size: 1.25rem; margin-bottom: var(--space-4); color: var(--color-neutral-900);">Search CompoundPro</h3>
+      <div class="search-input-wrapper" style="position: relative; display: flex; align-items: center; border: 1px solid var(--color-neutral-200); border-radius: var(--radius-md); background: rgba(255, 255, 255, 0.9); padding: 2px;">
+        <span class="search-icon-inside" style="padding-left: 1rem; color: var(--color-neutral-400);">🔍</span>
+        <input type="text" class="search-input" placeholder="Type calculator name or topic... (e.g. S&P 500, retirement)" aria-label="Search site" style="width: 100%; padding: 0.75rem 1rem; border: none; background: transparent; font-family: var(--font-body); font-size: 1rem; color: var(--color-neutral-900); outline: none;">
+      </div>
+      <div class="search-results" style="margin-top: var(--space-6); max-height: 300px; overflow-y: auto;">
+        <!-- Javascript queries populate here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Core Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.8/purify.min.js" integrity="sha512-jB0TkTBeQC9ZSkBqDhdmfTv1qdfbWpGE72yDr0E8w8tF4UCLRbcWR8wz//cs4620LqpLnxYRJKsE9OE5CEMZRA==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+  <script src="/assets/js/sanitizer.js" defer></script>
+  <script src="/assets/js/core.js" defer></script>
+  <script src="/assets/js/ads.js" defer></script>
+</body>
+</html>

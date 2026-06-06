@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#07090F"/>
+      <stop offset="100%" stop-color="#161B2C"/>
+    </linearGradient>
+    <linearGradient id="title-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38BDF8"/>
+      <stop offset="100%" stop-color="#7DD3FC"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <text x="60" y="280" font-family="-apple-system, system-ui, sans-serif" font-weight="800" font-size="64" fill="#F1F5F9">Investing Basics</text>
+  <text x="60" y="360" font-family="-apple-system, system-ui, sans-serif" font-weight="800" font-size="64" fill="url(#title-gradient)">Articles</text>
+  <text x="60" y="430" font-family="-apple-system, system-ui, sans-serif" font-weight="500" font-size="24" fill="#94A3B8">Beginner Guides - CompoundPro Blog</text>
+  <text x="900" y="320" font-family="-apple-system, system-ui, sans-serif" font-weight="800" font-size="160" fill="#38BDF8" opacity="0.5">📚</text>
+</svg>

@@ -1,0 +1,45 @@
+{
+  "sp500_historical_cagr": {
+    "10yr": 13.6,
+    "20yr": 9.9,
+    "30yr": 10.7
+  },
+  "us_inflation": {
+    "2020": 1.2,
+    "2021": 4.7,
+    "2022": 8.0,
+    "2023": 3.4,
+    "2024": 2.9,
+    "average_30yr": 3.2
+  },
+  "savings_account_avg": 0.45,
+  "high_yield_savings_avg": 4.8,
+  "bond_10yr_avg": 4.2,
+  "typical_return_presets": [
+    {
+      "label": "High-Yield Savings",
+      "rate": 4.8,
+      "risk": "low"
+    },
+    {
+      "label": "US Bonds",
+      "rate": 4.2,
+      "risk": "low"
+    },
+    {
+      "label": "Conservative Mix",
+      "rate": 6.0,
+      "risk": "medium"
+    },
+    {
+      "label": "S&P 500 Historical",
+      "rate": 10.7,
+      "risk": "high"
+    },
+    {
+      "label": "Aggressive Growth",
+      "rate": 12.0,
+      "risk": "high"
+    }
+  ]
+}

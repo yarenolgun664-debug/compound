@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#07090F"/>
+      <stop offset="100%" stop-color="#161B2C"/>
+    </linearGradient>
+    <linearGradient id="title-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FB923C"/>
+      <stop offset="100%" stop-color="#F59E0B"/>
+    </linearGradient>
+  </defs>
+  
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <radialGradient id="glow" cx="50%" cy="0%" r="60%">
+    <stop offset="0%" stop-color="#F97316" stop-opacity="0.3"/>
+    <stop offset="100%" stop-color="#F97316" stop-opacity="0"/>
+  </radialGradient>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  
+  <g transform="translate(60, 60)">
+    <text x="0" y="32" font-family="-apple-system, system-ui, sans-serif" font-weight="800" font-size="24" fill="#F1F5F9">Compound<tspan fill="#FB923C">Pro</tspan></text>
+  </g>
+  
+  <text x="60" y="240" font-family="-apple-system, system-ui, sans-serif" font-weight="800" font-size="64" fill="#F1F5F9">Compound Interest</text>
+  <text x="60" y="320" font-family="-apple-system, system-ui, sans-serif" font-weight="800" font-size="64" fill="url(#title-gradient)">Calculator</text>
+  <text x="60" y="390" font-family="-apple-system, system-ui, sans-serif" font-weight="500" font-size="24" fill="#94A3B8">Free, instant, with charts &amp; tables</text>
+  
+  <g transform="translate(800, 200)">
+    <rect x="0" y="0" width="350" height="220" rx="20" fill="#161B2C" stroke="#F97316" stroke-width="1.5"/>
+    <text x="30" y="60" font-family="-apple-system, system-ui, sans-serif" font-weight="700" font-size="18" fill="#94A3B8">Final Balance</text>
+    <text x="30" y="120" font-family="monospace" font-weight="700" font-size="44" fill="#FB923C">$1,247,893</text>
+    <text x="30" y="160" font-family="-apple-system, system-ui, sans-serif" font-weight="600" font-size="16" fill="#34D399">+1,148% growth</text>
+    <text x="30" y="200" font-family="-apple-system, system-ui, sans-serif" font-weight="500" font-size="14" fill="#94A3B8">In 30 years at 7% APR</text>
+  </g>
+</svg>

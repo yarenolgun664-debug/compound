@@ -1,0 +1,328 @@
+/**
+ * Reklam Alanları - Responsive Styling
+ * CompoundPro için optimize edilmiş reklam stilleri
+ */
+
+/* ════════════════════════════════════════════════════════════
+   TEMEL REKLAM CONTAINER STILI
+   ════════════════════════════════════════════════════════════ */
+
+.ad-slot {
+  width: 100%;
+  max-width: 980px;
+  margin: 24px auto;
+  padding: 12px;
+  
+  /* Görsel ayırıcı (opsiyonel - kaldırabilirsin) */
+  border: 1.5px solid transparent;
+  border-radius: 12px;
+  background: linear-gradient(var(--color-white, #fff), var(--color-white, #fff)) padding-box,
+              linear-gradient(135deg, rgba(249,115,22,0.12), rgba(255,255,255,0.9) 44%, rgba(16,185,129,0.16)) border-box;
+  
+  text-align: center;
+  overflow: hidden;
+  
+  /* Hafif gölge */
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.03);
+  
+  /* Animasyon */
+  transition: all 0.3s ease;
+}
+
+/* Reklam yüklenirken loading state */
+.ad-slot:empty::before {
+  content: 'Reklam yükleniyor...';
+  display: block;
+  padding: 20px;
+  color: rgba(100, 116, 139, 0.6);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* Hover efekti (opsiyonel) */
+.ad-slot:hover {
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.06);
+}
+
+
+/* ════════════════════════════════════════════════════════════
+   KONUM BAZINDA ÖZEL STİLLER
+   ════════════════════════════════════════════════════════════ */
+
+/* Header Banner (after-body) */
+.ad-slot[data-ad-position="after-body"] {
+  margin-top: 0;
+  margin-bottom: 32px;
+  background: linear-gradient(135deg, rgba(249,115,22,0.04), rgba(16,185,129,0.04));
+}
+
+/* Main Content Start */
+.ad-slot[data-ad-position="main-start"] {
+  margin-top: 32px;
+  margin-bottom: 32px;
+}
+
+/* Footer Banner (before-footer) */
+.ad-slot[data-ad-position="before-footer"] {
+  margin-top: 48px;
+  margin-bottom: 32px;
+}
+
+/* Sidebar (right-rail/left-rail) */
+.ad-slot[data-ad-position="right-rail"],
+.ad-slot[data-ad-position="left-rail"] {
+  position: sticky;
+  top: 112px; /* Navbar yüksekliği + padding */
+  max-height: calc(100vh - 140px);
+  margin: 0;
+  width: auto;
+  max-width: 160px;
+}
+
+.ad-slot[data-ad-position="right-rail"] {
+  float: right;
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+.ad-slot[data-ad-position="left-rail"] {
+  float: left;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+/* In-Article (blog/learn içerik arası) */
+.ad-slot[data-ad-position="in-article"] {
+  margin: 32px auto;
+  max-width: 300px;
+}
+
+/* In-Results (hesaplayıcı sonuç alanı) */
+.ad-slot[data-ad-position="before-results"],
+.ad-slot[data-ad-position="after-results"] {
+  margin: 24px auto;
+}
+
+
+/* ════════════════════════════════════════════════════════════
+   BOYUT BAZINDA ÖZEL STİLLER
+   ════════════════════════════════════════════════════════════ */
+
+/* Responsive Ads (auto) */
+.ad-slot[data-ad-size="responsive"] {
+  min-height: 90px;
+  max-width: 100%;
+}
+
+/* Leaderboard (728x90) */
+.ad-slot[data-ad-size="728x90"] {
+  min-height: 90px;
+  max-width: 728px;
+}
+
+/* Medium Rectangle (300x250) */
+.ad-slot[data-ad-size="300x250"] {
+  min-height: 250px;
+  max-width: 300px;
+}
+
+/* Wide Skyscraper (160x600) */
+.ad-slot[data-ad-size="160x600"] {
+  min-height: 600px;
+  max-width: 160px;
+}
+
+/* Large Rectangle (336x280) */
+.ad-slot[data-ad-size="336x280"] {
+  min-height: 280px;
+  max-width: 336px;
+}
+
+/* Half Page (300x600) */
+.ad-slot[data-ad-size="300x600"] {
+  min-height: 600px;
+  max-width: 300px;
+}
+
+/* Mobile Banner (320x50) */
+.ad-slot[data-ad-size="320x50"] {
+  min-height: 50px;
+  max-width: 320px;
+}
+
+/* Large Mobile Banner (320x100) */
+.ad-slot[data-ad-size="320x100"] {
+  min-height: 100px;
+  max-width: 320px;
+}
+
+
+/* ════════════════════════════════════════════════════════════
+   RESPONSIVE BREAKPOINTS
+   ════════════════════════════════════════════════════════════ */
+
+/* Tablet (1024px ve altı) */
+@media (max-width: 1024px) {
+  /* Sidebar reklamlarını gizle */
+  .ad-slot[data-ad-position="right-rail"],
+  .ad-slot[data-ad-position="left-rail"] {
+    display: none;
+  }
+  
+  /* Container padding azalt */
+  .ad-slot {
+    margin: 20px auto;
+    padding: 10px;
+  }
+}
+
+/* Mobile (768px ve altı) */
+@media (max-width: 768px) {
+  /* Tüm reklamlar full-width */
+  .ad-slot {
+    max-width: 100%;
+    margin: 18px auto;
+    padding: 8px;
+  }
+  
+  /* Leaderboard'u mobile banner'a dönüştür */
+  .ad-slot[data-ad-size="728x90"] {
+    min-height: 50px;
+  }
+  
+  /* Large rectangle'ları orta boyuta küçült */
+  .ad-slot[data-ad-size="336x280"],
+  .ad-slot[data-ad-size="300x600"] {
+    min-height: 250px;
+    max-width: 300px;
+  }
+  
+  /* Header/footer margin azalt */
+  .ad-slot[data-ad-position="after-body"],
+  .ad-slot[data-ad-position="before-footer"] {
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
+}
+
+/* Small Mobile (480px ve altı) */
+@media (max-width: 480px) {
+  .ad-slot {
+    margin: 12px auto;
+    padding: 6px;
+  }
+  
+  /* Tüm reklamlar responsive yap */
+  .ad-slot[data-ad-size="300x250"],
+  .ad-slot[data-ad-size="336x280"] {
+    max-width: 100%;
+    min-height: 200px;
+  }
+}
+
+
+/* ════════════════════════════════════════════════════════════
+   ACCESSIBILITY & USER EXPERIENCE
+   ════════════════════════════════════════════════════════════ */
+
+/* Focus state (keyboard navigation) */
+.ad-slot:focus-within {
+  outline: 2px solid var(--color-orange, #F97316);
+  outline-offset: 4px;
+}
+
+/* Reduced motion için animasyonları devre dışı bırak */
+@media (prefers-reduced-motion: reduce) {
+  .ad-slot {
+    transition: none;
+  }
+}
+
+/* Print için reklamları gizle */
+@media print {
+  .ad-slot {
+    display: none !important;
+  }
+}
+
+
+/* ════════════════════════════════════════════════════════════
+   ADSENSE SPECIFIC STYLING
+   ════════════════════════════════════════════════════════════ */
+
+/* AdSense ins elementi */
+.ad-slot .adsbygoogle {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* AdSense boş state */
+.adsbygoogle[data-ad-status="unfilled"] {
+  display: none !important;
+}
+
+
+/* ════════════════════════════════════════════════════════════
+   DARK MODE SUPPORT (opsiyonel)
+   ════════════════════════════════════════════════════════════ */
+
+html.dark-mode .ad-slot {
+  background: linear-gradient(var(--color-bg-dark, #0F172A), var(--color-bg-dark, #0F172A)) padding-box,
+              linear-gradient(135deg, rgba(249,115,22,0.2), rgba(255,255,255,0.1) 44%, rgba(16,185,129,0.24)) border-box;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+html.dark-mode .ad-slot:empty::before {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+
+/* ════════════════════════════════════════════════════════════
+   PLACEHOLDER STATE (reklam yüklenene kadar)
+   ════════════════════════════════════════════════════════════ */
+
+/* Yükleme animasyonu */
+@keyframes adPulse {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.ad-slot:empty {
+  background: linear-gradient(90deg, 
+    rgba(249,115,22,0.05) 0%, 
+    rgba(16,185,129,0.05) 50%, 
+    rgba(249,115,22,0.05) 100%);
+  background-size: 200% 100%;
+  animation: adPulse 2s ease-in-out infinite;
+}
+
+
+/* ════════════════════════════════════════════════════════════
+   SPECIAL CASES
+   ════════════════════════════════════════════════════════════ */
+
+/* Anchor/Sticky ads (mobil alt banner) */
+.ad-slot[data-ad-format="anchor"] {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  margin: 0;
+  max-width: 100%;
+  border-radius: 0;
+}
+
+/* In-feed ads (liste sayfalarında) */
+.ad-slot[data-ad-format="in-feed"] {
+  margin: 24px 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+}

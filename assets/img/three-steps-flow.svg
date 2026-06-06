@@ -1,0 +1,256 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 195" role="img" aria-label="From Zero to Financial Clarity in 3 Steps: Choose Your Calculator, Enter Your Numbers, Get Instant Projections">
+  <defs>
+    <!-- Turuncu gradyan -->
+    <linearGradient id="orangeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FB923C"/>
+      <stop offset="50%" stop-color="#F97316"/>
+      <stop offset="100%" stop-color="#EA580C"/>
+    </linearGradient>
+
+    <!-- Cam arka plan gradyanı -->
+    <linearGradient id="glassGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#ECFDF5" stop-opacity="0.6"/>
+    </linearGradient>
+
+    <!-- Cam kart için yansıma -->
+    <linearGradient id="cardShine" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.7"/>
+      <stop offset="50%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- Bağlantı çizgisi akan gradient -->
+    <linearGradient id="flowLine" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#F97316" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#F97316" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#F97316" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- "3 Steps" başlığı cam arka planı -->
+    <linearGradient id="titleShine" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.45"/>
+      <stop offset="50%" stop-color="#FFFFFF" stop-opacity="0.08"/>
+      <stop offset="60%" stop-color="#FFFFFF" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#F97316" stop-opacity="0.3"/>
+    </linearGradient>
+
+    <!-- Sayı rozeti glow -->
+    <radialGradient id="badgeGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#F97316" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#F97316" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Yumuşak gölge -->
+    <filter id="softShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
+      <feOffset dx="0" dy="3" result="off"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.18"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <filter id="orangeGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2.5" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <style>
+      .step-title { font: 700 18px 'Syne', 'DM Sans', system-ui, sans-serif; fill: #0F172A; }
+      .step-desc  { font: 400 13px 'DM Sans', system-ui, sans-serif; fill: #64748B; }
+      .num-text   { font: 800 16px 'DM Sans', system-ui, sans-serif; fill: #FFFFFF; }
+
+      /* 1. Adım kartı */
+      #step1 { animation: cardIn 0.9s ease-out 0.1s both; }
+      #step2 { animation: cardIn 0.9s ease-out 0.4s both; }
+      #step3 { animation: cardIn 0.9s ease-out 0.7s both; }
+
+      /* Bağlantı çizgileri akışı (yavaş) */
+      #flow1 { animation: dashFlow 4s linear infinite; }
+      #flow2 { animation: dashFlow 4s linear infinite 0.5s; }
+
+      /* Hedef dış halkaları (yavaş) */
+      .pulse-ring { transform-origin: center; animation: pulseRing 4.5s ease-out infinite; }
+      .pulse-ring.r2 { animation-delay: 1.5s; }
+      .pulse-ring.r3 { animation-delay: 3s; }
+
+      /* Hedef merkezi vuruş */
+      #targetHit { transform-origin: 150px 80px; animation: hitPulse 4.5s ease-in-out infinite; }
+
+      /* Kalem yazma hareketi (yavaş) */
+      #pencil { transform-origin: 450px 80px; animation: penWrite 6s ease-in-out infinite; }
+
+      /* Grafik çubukları büyüme (yavaş) */
+      #bar1 { transform-origin: 150px 98px; animation: barGrow 5s ease-in-out infinite; }
+      #bar2 { transform-origin: 150px 98px; animation: barGrow 5s ease-in-out infinite 0.5s; }
+      #bar3 { transform-origin: 150px 98px; animation: barGrow 5s ease-in-out infinite 1s; }
+      #bar4 { transform-origin: 150px 98px; animation: barGrow 5s ease-in-out infinite 1.5s; }
+
+      /* Sayı rozeti nabız (yavaş) */
+      .badge { transform-origin: center; animation: badgePulse 4.5s ease-in-out infinite; }
+      .badge.b2 { animation-delay: 1.5s; }
+      .badge.b3 { animation-delay: 3s; }
+
+      /* "3 Steps" başlığı — cam + ayna + dinamik */
+      #threeStepsTitle {
+        animation: titleShimmer 9s ease-in-out infinite;
+        transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+      #threeStepsTitle::before {
+        content: "";
+        animation: titleSweep 7s ease-in-out infinite;
+      }
+
+      @keyframes cardIn {
+        from { opacity: 0; transform: translateY(14px) scale(0.96); }
+        to   { opacity: 1; transform: translateY(0) scale(1); }
+      }
+
+      @keyframes dashFlow {
+        from { stroke-dashoffset: 0; }
+        to   { stroke-dashoffset: -40; }
+      }
+
+      @keyframes pulseRing {
+        0%   { transform: scale(0.85); opacity: 0.6; }
+        80%  { transform: scale(1.4); opacity: 0; }
+        100% { transform: scale(1.4); opacity: 0; }
+      }
+
+      @keyframes hitPulse {
+        0%, 100% { transform: scale(1); }
+        50%      { transform: scale(0.88); }
+      }
+
+      @keyframes penWrite {
+        0%, 100% { transform: rotate(-6deg) translate(0, 0); }
+        25%      { transform: rotate(2deg) translate(3px, -2px); }
+        50%      { transform: rotate(-3deg) translate(-2px, 2px); }
+        75%      { transform: rotate(4deg) translate(2px, -1px); }
+      }
+
+      @keyframes barGrow {
+        0%, 100% { transform: scaleY(0.55); }
+        50%      { transform: scaleY(1); }
+      }
+
+      @keyframes badgePulse {
+        0%, 100% { transform: scale(1); }
+        50%      { transform: scale(1.08); }
+      }
+
+      /* Cam + ayna parıltı animasyonları (yavaş) */
+      @keyframes titleShimmer {
+        0%, 100% {
+          filter: drop-shadow(0 4px 12px rgba(249,115,22,0.18));
+        }
+        50% {
+          filter: drop-shadow(0 6px 18px rgba(249,115,22,0.32));
+        }
+      }
+
+      @keyframes titleSweep {
+        0%   { transform: translateX(-180px); opacity: 0; }
+        15%  { opacity: 1; }
+        50%  { transform: translateX(0px); opacity: 1; }
+        85%  { opacity: 1; }
+        100% { transform: translateX(180px); opacity: 0; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        * { animation: none !important; }
+      }
+    </style>
+  </defs>
+
+  <!-- ═══ ARKA PLAN CAM KART (kompakt) ═══ -->
+  <rect x="10" y="8" width="880" height="180" rx="20" ry="20"
+        fill="url(#glassGrad)" stroke="#F97316" stroke-opacity="0.18" stroke-width="1"/>
+  <rect x="10" y="8" width="880" height="90" rx="20" ry="20"
+        fill="url(#cardShine)" opacity="0.6"/>
+
+  <!-- ═══ BAĞLANTI ÇİZGİLERİ (akan kesikli, yavaş) ═══ -->
+  <g opacity="0.9">
+    <line x1="230" y1="80" x2="370" y2="80"
+          stroke="url(#flowLine)" stroke-width="2.5" stroke-linecap="round"
+          stroke-dasharray="6 6" id="flow1"/>
+    <line x1="530" y1="80" x2="670" y2="80"
+          stroke="url(#flowLine)" stroke-width="2.5" stroke-linecap="round"
+          stroke-dasharray="6 6" id="flow2"/>
+  </g>
+
+  <!-- ═══ STEP 1 — HEDEF (BULLSEYE) ═══ -->
+  <g id="step1" filter="url(#softShadow)">
+    <circle cx="150" cy="80" r="36" fill="#FFFFFF" fill-opacity="0.75"
+            stroke="#F97316" stroke-opacity="0.35" stroke-width="1.2"/>
+    <circle class="pulse-ring" cx="150" cy="80" r="28"
+            fill="none" stroke="#F97316" stroke-width="1.5" opacity="0.5"/>
+    <circle class="pulse-ring r2" cx="150" cy="80" r="28"
+            fill="none" stroke="#F97316" stroke-width="1.5" opacity="0.5"/>
+    <circle class="pulse-ring r3" cx="150" cy="80" r="28"
+            fill="none" stroke="#F97316" stroke-width="1.5" opacity="0.5"/>
+    <g id="targetHit">
+      <circle cx="150" cy="80" r="17" fill="#FEF3C7" stroke="#F97316" stroke-width="2"/>
+      <circle cx="150" cy="80" r="10" fill="#FED7AA" stroke="#EA580C" stroke-width="1.5"/>
+      <circle cx="150" cy="80" r="4"  fill="url(#orangeGrad)"/>
+    </g>
+    <g class="badge b1">
+      <circle cx="178" cy="52" r="11" fill="url(#badgeGlow)"/>
+      <circle cx="178" cy="52" r="9" fill="url(#orangeGrad)" filter="url(#orangeGlow)"/>
+      <text class="num-text" x="178" y="56" text-anchor="middle">1</text>
+    </g>
+    <text class="step-title" x="150" y="148" text-anchor="middle">Choose Your Calculator</text>
+    <text class="step-desc"  x="150" y="166" text-anchor="middle">Pick from 13 specialized calculators,</text>
+    <text class="step-desc"  x="150" y="181" text-anchor="middle">each designed for a specific goal.</text>
+  </g>
+
+  <!-- ═══ STEP 2 — KALEM ═══ -->
+  <g id="step2" filter="url(#softShadow)">
+    <circle cx="450" cy="80" r="36" fill="#FFFFFF" fill-opacity="0.75"
+            stroke="#F97316" stroke-opacity="0.35" stroke-width="1.2"/>
+    <path d="M 425 88 Q 437 78 450 88 T 475 88"
+          fill="none" stroke="#F97316" stroke-width="2"
+          stroke-linecap="round" opacity="0.45"
+          stroke-dasharray="2 3"/>
+    <g id="pencil" transform="translate(0 0)">
+      <g transform="translate(450 80) rotate(-30)">
+        <polygon points="-19,0 -9,-4 -9,4" fill="#0F172A"/>
+        <rect x="-9" y="-4" width="5" height="8" fill="#FBBF24"/>
+        <rect x="-4" y="-4" width="3" height="8" fill="#94A3B8"/>
+        <rect x="0" y="-5" width="19" height="10" rx="2" fill="url(#orangeGrad)"/>
+        <rect x="0" y="-5" width="19" height="2.5" fill="#FFFFFF" fill-opacity="0.4"/>
+        <rect x="19" y="-4" width="4" height="8" rx="1.2" fill="#FCA5A5"/>
+      </g>
+    </g>
+    <g class="badge b2">
+      <circle cx="478" cy="52" r="11" fill="url(#badgeGlow)"/>
+      <circle cx="478" cy="52" r="9" fill="url(#orangeGrad)" filter="url(#orangeGlow)"/>
+      <text class="num-text" x="478" y="56" text-anchor="middle">2</text>
+    </g>
+    <text class="step-title" x="450" y="148" text-anchor="middle">Enter Your Numbers</text>
+    <text class="step-desc"  x="450" y="166" text-anchor="middle">Input your current savings,</text>
+    <text class="step-desc"  x="450" y="181" text-anchor="middle">contributions, rate, and time horizon.</text>
+  </g>
+
+  <!-- ═══ STEP 3 — ÇUBUK GRAFİK ═══ -->
+  <g id="step3" filter="url(#softShadow)">
+    <circle cx="750" cy="80" r="36" fill="#FFFFFF" fill-opacity="0.75"
+            stroke="#F97316" stroke-opacity="0.35" stroke-width="1.2"/>
+    <line x1="728" y1="98" x2="772" y2="98" stroke="#94A3B8" stroke-width="1.5" stroke-linecap="round"/>
+    <line x1="728" y1="62" x2="728" y2="98" stroke="#94A3B8" stroke-width="1.5" stroke-linecap="round"/>
+    <rect id="bar1" x="732" y="80" width="7" height="18" rx="2" fill="#FED7AA"/>
+    <rect id="bar2" x="743" y="80" width="7" height="18" rx="2" fill="#FB923C"/>
+    <rect id="bar3" x="754" y="80" width="7" height="18" rx="2" fill="url(#orangeGrad)"/>
+    <rect id="bar4" x="765" y="80" width="7" height="18" rx="2" fill="#EA580C"/>
+    <path d="M 730 75 Q 745 68 770 62"
+          fill="none" stroke="#10B981" stroke-width="1.6"
+          stroke-linecap="round" stroke-dasharray="3 2" opacity="0.8"/>
+    <polygon points="770,62 766,65 768,60" fill="#10B981"/>
+    <g class="badge b3">
+      <circle cx="778" cy="52" r="11" fill="url(#badgeGlow)"/>
+      <circle cx="778" cy="52" r="9" fill="url(#orangeGrad)" filter="url(#orangeGlow)"/>
+      <text class="num-text" x="778" y="56" text-anchor="middle">3</text>
+    </g>
+    <text class="step-title" x="750" y="148" text-anchor="middle">Get Instant Projections</text>
+    <text class="step-desc"  x="750" y="166" text-anchor="middle">See charts, year-by-year breakdowns,</text>
+    <text class="step-desc"  x="750" y="181" text-anchor="middle">and actionable insights—updated live.</text>
+  </g>
+</svg>

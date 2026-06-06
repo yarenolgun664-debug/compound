@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com https://polyfill.io 'unsafe-inline'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline' https://api.fontshare.com; font-src 'self' https://fonts.gstatic.com https://api.fontshare.com data:;">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="index, follow">
+  
+  <!-- SEO Requirements -->
+  <title>Article Template — Educational Editorial Layout | CompoundPro</title>
+  <meta name="description" content="A premium, magazine-style editorial layout template for educational finance content, featuring Clash Display and Satoshi typography.">
+  <link rel="canonical" href="https://compoundpro.com/article-template.html">
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://compoundpro.com/article-template.html">
+  <meta property="og:title" content="Article Template — Educational Editorial Layout | CompoundPro">
+  <meta property="og:description" content="A premium, magazine-style editorial layout template for educational finance content, featuring Clash Display and Satoshi typography.">
+  <meta property="og:image" content="https://compoundpro.com/assets/img/og/og-article.jpg">
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://compoundpro.com/article-template.html">
+  <meta name="twitter:title" content="Article Template — Educational Editorial Layout | CompoundPro">
+  <meta name="twitter:description" content="A premium, magazine-style editorial layout template for educational finance content, featuring Clash Display and Satoshi typography.">
+  <meta name="twitter:image" content="https://compoundpro.com/assets/img/og/og-article.jpg">
+
+  <!-- Critical Inline CSS for Article FCP -->
+  <style>
+    :root {
+      --color-emerald-50: #ECFDF5;
+      --color-emerald-500: #10B981;
+      --color-emerald-600: #059669;
+      --color-emerald-700: #047857;
+      --color-emerald-900: #064E3B;
+      --color-orange-50: #FFF7ED;
+      --color-orange-500: #F97316;
+      --color-orange-600: #EA580C;
+      --color-mauve-50: #FDF4FF;
+      --color-mauve-500: #D946EF;
+      --color-bg-white: #FFFFFF;
+      --color-bg-offwhite: #FAFAFA;
+      --color-neutral-100: #F3F4F6;
+      --color-neutral-200: #E5E7EB;
+      --color-neutral-400: #9CA3AF;
+      --color-neutral-600: #4B5563;
+      --color-neutral-900: #111827;
+      --glass-bg: rgba(255, 255, 255, 0.7);
+      --glass-bg-strong: rgba(255, 255, 255, 0.85);
+      --glass-border: rgba(255, 255, 255, 0.6);
+      --glass-shadow: 0 8px 32px -4px rgba(16, 185, 129, 0.08);
+      --glass-blur: blur(16px);
+      --font-display: 'Clash Display', sans-serif;
+      --font-body: 'Satoshi', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --space-1: 0.25rem;
+      --space-2: 0.5rem;
+      --space-3: 0.75rem;
+      --space-4: 1rem;
+      --space-6: 1.5rem;
+      --space-8: 2rem;
+      --space-12: 3rem;
+      --space-16: 4rem;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 24px;
+      --radius-2xl: 32px;
+      --radius-full: 9999px;
+      --transition-normal: 300ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--color-bg-offwhite);
+      color: var(--color-neutral-600);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: 
+        radial-gradient(circle at 15% 10%, rgba(16, 185, 129, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 85% 30%, rgba(217, 70, 239, 0.04) 0%, transparent 40%),
+        radial-gradient(circle at 50% 85%, rgba(16, 185, 129, 0.03) 0%, transparent 35%);
+      pointer-events: none;
+      z-index: -2;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: var(--space-6);
+      padding-right: var(--space-6);
+    }
+
+    /* Reading Progress Bar */
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--color-orange-500) 0%, var(--color-emerald-500) 100%);
+      transform-origin: left;
+      z-index: 9999;
+      width: 0;
+    }
+
+    /* Article layout: left sticky sidebar TOC, middle reading body */
+    .article-layout {
+      display: grid;
+      grid-template-columns: 240px minmax(0, 1fr);
+      gap: var(--space-8);
+      align-items: start;
+    }
+
+    @media (max-width: 992px) {
+      .article-layout {
+        grid-template-columns: 1fr;
+      }
+      .toc-sidebar {
+        display: none;
+      }
+    }
+
+    /* Sticky Sidebar */
+    .toc-sidebar {
+      position: sticky;
+      top: 104px;
+    }
+
+    .toc-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-neutral-900);
+      margin-bottom: var(--space-4);
+    }
+
+    .toc-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+
+    .toc-link {
+      font-size: 0.9375rem;
+      color: var(--color-neutral-600);
+      transition: color var(--transition-normal);
+    }
+
+    .toc-link.active, .toc-link:hover {
+      color: var(--color-emerald-600);
+      font-weight: 700;
+    }
+
+    /* Reading content blocks */
+    .article-body {
+      max-width: 72ch; /* Best readable width for typography */
+      margin: 0 auto;
+    }
+
+    .article-body h2 {
+      margin-top: var(--space-8);
+      margin-bottom: var(--space-4);
+      font-size: 1.875rem;
+    }
+
+    .article-body p {
+      margin-bottom: var(--space-6);
+      font-size: 1.125rem;
+      color: var(--color-neutral-600);
+      line-height: 1.75;
+    }
+
+    /* Blockquotes */
+    blockquote {
+      border-left: 4px solid var(--color-emerald-500);
+      padding: var(--space-4) var(--space-6);
+      margin: var(--space-8) 0;
+      background: rgba(16, 185, 129, 0.03);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      font-style: italic;
+    }
+
+    blockquote p {
+      font-size: 1.25rem;
+      color: var(--color-neutral-900);
+      margin-bottom: 0;
+    }
+
+    /* Formula and code blocks */
+    pre {
+      background: var(--color-neutral-100);
+      border: 1px solid var(--color-neutral-200);
+      border-radius: var(--radius-md);
+      padding: var(--space-4);
+      margin: var(--space-6) 0;
+      overflow-x: auto;
+    }
+
+    code {
+      font-family: var(--font-mono);
+      font-size: 0.9375rem;
+      color: var(--color-neutral-900);
+    }
+
+    .formula-block {
+      text-align: center;
+      padding: var(--space-6) var(--space-4);
+      background: var(--color-bg-white);
+      border: 1px solid var(--color-neutral-200);
+      border-radius: var(--radius-md);
+      margin: var(--space-6) 0;
+      box-shadow: var(--glass-shadow);
+    }
+
+    .formula-text {
+      font-family: var(--font-mono);
+      font-size: 1.25rem;
+      color: var(--color-neutral-900);
+      display: block;
+      margin-bottom: var(--space-2);
+    }
+  </style>
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <!-- Stylesheets -->
+  <link rel="preload" href="/assets/css/design-system.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="/assets/css/design-system.css"></noscript>
+  <link rel="preload" href="/assets/css/components.css?v=20260602" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="/assets/css/components.css?v=20260602"></noscript>
+
+  <!-- Layout Loader Component System -->
+  <script src="/assets/js/layout-loader.js" defer></script>
+  
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Article Template — Educational Editorial Layout",
+    "description": "A premium, magazine-style editorial layout template for educational finance content.",
+    "image": "https://compoundpro.com/assets/img/og/og-article.jpg",
+    "author": {
+      "@type": "Organization",
+      "name": "CompoundPro"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "CompoundPro",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://compoundpro.com/assets/img/og/logo.png"
+      }
+    },
+    "datePublished": "2026-06-06",
+    "dateModified": "2026-06-06"
+  }
+  </script>
+</head>
+<body class="grain-overlay">
+
+  <!-- Progress bar (global scroll indicator) -->
+  <div class="progress-bar" id="reading-progress"></div>
+
+  <!-- NAVBAR -->
+  <div id="navbar-placeholder"></div>
+
+  <!-- MAIN WRAPPER -->
+  <main style="padding-top: 104px; padding-bottom: 80px;">
+    <div class="container">
+      
+      <!-- BREADCRUMBS -->
+      <nav class="breadcrumb" style="margin-bottom: var(--space-6);">
+        <a href="/" class="breadcrumb-item">Home</a>
+        <span class="breadcrumb-sep">/</span>
+        <a href="/blog/index.html" class="breadcrumb-item">Blog</a>
+        <span class="breadcrumb-sep">/</span>
+        <span class="breadcrumb-item">Article Template</span>
+      </nav>
+
+      <!-- ARTICLE HERO HEADER -->
+      <header style="max-width: 800px; margin-bottom: var(--space-10);">
+        <span class="badge badge-emerald" style="margin-bottom: var(--space-4);">Investing Theory</span>
+        <h1 class="hero-title" style="font-size: clamp(2.5rem, 5vw, 3.5rem); margin-bottom: var(--space-4);">The Mathematical Mechanics of Compound Interest</h1>
+        <div style="display: flex; gap: var(--space-4); color: var(--color-neutral-400); font-size: 0.875rem; align-items: center; flex-wrap: wrap;">
+          <span>Published on June 6, 2026</span>
+          <span style="width: 4px; height: 4px; border-radius: 50%; background: var(--color-neutral-400);"></span>
+          <span>10 min read</span>
+          <span style="width: 4px; height: 4px; border-radius: 50%; background: var(--color-neutral-400);"></span>
+          <span>Written by CompoundPro Team</span>
+        </div>
+      </header>
+
+      <!-- TWO-COLUMN EDITORIAL LAYOUT -->
+      <div class="article-layout">
+        <!-- LEFT SIDEBAR: STICKY TABLE OF CONTENTS -->
+        <aside class="toc-sidebar glass-panel" style="padding: var(--space-6);">
+          <div class="toc-title">Table of Contents</div>
+          <ul class="toc-list">
+            <li><a href="#introduction" class="toc-link active">Introduction</a></li>
+            <li><a href="#compounding-formula" class="toc-link">The Compounding Formula</a></li>
+            <li><a href="#frequency" class="toc-link">Compounding Frequency</a></li>
+            <li><a href="#dca-effect" class="toc-link">The Contribution Advantage</a></li>
+            <li><a href="#conclusion" class="toc-link">Conclusion</a></li>
+          </ul>
+        </aside>
+
+        <!-- CENTER COLUMN: LONG-FORM EDITORIAL CONTENT -->
+        <article class="article-body">
+          <section id="introduction">
+            <p>
+              Compound interest represents one of the most powerful mechanisms in global finance. Unlike linear simple interest models, compounding multiplies returns over time by adding earned interest back to the principal, effectively generating "interest on interest."
+            </p>
+            <blockquote>
+              <p>
+                "Compound interest is the eighth wonder of the world. He who understands it, earns it... he who doesn't, pays it."
+              </p>
+            </blockquote>
+            <p>
+              Understanding the algebra backing compounding wealth allows long-term cash allocators to project growth ranges, balance account parameters, and reach retirement goals early.
+            </p>
+          </section>
+
+          <section id="compounding-formula">
+            <h2>The Compounding Formula</h2>
+            <p>
+              The future value of a capital asset compounded at a fixed rate is expressed through the following standard mathematical equation:
+            </p>
+            <div class="formula-block">
+              <span class="formula-text">A = P (1 + r/n) ^ (nt)</span>
+              <span style="font-size: 0.8125rem; color: var(--color-neutral-400); display: block; font-family: var(--font-body);">Compound Interest Future Value Formula</span>
+            </div>
+            <p>
+              Where:
+            </p>
+            <ul style="margin-left: var(--space-6); margin-bottom: var(--space-6); display: flex; flex-direction: column; gap: var(--space-2); font-size: 1.0625rem; color: var(--color-neutral-600);">
+              <li><strong>A</strong> = Future value of the investment</li>
+              <li><strong>P</strong> = Principal investment amount</li>
+              <li><strong>r</strong> = Annual interest rate (decimal)</li>
+              <li><strong>n</strong> = Number of times interest compounded per year</li>
+              <li><strong>t</strong> = Time horizon in years</li>
+            </ul>
+            <p>
+              Let's write a simple example configuration code showing how this formula resolves inside our browser projection engines:
+            </p>
+            <pre><code>function calculateFutureValue(principal, rate, years, interval) {
+  const r = rate / 100;
+  const n = interval;
+  const t = years;
+  return principal * Math.pow(1 + r / n, n * t);
+}</code></pre>
+          </section>
+
+          <section id="frequency">
+            <h2>Compounding Frequency</h2>
+            <p>
+              Compounding intervals determine how often interest is calculated and added to the balance. Common frequencies include daily, monthly, quarterly, and annual calculations.
+            </p>
+            <p>
+              The higher the compounding frequency, the more rapid the growth curve. While daily compounding earns slightly more than monthly or annual models, the impact of the interest rate itself is far more significant over multi-decade time horizons.
+            </p>
+          </section>
+
+          <section id="dca-effect">
+            <h2>The Contribution Advantage</h2>
+            <p>
+              While initial principal compounding is impressive, adding regular systematic payments (Dollar-Cost Averaging) accelerates return curves dramatically. Reinvesting cash additions provides fresh principal bases for subsequent compounding periods, leading to exponential portfolio expansions.
+            </p>
+          </section>
+
+          <section id="conclusion">
+            <h2>Conclusion</h2>
+            <p>
+              Harnessing compound interest is a matter of discipline and time. By choosing robust asset allocations, minimizing taxes, and letting time multiply interest, cash bases expand exponentially over the years.
+            </p>
+          </section>
+        </article>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <div id="footer-placeholder"></div>
+
+  <!-- SEARCH MODAL OVERLAY -->
+  <div class="modal-overlay" id="search-modal">
+    <div class="modal search-modal glass-panel-strong">
+      <button class="modal-close btn btn-icon btn-ghost" aria-label="Close search">✕</button>
+      <h3 style="font-family: var(--font-display); font-weight: 700; font-size: 1.25rem; margin-bottom: var(--space-4); color: var(--color-neutral-900);">Search CompoundPro</h3>
+      <div class="search-input-wrapper" style="position: relative; display: flex; align-items: center; border: 1px solid var(--color-neutral-200); border-radius: var(--radius-md); background: rgba(255, 255, 255, 0.9); padding: 2px;">
+        <span class="search-icon-inside" style="padding-left: 1rem; color: var(--color-neutral-400);">🔍</span>
+        <input type="text" class="search-input" placeholder="Type calculator name or topic... (e.g. S&P 500, retirement)" aria-label="Search site" style="width: 100%; padding: 0.75rem 1rem; border: none; background: transparent; font-family: var(--font-body); font-size: 1rem; color: var(--color-neutral-900); outline: none;">
+      </div>
+      <div class="search-results" style="margin-top: var(--space-6); max-height: 300px; overflow-y: auto;"></div>
+    </div>
+  </div>
+
+  <!-- Javascript Logic for Reading Progress -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const bar = document.getElementById('reading-progress');
+      if (bar) {
+        window.addEventListener('scroll', () => {
+          const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+          const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+          const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+          bar.style.width = scrolled + '%';
+        });
+      }
+      
+      // Simple scroll spy logic for TOC links
+      const sections = document.querySelectorAll('article section');
+      const tocLinks = document.querySelectorAll('.toc-link');
+      
+      window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          if (pageYOffset >= sectionTop - 150) {
+            current = section.getAttribute('id');
+          }
+        });
+        
+        tocLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === '#' + current) {
+            link.classList.add('active');
+          }
+        });
+      });
+    });
+  </script>
+
+  <!-- Core Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.8/purify.min.js" integrity="sha512-jB0TkTBeQC9ZSkBqDhdmfTv1qdfbWpGE72yDr0E8w8tF4UCLRbcWR8wz//cs4620LqpLnxYRJKsE9OE5CEMZRA==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+  <script src="/assets/js/sanitizer.js" defer></script>
+  <script src="/assets/js/core.js" defer></script>
+  <script src="/assets/js/ads.js" defer></script>
+</body>
+</html>
